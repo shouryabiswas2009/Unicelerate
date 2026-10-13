@@ -1,3 +1,5 @@
+import type { CoopProgram, ResearchIntensity } from "./types.ts";
+
 // Every weight and threshold used to score and rank universities, in one
 // place. Change a number here and every page follows. Each value says why.
 //
@@ -150,3 +152,25 @@ export const POST_STUDY_CAP_MONTHS = 36;
 export const STAY_UNSURE_POST_STUDY_SHARE = 0.5;
 // Work during study: this many hours a week or more counts as full marks.
 export const WORK_HOURS_CAP = 24;
+
+// ─── 5. Focus signals ───────────────────────────────────────────────────
+
+// How much each Carnegie level counts toward the research focus, 0..1.
+// Hand-chosen and evenly spaced over the doctoral levels: R1 is the most
+// research-intensive category, a non-doctoral school (mostly teaching-
+// focused) gets nothing for research.
+export const RESEARCH_SCORES: Record<ResearchIntensity, number> = {
+  very_high: 1,
+  high: 0.7,
+  doctoral_professional: 0.4,
+  non_doctoral: 0,
+};
+
+// How much each kind of program counts toward the work-experience focus,
+// 0..1. "unknown" isn't here on purpose: no information is left out of the
+// score, never treated as "none".
+export const COOP_SCORES: Record<Exclude<CoopProgram, "unknown">, number> = {
+  mandatory: 1, // every student gets work experience
+  optional: 0.5, // available, but the student has to seek it out
+  none: 0,
+};

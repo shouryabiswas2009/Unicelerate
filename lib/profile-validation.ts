@@ -3,6 +3,7 @@ import { readList, readNumber, readText } from "@/lib/form-data";
 import { DEFAULT_DISPLAY_CURRENCY, isDisplayCurrency } from "@/lib/display-currency";
 import { convertsInput, gradeToPercentage, isGradeSystem, type GradeSystem } from "@/lib/grades";
 import { STAY_AFTER, VISA_MODES, VISA_WEIGHTS } from "@/lib/visa";
+import { ACADEMIC_PREFS, SOCIAL_PREFS } from "@/lib/campus-life-config";
 import {
   DEGREE_LEVELS,
   FOCUSES,
@@ -96,6 +97,14 @@ export function validateProfileForm(formData: FormData): ProfileValidationResult
   }
   const focuses = FOCUSES.filter((f) => ticked.includes(f));
 
+  // Optional follow-ups to the two campus-life focuses, same rules.
+  const academicTicked = readList(formData, "campus_academic_prefs");
+  const socialTicked = readList(formData, "campus_social_prefs");
+  if (!academicTicked.every((p) => (ACADEMIC_PREFS as readonly string[]).includes(p))) errors.campus_academic_prefs = "Pick from the options listed.";
+  if (!socialTicked.every((p) => (SOCIAL_PREFS as readonly string[]).includes(p))) errors.campus_social_prefs = "Pick from the options listed.";
+  const campus_academic_prefs = ACADEMIC_PREFS.filter((p) => academicTicked.includes(p));
+  const campus_social_prefs = SOCIAL_PREFS.filter((p) => socialTicked.includes(p));
+
   // Only currencies we have an official rate for; empty means US dollars.
   const display_currency = readText(formData, "display_currency") || DEFAULT_DISPLAY_CURRENCY;
   if (!isDisplayCurrency(display_currency)) {
@@ -135,6 +144,8 @@ export function validateProfileForm(formData: FormData): ProfileValidationResult
       budget_max: budget_max as number,
       preferred_degree_level: level as DegreeLevel,
       focuses,
+      campus_academic_prefs,
+      campus_social_prefs,
       display_currency,
       visa_mode,
       visa_weight: factor ? (weightText as NonNullable<ProfileInput["visa_weight"]>) : null,

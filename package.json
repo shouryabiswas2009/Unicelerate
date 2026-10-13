@@ -25,7 +25,9 @@
     "data:research-impact:download": "node scripts/research-impact/download.mjs",
     "data:research-impact:build": "node scripts/research-impact/build.mjs",
     "data:strength:openalex": "node --env-file-if-exists=.env.local --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/strength/fetch-openalex.mjs",
-    "data:strength:build": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/strength/build.mjs"
+    "data:strength:build": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/strength/build.mjs",
+    "data:campus-life:download": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/campus-life/download.mjs",
+    "data:campus-life:build": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/campus-life/build.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",

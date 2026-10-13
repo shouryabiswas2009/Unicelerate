@@ -413,3 +413,30 @@ grading system, degree level and currency are native selects. "Your top 3
 right now" is computed on the server and cached per saved profile, so it
 adds no work per keystroke. The page needs a login, so Lighthouse can't
 measure it from here.
+
+## Course weighting and campus life (2026-10-13)
+
+Browser JavaScript referenced by each page (the build's client reference
+manifest, uncompressed), same method as above, measured on compile-only
+builds of each commit:
+
+| Page | Before (cd0dd6d) | Course weighting (95c16bb) | + Campus life |
+| --- | --- | --- | --- |
+| `/profile` | 7 chunks / 161 KB | 7 / 175 KB | 7 / 179 KB |
+| `/recommendations` (and `/universities`) | 11 chunks / 378 KB | 11 / 386 KB | 12 / 396 KB |
+
+The course editor (profile) and the campus-life rows on cards (the proxy
+text lives in a small shared module) account for the growth: +18 KB in
+total on each page, under 5%. Scoring work per card is a few additions;
+the "Not sure" campus scores are stored at import time.
+
+The cached university list grows with the campus-life proxies (about
+110 bytes per school after trimming the stored JSON to the figures
+themselves; years and confidence are derived, not stored): **≈1,511 KB**
+packed for all 1,688 schools, under the 1.5 MB budget the test keeps
+below Next.js's 2 MB data-cache limit. That budget is now close, so the
+next column added to the list should come with a trim elsewhere.
+
+Server timing of the signed-in pages can't be measured from here (they
+need a login); logged-out timings are re-checked on the live site after
+the release.

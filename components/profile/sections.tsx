@@ -13,6 +13,7 @@ import { COUNTRY_OPTIONS } from "@/lib/countries";
 import { APPROX_NOTE, DEFAULT_DISPLAY_CURRENCY, DISPLAY_CURRENCIES, approxInCurrency, currencyName } from "@/lib/display-currency";
 import { BALANCED_DESCRIPTION, FOCUS_DESCRIPTIONS, FOCUS_LABELS, focusesOf } from "@/lib/focus";
 import { usd } from "@/lib/format";
+import { ACADEMIC_PREFS, ACADEMIC_PREF_LABELS, SOCIAL_PREFS, SOCIAL_PREF_LABELS } from "@/lib/campus-life-config";
 import { QUIZ_MAJORS } from "@/lib/quiz-options";
 import { DEGREE_LEVELS, FOCUSES, type Profile } from "@/lib/types";
 
@@ -187,6 +188,25 @@ function BudgetFields({ state, profile }: { state: FieldState; profile: P }) {
   );
 }
 
+// Optional follow-ups under a campus-life focus. They only re-weight its
+// proxies (lib/campus-life-config.ts); nothing ticked = "Not sure".
+function CampusFollowUp({ name, legend, options, saved, note }: { name: string; legend: string; options: [string, string][]; saved: string[]; note?: string }) {
+  return (
+    <fieldset className="mb-3 ml-7 space-y-2">
+      <legend className="text-xs font-medium text-muted-foreground">{legend}</legend>
+      <div className="flex flex-wrap gap-x-4 gap-y-1">
+        {options.map(([value, label]) => (
+          <label key={value} className="flex min-h-11 cursor-pointer items-center gap-2 text-sm sm:min-h-9">
+            <input type="checkbox" name={name} value={value} defaultChecked={saved.includes(value)} className="size-4 accent-primary" />
+            {label}
+          </label>
+        ))}
+      </div>
+      {note && <p className="text-xs text-muted-foreground">{note}</p>}
+    </fieldset>
+  );
+}
+
 export function PrioritiesSection({ profile }: { profile: P }) {
   return (
     <SectionForm section="priorities" label="priorities">
@@ -210,6 +230,23 @@ export function PrioritiesSection({ profile }: { profile: P }) {
                         <span className="block text-xs text-muted-foreground">{FOCUS_DESCRIPTIONS[focus]}</span>
                       </span>
                     </label>
+                    {focus === "academic_community" && (
+                      <CampusFollowUp
+                        name="campus_academic_prefs"
+                        legend="What kind? (optional)"
+                        options={ACADEMIC_PREFS.map((p) => [p, ACADEMIC_PREF_LABELS[p]])}
+                        saved={profile?.campus_academic_prefs ?? []}
+                      />
+                    )}
+                    {focus === "social_life" && (
+                      <CampusFollowUp
+                        name="campus_social_prefs"
+                        legend="What kind? (optional)"
+                        options={SOCIAL_PREFS.map((p) => [p, SOCIAL_PREF_LABELS[p]])}
+                        saved={profile?.campus_social_prefs ?? []}
+                        note="Greek life can't change a score: no official source lists fraternities and sororities. Published social-life figures are thinner than academic ones, so many schools show limited data."
+                      />
+                    )}
                   </li>
                 ))}
               </ul>

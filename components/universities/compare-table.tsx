@@ -14,6 +14,7 @@ import { APPROX_NOTE, approxInCurrency } from "@/lib/display-currency";
 import { livingCostDisplay, tuitionDisplay, type MoneyDisplay } from "@/lib/money";
 import { formatRank, type AdmissionChance, type MatchEntry } from "@/lib/matching";
 import { cn } from "@/lib/utils";
+import { CAMPUS_KIND_LABELS, CAMPUS_PROXIES, PROXY_LABELS, academicCommunityScore, proxyLines, socialFunScore } from "@/lib/campus-life";
 import type { Profile } from "@/lib/types";
 
 // "Not enough data" is null in value() below, so it's never "best".
@@ -239,6 +240,29 @@ const ROWS: Row[] = [
     label: "Popular programs",
     render: ({ university }) => university.popular_programs.join(", "),
   },
+  // Campus life: the confidence of each kind, then a row per published
+  // proxy (shown when at least one school has it). Never highlighted as
+  // "best": these are proxies, not ratings. Research impact has its own
+  // row above.
+  ...(["academic", "social"] as const).flatMap((kind): Row[] => [
+    {
+      label: `${CAMPUS_KIND_LABELS[kind]}: confidence`,
+      render: ({ university }) => {
+        const confidence = (kind === "academic" ? academicCommunityScore(university) : socialFunScore(university)).confidence;
+        return confidence === "Not available" ? muted("Data not available") : `${confidence} (proxy, not a rating)`;
+      },
+    },
+    ...CAMPUS_PROXIES[kind]
+      .filter((proxy) => proxy !== "research_impact")
+      .map((proxy) => {
+        const line = (university: MatchEntry["university"]) => proxyLines(kind, university).find((l) => l.proxy === proxy);
+        return {
+          label: `${CAMPUS_KIND_LABELS[kind]}: ${PROXY_LABELS[proxy].toLowerCase()}`,
+          render: ({ university }: MatchEntry) => line(university)?.text ?? muted("Not available"),
+          shown: (entries: MatchEntry[]) => entries.some((e) => line(e.university)),
+        };
+      }),
+  ]),
   {
     label: "Strengths & concerns",
     render: ({ explanation }) => <StrengthsConcerns explanation={explanation} />,

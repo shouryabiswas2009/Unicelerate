@@ -5,6 +5,7 @@ import { SourceBadge } from "@/components/universities/source-badge";
 import { CountryGuidance } from "@/components/universities/country-guidance";
 import { ResearchImpactPanel } from "@/components/universities/research-impact";
 import { StrengthBreakdown, StrengthValue } from "@/components/universities/strength";
+import { CampusLifeDetails, hasCampusLife } from "@/components/universities/campus-life";
 import { STRENGTH_LABEL, hasVerifiedRanking } from "@/lib/strength-display";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -352,6 +353,13 @@ export function UniversityDetails({
           information only and don&apos;t affect the work-experience focus.
         </p>
       </div>
+
+      {hasCampusLife(university) && (
+        <div className="mt-8 space-y-3">
+          <h2 className="font-medium">Campus life</h2>
+          <CampusLifeDetails university={university} />
+        </div>
+      )}
 
       <div className="mt-8">
         <CountryGuidance

@@ -19,7 +19,16 @@ import { visaFit, visaLine, visaModeOf, type VisaFit, type VisaMode } from "@/li
 import { rankUniversity, type RankInfo } from "@/lib/ranking";
 import { researchImpactFor } from "@/lib/research-impact";
 import { effectiveGrade, prerequisiteConcerns } from "@/lib/courses";
-import { FOCUSES, type Focus, type Profile, type UniversitySummary } from "@/lib/types";
+import {
+  academicCommunityScore,
+  academicPrefsOf,
+  relevantProxyTexts,
+  socialFunScore,
+  socialPrefsOf,
+  type CampusScore,
+} from "@/lib/campus-life";
+import { CAMPUS_STRONG } from "@/lib/campus-life-config";
+import { BALANCED_FOCUSES, FOCUSES, type Focus, type Profile, type UniversitySummary } from "@/lib/types";
 
 // ─── Scoring weights ─────────────────────────────────────────────────────
 // The weights live in lib/scoring-config.ts (with every other ranking
@@ -35,6 +44,8 @@ const FOCUS_FACTOR = {
   work_experience: "coop",
   research: "research",
   affordability: "affordability",
+  academic_community: "campus_academic",
+  social_life: "campus_social",
 } as const satisfies Record<Focus, string>;
 
 export type FactorKey = keyof typeof BASE_WEIGHTS | (typeof FOCUS_FACTOR)[Focus] | "visa";
@@ -43,11 +54,13 @@ export type FactorKey = keyof typeof BASE_WEIGHTS | (typeof FOCUS_FACTOR)[Focus]
 // points plus all 20 focus points on that focus's factor. When a student
 // ticks several focuses, their profiles are averaged with equal weight, so
 // each ticked focus gets 20 ÷ (number ticked) points. Balanced (nothing
-// ticked) is the average of all four profiles: 5 points each. That's why
-// ticking all four gives exactly the same weights as Balanced: caring about
-// everything equally is the same as not prioritizing anything.
+// ticked) is the average of the four original profiles: 5 points each.
+// That's why ticking those four gives exactly the same weights as Balanced:
+// caring about everything equally is the same as not prioritizing anything.
+// The two campus-life focuses are not part of Balanced, so a student who
+// ticks neither gets exactly the scores they had before they existed.
 export function focusWeights(focuses: Focus[]): Record<FactorKey, number> {
-  const chosen = focuses.length === 0 ? FOCUSES : focuses;
+  const chosen = focuses.length === 0 ? BALANCED_FOCUSES : focuses;
   const weights = { ...BASE_WEIGHTS } as Record<FactorKey, number>;
   for (const focus of FOCUSES) {
     weights[FOCUS_FACTOR[focus]] = chosen.includes(focus) ? FOCUS_POINTS / chosen.length : 0;
@@ -81,6 +94,8 @@ const FACTOR_LABELS: Record<FactorKey, string> = {
   coop: "Co-op / internships",
   research: "Research",
   affordability: "Affordability",
+  campus_academic: "Academic & career community",
+  campus_social: "Campus social life",
   visa: "Visa and work rights",
 };
 
@@ -301,6 +316,9 @@ function focusFits(profile: Profile, university: UniversitySummary): Record<(typ
     coop: coopSignal(university)?.value ?? null,
     research: average([researchSignal(university)?.value, subjectScore, researchImpactScore(profile, university)]),
     affordability: total === null ? null : affordabilityScore(total, profile.budget_max),
+    // Proxies only (lib/campus-life.ts); null = nothing published, left out.
+    campus_academic: academicCommunityScore(university, academicPrefsOf(profile)).score,
+    campus_social: socialFunScore(university, socialPrefsOf(profile)).score,
   };
 }
 
@@ -495,9 +513,33 @@ function explainFocuses(
         }
         break;
       }
+      case "academic_community": {
+        const prefs = academicPrefsOf(profile);
+        campusLines("Academic & career community", academicCommunityScore(university, prefs), relevantProxyTexts("academic", university, prefs));
+        break;
+      }
+      case "social_life": {
+        const prefs = socialPrefsOf(profile);
+        campusLines("Campus social life", socialFunScore(university, prefs), relevantProxyTexts("social", university, prefs));
+        if (prefs.includes("greek_life")) unavailable.push("Greek life: no official source lists fraternities and sororities, so it isn't scored.");
+        break;
+      }
     }
   }
   return { strengths, concerns, unavailable };
+
+  // Neutral wording on purpose: these are proxies from published figures,
+  // never a verdict on how social or fun a school is.
+  function campusLines(label: string, result: CampusScore, proxies: string) {
+    const limited = result.confidence === "Low" ? "; limited data" : "";
+    if (result.score === null) {
+      unavailable.push(`${label}: no published figures for this school, so it isn't scored (limited data, not a judgement).`);
+    } else if (result.score >= CAMPUS_STRONG) {
+      strengths.push(`${label}: ${proxies} (proxy from published figures${limited}).`);
+    } else {
+      concerns.push(`${label}: the published figures point less to what you chose here (${proxies}${limited}). A proxy, not a rating.`);
+    }
+  }
 }
 
 // Plain-language strengths and concerns built from the same factors as the

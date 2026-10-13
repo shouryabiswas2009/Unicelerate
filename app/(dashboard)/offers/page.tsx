@@ -9,6 +9,7 @@ import { describeImpact, researchImpactFor } from "@/lib/research-impact";
 import { hasVerifiedRanking, strengthForStudent, strengthSummary } from "@/lib/strength-display";
 import { visaModeOf } from "@/lib/visa";
 import { focusesOf } from "@/lib/focus";
+import { academicCommunityScore, academicPrefsOf, socialFunScore, socialPrefsOf } from "@/lib/campus-life";
 import { netCostPerYear, totalProgramCost } from "@/lib/offers";
 import type { Application, Profile, University } from "@/lib/types";
 import { getCurrentUser } from "@/lib/auth";
@@ -61,6 +62,8 @@ export default async function OffersPage() {
     const research = researchSignal(university);
     const impact = researchImpactFor(profile, university);
     const coop = coopSignal(university);
+    const campusAcademic = academicCommunityScore(university, academicPrefsOf(profile));
+    const campusSocial = socialFunScore(university, socialPrefsOf(profile));
 
     return {
       id: application.id,
@@ -87,6 +90,11 @@ export default async function OffersPage() {
       // Visa and work rights, only when the student shows or factors it.
       visaScore: visa?.fit.score ?? null,
       visaLabel: visa ? visa.line.replace(/^Visa: /, "") : null,
+      // Campus-life proxies: the label is the confidence, never a rating.
+      campusAcademicScore: campusAcademic.score,
+      campusAcademicLabel: campusAcademic.score === null ? null : `${campusAcademic.confidence.toLowerCase()} confidence`,
+      campusSocialScore: campusSocial.score,
+      campusSocialLabel: campusSocial.score === null ? null : `${campusSocial.confidence.toLowerCase()} confidence`,
     };
   });
 

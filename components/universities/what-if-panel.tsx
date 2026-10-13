@@ -14,6 +14,7 @@ import {
   type WhatIfKey,
   type WhatIfValues,
 } from "@/lib/what-if";
+import { FOCUS_LABELS } from "@/lib/focus";
 import type { Profile, UniversitySummary } from "@/lib/types";
 import { useTweenedNumber } from "@/components/motion/use-tweened-number";
 
@@ -95,6 +96,22 @@ export function WhatIfPanel({ profile, university }: { profile: Profile; univers
           );
         })}
       </div>
+
+      {/* What if campus life counted? Same rule as ticking the focus on the profile. */}
+      <fieldset className="flex flex-wrap gap-x-5 gap-y-1 text-sm">
+        <legend className="sr-only">Campus-life focuses</legend>
+        {(["academic_community", "social_life"] as const).map((focus) => (
+          <label key={focus} className="flex min-h-11 cursor-pointer items-center gap-2 sm:min-h-9">
+            <input
+              type="checkbox"
+              checked={values[focus] ?? false}
+              onChange={(e) => setValues((current) => ({ ...current, [focus]: e.target.checked }))}
+              className="size-4 accent-primary"
+            />
+            Count {FOCUS_LABELS[focus].toLowerCase()}
+          </label>
+        ))}
+      </fieldset>
 
       <div className="grid gap-3 sm:grid-cols-2" aria-live="polite">
         <div className="border-t pt-3">

@@ -8,7 +8,7 @@ import { Flag } from "@/components/flag";
 import { SectionHeading } from "@/components/landing/section-heading";
 import { guestMatches } from "@/lib/actions/quiz";
 import { COUNTRY_OPTIONS } from "@/lib/countries";
-import { ANY_COUNTRY, QUIZ_BUDGETS, QUIZ_MAJORS, QUIZ_VISA } from "@/lib/quiz-options";
+import { ANY_COUNTRY, QUIZ_BUDGETS, QUIZ_CAMPUS, QUIZ_MAJORS, QUIZ_VISA } from "@/lib/quiz-options";
 
 const selectClass =
   "h-11 w-full rounded-md border bg-background px-3 text-sm focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none";
@@ -23,6 +23,7 @@ export function TryIt() {
   const [budget, setBudget] = useState("40000");
   const [major, setMajor] = useState("Computer Science");
   const [visa, setVisa] = useState("ignore");
+  const [campus, setCampus] = useState("none");
 
   return (
     <section id="try-it" aria-labelledby="try-it-heading" className="scroll-mt-16 border-y bg-muted/50">
@@ -33,7 +34,7 @@ export function TryIt() {
             eyebrow="Try it now, no account"
             title="See your first matches"
             accent="first matches"
-            description="Answer three questions (and an optional fourth) and see five real universities that fit. Nothing you enter here is saved."
+            description="Answer three questions (and two optional ones) and see five real universities that fit. Nothing you enter here is saved."
           />
           {/* Submitted by hand instead of <form action>: React resets a form
               after a form action, and that reset puts dropdowns back to their
@@ -75,6 +76,14 @@ export function TryIt() {
               <label htmlFor="quiz-visa" className="text-sm font-medium">Visa and work rights (optional)</label>
               <select id="quiz-visa" name="visa" value={visa} onChange={(e) => setVisa(e.target.value)} className={selectClass}>
                 {Object.entries(QUIZ_VISA).map(([value, label]) => (
+                  <option key={value} value={value}>{label}</option>
+                ))}
+              </select>
+            </div>
+            <div className="space-y-1.5">
+              <label htmlFor="quiz-campus" className="text-sm font-medium">Campus life (optional)</label>
+              <select id="quiz-campus" name="campus" value={campus} onChange={(e) => setCampus(e.target.value)} className={selectClass}>
+                {Object.entries(QUIZ_CAMPUS).map(([value, label]) => (
                   <option key={value} value={value}>{label}</option>
                 ))}
               </select>

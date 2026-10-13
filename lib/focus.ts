@@ -1,4 +1,4 @@
-import { FOCUSES, type CoopProgram, type Focus, type Profile, type ResearchIntensity } from "@/lib/types";
+import { BALANCED_FOCUSES, FOCUSES, type CoopProgram, type Focus, type Profile, type ResearchIntensity } from "@/lib/types";
 
 // "What matters most to me": a student ticks any number of focuses (none =
 // Balanced). They steer the match score (lib/matching.ts, focusWeights)
@@ -12,6 +12,8 @@ export const FOCUS_LABELS: Record<Focus, string> = {
   work_experience: "Work experience",
   research: "Research",
   affordability: "Affordability",
+  academic_community: "Academic & career community",
+  social_life: "Campus social life & fun",
 };
 
 // The one-line description under each checkbox on the profile form. It
@@ -21,10 +23,16 @@ export const FOCUS_DESCRIPTIONS: Record<Focus, string> = {
   work_experience: "Schools with co-op or internship programs (a mandatory co-op counts more than an optional one).",
   research: "How research-intensive the university is (Carnegie classification) and your subject's ranking.",
   affordability: "The lowest total cost — tuition plus living costs — compared with your budget.",
+  academic_community: "Published design and project teams, clubs, co-op and research activity. A proxy, not a rating.",
+  social_life: "Published setting, size, campus housing and varsity sport membership. A proxy, not a rating of how fun a place is.",
 };
 
 export const BALANCED_DESCRIPTION =
-  "Leave everything unticked for Balanced: each of these counts a little, none more than the others.";
+  "Leave everything unticked for Balanced: reputation, work experience, research and cost each count a little, none more than the others. The two campus-life focuses only count when you tick them.";
+
+// The focuses Balanced spreads its points over (the campus-life ones only
+// count when ticked). Re-exported for the scoring code.
+export { BALANCED_FOCUSES };
 
 // The student's focuses, in a fixed order. Before migration_009 the profile
 // only has the old single primary_focus, so fall back to that.
@@ -57,16 +65,9 @@ export const RESEARCH_LABELS: Record<ResearchIntensity, string> = {
   non_doctoral: "Not a doctoral research university",
 };
 
-// How much each Carnegie level counts toward the research focus, 0..1.
-// Hand-chosen and evenly spaced over the doctoral levels: R1 is the most
-// research-intensive category, a non-doctoral school (mostly teaching-
-// focused) gets nothing for research.
-export const RESEARCH_SCORES: Record<ResearchIntensity, number> = {
-  very_high: 1,
-  high: 0.7,
-  doctoral_professional: 0.4,
-  non_doctoral: 0,
-};
+// How much each Carnegie level and co-op kind counts (0..1): in
+// lib/scoring-config.ts, so import scripts can use them too.
+export { COOP_SCORES, RESEARCH_SCORES } from "@/lib/scoring-config";
 
 export const COOP_LABELS: Record<CoopProgram, string> = {
   mandatory: "Mandatory co-op program",
@@ -75,11 +76,3 @@ export const COOP_LABELS: Record<CoopProgram, string> = {
   unknown: "Not available",
 };
 
-// How much each kind of program counts toward the work-experience focus,
-// 0..1. "unknown" isn't here on purpose: no information is left out of the
-// score, never treated as "none".
-export const COOP_SCORES: Record<Exclude<CoopProgram, "unknown">, number> = {
-  mandatory: 1, // every student gets work experience
-  optional: 0.5, // available, but the student has to seek it out
-  none: 0,
-};

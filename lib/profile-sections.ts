@@ -17,7 +17,7 @@ export const SECTION_FIELDS: Record<ProfileSection, readonly string[]> = {
   academics: ["grade_system", "grade_input", "gpa_percentage", "sat_score", "ielts_score"],
   study: ["intended_majors", "preferred_degree_level", "preferred_countries"],
   money: ["budget_min", "budget_max", "display_currency"],
-  priorities: ["focuses", "visa_mode", "visa_weight", "stay_after"],
+  priorities: ["focuses", "campus_academic_prefs", "campus_social_prefs", "visa_mode", "visa_weight", "stay_after"],
 };
 
 export function isProfileSection(value: string): value is ProfileSection {
@@ -43,6 +43,8 @@ export function profileToFormData(profile: Profile): FormData {
   put("budget_max", profile.budget_max);
   put("preferred_degree_level", profile.preferred_degree_level);
   for (const f of focusesOf(profile)) put("focuses", f);
+  for (const p of profile.campus_academic_prefs ?? []) put("campus_academic_prefs", p);
+  for (const p of profile.campus_social_prefs ?? []) put("campus_social_prefs", p);
   put("display_currency", profile.display_currency);
   put("visa_mode", profile.visa_mode);
   put("visa_weight", profile.visa_weight);

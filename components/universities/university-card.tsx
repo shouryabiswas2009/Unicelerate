@@ -30,6 +30,7 @@ import type { AdmissionPrediction } from "@/lib/admission-model";
 import type { RankInfo } from "@/lib/ranking";
 import { StrengthValue } from "@/components/universities/strength";
 import { VisaNote } from "@/components/universities/visa-note";
+import { CampusLifeLines, selectedCampusKinds } from "@/components/universities/campus-life";
 import { STRENGTH_LABEL, hasVerifiedRanking } from "@/lib/strength-display";
 import type { UniversitySummary } from "@/lib/types";
 import { universityPath } from "@/lib/university-path";
@@ -169,6 +170,7 @@ export function UniversityCard({
                 </span>
               </div>
             )}
+            <CampusLifeLines university={university} selected={selectedCampusKinds(match.factors.map((f) => f.key))} />
             {visa && <VisaNote visa={visa} />}
             <StrengthsConcerns explanation={explanation} limit={2} />
             {/* Leaves room for the controls pinned to the bottom corners. */}

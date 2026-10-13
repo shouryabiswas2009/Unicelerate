@@ -1,0 +1,1578 @@
+unitid,locale,athletics,football_conference,housing_capacity
+100654,12,ncaa_football,Southwestern Athletic Conference,3620
+100663,12,ncaa_fbs,American Athletic Conference,3480
+100706,12,ncaa,,2148
+100724,12,ncaa_football,Southwestern Athletic Conference,2079
+100751,12,ncaa_fbs,Southeastern Conference,9294
+100830,12,ncaa,,1200
+100858,13,ncaa_fbs,Southeastern Conference,4598
+101189,12,other_national,,694
+101435,12,ncaa_football,USA South Athletic Conference,736
+101453,13,none,,31
+101480,23,ncaa_fbs,Conference USA,2607
+101587,43,ncaa_football,Gulf South Conference,920
+101693,41,other_national,,687
+101709,31,ncaa,,1373
+101879,13,ncaa_football,United Athletic Conference,2441
+101912,12,other_national,,1266
+102049,21,ncaa_football,Southern Conference,2375
+102094,12,ncaa_fbs,Sun Belt Conference,3405
+102234,12,ncaa,,1013
+102270,12,other_national,,360
+102298,32,other_national,,800
+102368,33,ncaa_fbs,Sun Belt Conference,1976
+102377,32,ncaa_football,Southern Intercollegiate Athletic Conference,1500
+102395,13,other_national,,0
+104151,12,ncaa_fbs,Big Twelve Conference,16179
+104179,11,ncaa_fbs,Big Twelve Conference,7619
+104586,13,other_national,,1474
+104717,11,ncaa,,18485
+105330,13,ncaa_football,Big Sky Conference,10274
+105589,13,none,,123
+105899,21,other_national,,650
+106245,12,ncaa,,1395
+106342,33,ncaa_football,Southern Collegiate Athletic Conference,436
+106397,12,ncaa_fbs,Southeastern Conference,6900
+106412,32,ncaa_football,Southwestern Athletic Conference,1418
+106458,13,ncaa_fbs,Sun Belt Conference,3491
+106704,13,ncaa_football,United Athletic Conference,3435
+106713,13,other_national,,192
+107044,32,ncaa_football,Great American Conference,2687
+107080,13,ncaa_football,Southern Collegiate Athletic Conference,1258
+107141,32,other_national,,1145
+107512,32,ncaa_football,Great American Conference,1661
+107558,33,ncaa,,618
+107877,42,other_national,,480
+107983,33,ncaa_football,Great American Conference,2141
+109651,12,none,,0
+109785,21,ncaa,,2106
+110097,21,ncaa,,2773
+110361,11,ncaa,,3670
+110370,11,none,,732
+110404,12,ncaa,,1575
+110413,12,ncaa_football,Southern California Intercollegiate Athletic Conference,1517
+110422,23,ncaa_football,Big Sky Conference,8820
+110486,11,ncaa,,500
+110495,23,ncaa,,722
+110510,12,ncaa,,1486
+110529,21,ncaa,,4149
+110538,12,ncaa,,1758
+110547,13,ncaa,,1167
+110556,11,ncaa_fbs,Mountain West Conference,1228
+110565,21,ncaa,,2278
+110574,21,ncaa,,1416
+110583,11,ncaa,,3216
+110592,11,ncaa,,2483
+110608,11,ncaa,,3253
+110617,11,ncaa_football,Big Sky Conference,3280
+110635,12,ncaa_fbs,Atlantic Coast Conference,9899
+110644,23,ncaa_football,Big Sky Conference,16548
+110653,11,ncaa,,15544
+110662,11,ncaa_fbs,Big Ten Conference,23912
+110671,11,ncaa,,8700
+110680,11,ncaa,,19711
+110705,22,ncaa,,11432
+110714,13,ncaa,,9524
+111081,21,none,,486
+111188,12,other_national,,774
+111948,12,ncaa_football,Southern California Intercollegiate Athletic Conference,3714
+111966,21,none,,0
+112075,11,ncaa,,960
+112084,21,none,,48
+112260,21,ncaa_football,Southern California Intercollegiate Athletic Conference,1244
+112394,11,none,,200
+113582,11,none,,0
+113698,13,ncaa,,535
+114813,11,ncaa,,371
+115409,21,ncaa_football,Southern California Intercollegiate Athletic Conference,917
+115755,33,ncaa,,2191
+117104,21,other_national,,305
+117140,21,ncaa_football,Southern California Intercollegiate Athletic Conference,934
+117168,41,none,,56
+117627,11,other_national,,850
+117751,21,other_national,,869
+117946,11,ncaa,,3685
+118693,21,ncaa,,838
+118888,11,none,,572
+119173,11,none,,601
+119775,11,none,,0
+120166,12,none,,96
+120254,11,ncaa,,1650
+120403,11,none,,407
+120537,21,other_national,,416
+120768,12,none,,0
+120883,11,ncaa,,2100
+121150,21,ncaa,,2545
+121257,21,ncaa_football,Southern California Intercollegiate Athletic Conference,987
+121309,11,ncaa,,1859
+121345,21,ncaa_football,Southern California Intercollegiate Athletic Conference,1609
+121691,13,ncaa_football,Southern California Intercollegiate Athletic Conference,1477
+122409,11,ncaa_fbs,Mountain West Conference,8664
+122436,11,ncaa_football,Pioneer Football League,3064
+122506,11,none,,227
+122597,11,ncaa,,4596
+122612,11,ncaa,,2715
+122728,21,ncaa,,583
+122755,11,ncaa_fbs,Mountain West Conference,4261
+122931,12,ncaa,,3797
+123165,21,ncaa_football,Southern California Intercollegiate Athletic Conference,1046
+123280,13,none,,48
+123457,13,other_national,,450
+123554,21,ncaa,,1511
+123572,21,ncaa,,3258
+123651,12,ncaa,,1020
+123952,11,none,,0
+123961,11,ncaa_fbs,Big Ten Conference,8500
+124292,42,none,,667
+125727,22,ncaa,,1207
+125763,21,ncaa,,793
+125897,11,none,,223
+126076,11,none,,201
+126562,11,none,,1250
+126580,11,ncaa,,1719
+126614,12,ncaa_fbs,Big Twelve Conference,7550
+126678,11,ncaa,,1766
+126775,21,ncaa_football,Rocky Mountain Athletic Conference,2280
+126818,12,ncaa_fbs,Mountain West Conference,8361
+127060,11,ncaa,,2647
+127185,32,ncaa_football,Rocky Mountain Athletic Conference,1637
+127565,11,ncaa,,0
+127653,12,none,,103
+127741,12,ncaa_football,Big Sky Conference,3542
+127918,11,ncaa,,1047
+128106,12,ncaa_football,Rocky Mountain Athletic Conference,699
+128391,33,ncaa_football,Rocky Mountain Athletic Conference,1263
+128498,12,ncaa,,352
+128744,12,ncaa,,833
+128771,21,ncaa_football,Northeast Conference,2364
+128902,13,ncaa,,1947
+129020,31,ncaa_football,Division I Independents,12170
+129215,31,ncaa,,2385
+129242,21,ncaa,,3959
+129525,12,ncaa,,3009
+129774,13,ncaa,,535
+129941,21,ncaa_football,Northeast 10 Conference,2800
+130226,21,ncaa,,4697
+130253,21,ncaa_football,Northeast Conference,3619
+130314,13,ncaa,,398
+130493,12,ncaa_football,Northeast 10 Conference,2291
+130590,12,ncaa_football,New England Small College Athletic Conference,1919
+130697,13,ncaa_football,New England Small College Athletic Conference,2989
+130776,13,ncaa_football,Freedom Football Conference,1590
+130794,12,ncaa_football,Ivy Group,5576
+130934,13,ncaa_football,Mid-Eastern Athletic Conference,3230
+130943,21,ncaa_football,Colonial Athletic Association,7191
+130989,21,ncaa,,325
+131159,11,ncaa,,4246
+131283,11,ncaa_football,Landmark Conference,1988
+131450,11,ncaa_football,Eastern Collegiate Football Conference,893
+131469,11,ncaa,,7274
+131496,11,ncaa_football,Patriot League,5340
+131520,11,ncaa_football,Mid-Eastern Athletic Conference,6051
+131876,11,ncaa,,240
+132408,42,none,,144
+132471,21,ncaa,,1263
+132602,13,ncaa_football,Southwestern Athletic Conference,2200
+132657,13,ncaa,,1574
+132842,13,none,,0
+132903,21,ncaa_fbs,Big Twelve Conference,7582
+133492,11,ncaa,,1843
+133526,11,ncaa_football,Southern Intercollegiate Athletic Conference,596
+133553,13,ncaa,,3517
+133650,12,ncaa_football,Mid-Eastern Athletic Conference,2679
+133669,13,ncaa_fbs,American Athletic Conference,5200
+133711,23,ncaa,,1250
+133809,21,other_national,,601
+133881,13,ncaa,,2034
+133951,21,ncaa_fbs,Conference USA,4403
+133979,21,other_national,,900
+134079,12,ncaa,,2267
+134097,12,ncaa_fbs,Atlantic Coast Conference,6709
+134130,12,ncaa_fbs,Southeastern Conference,11668
+134945,11,ncaa,,1454
+135364,21,none,,0
+135726,21,ncaa_fbs,Atlantic Coast Conference,4668
+136172,11,ncaa,,3780
+136215,21,ncaa,,2736
+136330,12,ncaa,,1456
+136774,13,none,,1280
+136950,21,ncaa,,1662
+137032,31,ncaa,,1546
+137272,21,none,,65
+137351,11,ncaa_fbs,American Athletic Conference,7429
+137476,21,other_national,,870
+137546,13,ncaa_football,Pioneer Football League,1942
+137564,12,other_national,,1806
+137847,11,ncaa,,4544
+137953,11,other_national,,164
+137962,21,other_national,,128
+138275,41,other_national,,472
+138293,41,other_national,,416
+138354,41,ncaa_football,Gulf South Conference,1534
+138558,32,other_national,,1324
+138600,21,ncaa,,783
+138868,32,other_national,,328
+138947,11,ncaa_football,Southern Intercollegiate Athletic Conference,2650
+139144,23,ncaa_football,Southern Athletic Association,1979
+139199,13,other_national,,447
+139311,21,ncaa,,1246
+139366,12,ncaa,,1392
+139393,21,ncaa,,902
+139630,42,ncaa,,584
+139658,11,ncaa,,4813
+139719,31,ncaa_football,Southern Intercollegiate Athletic Conference,1400
+139755,11,ncaa_fbs,Atlantic Coast Conference,8805
+139764,32,ncaa,,952
+139861,32,ncaa,,2237
+139931,32,ncaa_fbs,Sun Belt Conference,5722
+139940,11,ncaa_fbs,Sun Belt Conference,5271
+139959,12,ncaa_fbs,Southeastern Conference,10759
+139968,32,other_national,,782
+140234,32,ncaa_football,USA South Athletic Conference,499
+140252,13,other_national,,661
+140340,11,none,,0
+140447,12,ncaa_football,Southern Conference,3205
+140553,11,ncaa_football,Southern Intercollegiate Athletic Conference,1544
+140696,21,ncaa,,824
+140720,12,other_national,,296
+140818,32,ncaa,,1023
+140872,41,other_national,,715
+140951,12,other_national,,7000
+140988,13,ncaa_football,Gulf South Conference,760
+141060,11,none,,1398
+141167,32,other_national,,220
+141185,32,other_national,,518
+141237,42,other_national,,694
+141264,13,ncaa_football,Gulf South Conference,2320
+141325,12,ncaa,,450
+141334,32,ncaa_football,Gulf South Conference,2835
+141361,43,ncaa,,1040
+141486,11,ncaa,,296
+141565,33,ncaa,,744
+141574,11,ncaa_fbs,Mountain West Conference,3091
+141644,11,ncaa,,712
+141981,21,none,,0
+142090,21,none,,100
+142115,12,ncaa_fbs,Mountain West Conference,2906
+142285,32,ncaa_football,Big Sky Conference,2498
+142294,22,other_national,,659
+142328,13,other_national,,457
+142461,22,ncaa,,843
+142957,11,none,,0
+143048,11,none,,1032
+143084,13,ncaa_football,College Conference of Illinois and Wisconsin,1730
+143118,21,ncaa_football,Northern Athletics Collegiate Conference,789
+143288,32,ncaa,,449
+143358,12,ncaa,,2007
+143978,11,none,,0
+144005,11,ncaa,,275
+144050,11,ncaa_football,Midwest Conference,4568
+144281,11,none,,2158
+144351,21,ncaa_football,Northern Athletics Collegiate Conference,651
+144740,11,ncaa,,2736
+144892,33,ncaa_football,Ohio Valley Conference,4304
+144962,21,ncaa_football,College Conference of Illinois and Wisconsin,972
+144971,31,ncaa_football,Northern Athletics Collegiate Conference,466
+145336,21,other_national,,280
+145372,32,ncaa_football,Upper Midwest Athletic Conference,801
+145497,13,none,,120
+145600,11,ncaa,,3489
+145619,21,ncaa_football,Northern Athletics Collegiate Conference,498
+145637,13,ncaa_fbs,Big Ten Conference,15766
+145646,13,ncaa_football,College Conference of Illinois and Wisconsin,1336
+145691,32,ncaa_football,Midwest Conference,892
+145725,11,ncaa,,1722
+145813,22,ncaa_football,Missouri Valley Conference,6578
+146339,12,other_national,,548
+146427,32,ncaa_football,Midwest Conference,1186
+146481,21,ncaa_football,Midwest Conference,1335
+146612,21,ncaa,,1093
+146719,11,ncaa,,4989
+147013,21,ncaa_football,Great Lakes Valley Conference,1056
+147129,12,none,,78
+147244,13,ncaa_football,College Conference of Illinois and Wisconsin,833
+147341,32,ncaa_football,Midwest Conference,1029
+147369,11,other_national,,1095
+147536,11,none,,0
+147660,12,ncaa_football,College Conference of Illinois and Wisconsin,1417
+147679,11,ncaa_football,College Conference of Illinois and Wisconsin,935
+147703,23,ncaa_fbs,Mid-American Conference,4500
+147767,13,ncaa_fbs,Big Ten Conference,4488
+147776,11,none,,426
+147828,23,other_national,,2690
+148131,33,ncaa_football,Great Lakes Valley Conference,745
+148405,12,ncaa_football,Northern Athletics Collegiate Conference,411
+148487,11,ncaa_football,Great Lakes Intercollegiate Athletic Conference,855
+148496,21,ncaa,,520
+148584,21,other_national,,442
+148627,11,other_national,,510
+148654,12,ncaa,,1048
+149222,32,ncaa_football,Missouri Valley Conference,4492
+149231,21,ncaa,,3070
+149329,11,none,,125
+149505,21,other_national,,575
+149514,21,none,,203
+149639,11,none,,0
+149772,33,ncaa_football,Ohio Valley Conference,3083
+149781,21,ncaa_football,College Conference of Illinois and Wisconsin,2116
+150066,13,ncaa_football,Heartland Collegiate Athletic Conference,910
+150136,13,ncaa_fbs,Mid-American Conference,7046
+150145,13,other_national,,723
+150163,11,ncaa_football,Pioneer Football League,2459
+150400,32,ncaa_football,North Coast Athletic Conference,1286
+150455,32,ncaa,,976
+150534,12,ncaa,,1260
+150604,21,ncaa_football,Heartland Collegiate Athletic Conference,710
+150668,13,other_national,,756
+150677,32,other_national,,1127
+150756,32,ncaa_football,Heartland Collegiate Athletic Conference,1150
+150774,21,other_national,,385
+150941,32,other_national,,870
+151102,11,ncaa,,1595
+151111,11,ncaa,,2464
+151263,11,ncaa_football,Great Lakes Valley Conference,2757
+151290,11,other_national,,688
+151324,13,ncaa_football,Missouri Valley Conference,3743
+151333,13,other_national,,0
+151342,12,other_national,,386
+151351,13,ncaa_fbs,Big Ten Conference,12496
+151360,21,other_national,,0
+151379,21,other_national,,395
+151388,32,other_national,,0
+151777,32,ncaa_football,Heartland Collegiate Athletic Conference,790
+151786,11,other_national,,1204
+151801,32,other_national,,2440
+152080,21,ncaa_fbs,Division I-A Independents,6934
+152099,42,other_national,,478
+152318,13,ncaa_football,Heartland Collegiate Athletic Conference,1297
+152336,11,other_national,,435
+152381,41,other_national,,449
+152390,21,ncaa,,1395
+152530,42,other_national,,1745
+152567,32,ncaa_football,Michigan Intercollegiate Athletic Association,1663
+152600,23,ncaa_football,Pioneer Football League,1660
+152673,32,ncaa_football,North Coast Athletic Conference,933
+153001,33,ncaa_football,American Rivers Conference,770
+153108,32,ncaa_football,American Rivers Conference,1405
+153126,13,other_national,,616
+153144,12,ncaa_football,American Rivers Conference,1347
+153162,31,ncaa_football,Midwest Conference,1062
+153250,33,other_national,,1509
+153269,12,ncaa_football,Pioneer Football League,1758
+153278,13,ncaa_football,American Rivers Conference,911
+153320,21,other_national,,323
+153366,43,other_national,,768
+153375,12,other_national,,894
+153384,33,ncaa_football,Midwest Conference,1450
+153603,13,ncaa_fbs,Big Twelve Conference,10465
+153658,13,ncaa_fbs,Big Ten Conference,6553
+153825,13,ncaa_football,American Rivers Conference,898
+153834,33,ncaa_football,American Rivers Conference,2156
+153861,33,none,,906
+153977,12,none,,0
+154004,13,other_national,,860
+154013,12,other_national,,553
+154095,13,ncaa_football,Missouri Valley Conference,3594
+154101,32,other_national,,998
+154235,12,other_national,,1601
+154350,31,ncaa_football,American Rivers Conference,1282
+154493,43,ncaa_football,Great Lakes Valley Conference,752
+154518,43,other_national,,588
+154527,32,ncaa_football,American Rivers Conference,1263
+154590,33,other_national,,834
+154688,42,other_national,,576
+154712,32,other_national,,1628
+154721,43,other_national,,635
+154749,32,other_national,,482
+154855,33,other_national,,274
+155025,33,ncaa_football,Mid-America Intercollegiate Athletic Association,933
+155061,33,ncaa_football,Mid-America Intercollegiate Athletic Association,1731
+155070,43,other_national,,200
+155089,11,other_national,,462
+155317,13,ncaa_fbs,Big Twelve Conference,6208
+155335,11,ncaa,,453
+155399,13,ncaa_fbs,Big Twelve Conference,5696
+155414,33,other_national,,571
+155496,13,other_national,,160
+155511,33,other_national,,729
+155520,21,other_national,,628
+155627,32,other_national,,633
+155681,32,ncaa_football,Mid-America Intercollegiate Athletic Association,1150
+155812,31,other_national,,395
+155900,32,other_national,,630
+155937,43,other_national,,635
+155973,43,other_national,,569
+156125,11,ncaa,,1396
+156189,43,other_national,,600
+156213,31,ncaa,,1120
+156286,11,ncaa,,1119
+156295,32,ncaa,,1520
+156356,13,other_national,,313
+156365,32,other_national,,1313
+156408,32,ncaa_football,Southern Athletic Association,1360
+156541,33,other_national,,1420
+156620,32,ncaa_football,Atlantic Sun Conference,4688
+156745,31,other_national,,1555
+157030,43,none,,100
+157058,32,ncaa_football,Southern Intercollegiate Athletic Conference,1171
+157076,13,ncaa_football,Great Midwest Athletic Conference,499
+157085,11,ncaa_fbs,Southeastern Conference,8300
+157100,32,other_national,,454
+157289,11,ncaa_fbs,Atlantic Coast Conference,3942
+157377,42,other_national,,431
+157386,33,ncaa_football,Pioneer Football League,3200
+157401,32,ncaa_football,Missouri Valley Conference,3052
+157447,21,ncaa,,1820
+157748,11,other_national,,556
+157757,11,ncaa,,334
+157809,21,ncaa_football,Great Midwest Athletic Conference,478
+157818,11,ncaa,,653
+157863,33,other_national,,358
+157951,13,ncaa_fbs,Conference USA,4942
+158477,12,ncaa_football,Southern Collegiate Athletic Conference,667
+158802,11,other_national,,889
+159009,32,ncaa_football,Southwestern Athletic Conference,2389
+159382,41,other_national,,390
+159391,12,ncaa_fbs,Southeastern Conference,8765
+159416,12,other_national,,367
+159568,23,other_national,,703
+159647,32,ncaa_fbs,Conference USA,2614
+159656,11,other_national,,1375
+159717,13,ncaa_football,Southland Conference,1037
+159939,11,ncaa,,1604
+159966,13,ncaa_football,Southland Conference,1416
+159993,13,ncaa_fbs,Sun Belt Conference,2257
+160038,33,ncaa_football,Southland Conference,1492
+160065,11,none,,115
+160074,12,none,,0
+160612,13,ncaa_football,Southland Conference,2648
+160621,12,ncaa_football,Southwestern Athletic Conference,4400
+160630,11,other_national,,672
+160658,12,ncaa_fbs,Sun Belt Conference,3678
+160755,11,ncaa_fbs,American Athletic Conference,4221
+160904,11,other_national,,1691
+160959,43,none,,204
+160977,13,ncaa_football,New England Small College Athletic Conference,1737
+161004,31,ncaa_football,New England Small College Athletic Conference,1877
+161086,33,ncaa_football,New England Small College Athletic Conference,2260
+161226,43,ncaa,,705
+161235,43,other_national,,268
+161253,23,ncaa_football,Colonial Athletic Association,3634
+161299,42,ncaa_football,Division III Independents,662
+161341,41,ncaa,,178
+161457,22,ncaa_football,Conference of New England,1534
+161509,13,none,,344
+161518,41,ncaa,,771
+161554,13,ncaa,,1760
+161563,33,ncaa,,611
+161873,11,none,,0
+162007,21,ncaa_football,Central Intercollegiate Athletic Association,1900
+162061,21,none,,220
+162210,21,other_national,,400
+162283,11,ncaa_football,Other,650
+162584,33,ncaa_football,Mountain East Conference,970
+162654,13,ncaa,,985
+162760,13,ncaa,,768
+162928,11,ncaa_football,Centennial Conference,2753
+163046,11,ncaa,,3318
+163268,21,ncaa,,4000
+163286,21,ncaa_fbs,Big Ten Conference,12479
+163295,11,none,,997
+163338,31,ncaa,,1689
+163453,11,ncaa_football,Mid-Eastern Athletic Conference,3986
+163462,42,ncaa,,1460
+163532,21,none,,360
+163578,11,ncaa,,390
+163851,23,ncaa_football,New Jersey Athletic Conference,2279
+163912,41,ncaa,,1499
+163976,21,none,,372
+164076,13,ncaa_football,Colonial Athletic Association,5000
+164173,21,ncaa_football,Middle Atlantic States Athletic Corporation,1822
+164216,32,ncaa,,1168
+164270,31,ncaa_football,Centennial Conference,1446
+164368,12,none,,460
+164447,12,ncaa_football,Northeast 10 Conference,900
+164465,13,ncaa_football,New England Small College Athletic Conference,1948
+164492,41,ncaa_football,Eastern Collegiate Football Conference,610
+164562,12,ncaa_football,Northeast 10 Conference,1661
+164580,21,ncaa,,2146
+164614,11,none,,81
+164632,21,other_national,,400
+164739,13,ncaa_football,Northeast 10 Conference,3350
+164748,11,none,,1519
+164924,13,ncaa_fbs,Atlantic Coast Conference,7607
+164988,11,ncaa,,11767
+165015,13,ncaa,,2950
+165024,21,ncaa_football,New England Football Conference,3301
+165334,12,ncaa,,1773
+165529,21,ncaa_football,Conference of New England,1420
+165574,21,ncaa_football,Eastern Collegiate Football Conference,1028
+165662,11,ncaa,,2583
+165671,11,ncaa,,1464
+165699,21,ncaa_football,Conference of New England,2724
+165802,11,other_national,,322
+165820,22,ncaa_football,Massachusetts State College Athletic Association,1705
+165866,13,ncaa_football,Massachusetts State College Athletic Association,1520
+165936,41,ncaa,,1268
+166018,41,other_national,,1180
+166027,12,ncaa_football,Ivy Group,14344
+166054,21,none,,227
+166124,12,ncaa_football,Patriot League,2719
+166391,13,ncaa,,1325
+166452,12,ncaa,,799
+166513,21,ncaa,,4135
+166629,13,ncaa_football,Independent Northeast Region,14465
+166638,11,ncaa,,1102
+166656,11,none,,1326
+166674,11,none,,940
+166683,12,ncaa_football,New England Women's & Men's Athletic Conference,7610
+166692,21,ncaa_football,Massachusetts State College Athletic Association,1420
+166850,21,ncaa_football,Metro Atlantic Athletic Conference,2826
+166939,21,ncaa,,2150
+167057,11,none,,256
+167260,21,ncaa_football,Conference of New England,805
+167288,31,ncaa,,1020
+167358,11,ncaa,,11759
+167394,21,ncaa,,402
+167598,21,ncaa,,750
+167729,21,ncaa,,1675
+167783,11,ncaa,,1039
+167835,13,ncaa,,2478
+167899,12,ncaa_football,New England Women's & Men's Athletic Conference,1973
+167987,22,ncaa_football,Massachusetts State College Athletic Association,3190
+167996,21,ncaa_football,Northeast Conference,2180
+168005,11,ncaa,,1440
+168148,21,ncaa_football,New England Small College Athletic Conference,4210
+168218,21,ncaa,,2191
+168227,11,ncaa,,2117
+168254,12,ncaa_football,Conference of New England,2153
+168263,21,ncaa_football,Massachusetts State College Athletic Association,2396
+168281,21,ncaa,,1661
+168342,31,ncaa_football,New England Small College Athletic Conference,2078
+168421,12,ncaa_football,New England Women's & Men's Athletic Conference,2628
+168430,12,ncaa_football,Massachusetts State College Athletic Association,1584
+168528,32,ncaa_football,Michigan Intercollegiate Athletic Association,1664
+168546,32,ncaa_football,Michigan Intercollegiate Athletic Association,1448
+168591,32,ncaa_football,Michigan Intercollegiate Athletic Association,1314
+168740,31,none,,1614
+168786,12,other_national,,698
+168847,32,none,,558
+169080,12,ncaa_football,Michigan Intercollegiate Athletic Association,2445
+169248,32,ncaa_fbs,Mid-American Conference,4640
+169327,22,other_national,,190
+169363,12,other_national,,480
+169442,11,none,,626
+169479,21,ncaa_football,Great Lakes Intercollegiate Athletic Conference,941
+169716,11,ncaa,,965
+169798,21,ncaa_fbs,Mid-American Conference,3682
+169910,33,ncaa_football,Great Lakes Intercollegiate Athletic Conference,3230
+169983,13,none,,435
+170000,13,other_national,,222
+170037,12,other_national,,780
+170082,31,ncaa_football,Great Lakes Intercollegiate Athletic Conference,6012
+170286,32,ncaa_football,Great Midwest Athletic Conference,1212
+170301,13,ncaa_football,Michigan Intercollegiate Athletic Association,2472
+170532,13,ncaa_football,Michigan Intercollegiate Athletic Association,864
+170675,13,other_national,,947
+170806,13,other_national,,526
+170967,21,other_national,,331
+170976,12,ncaa_fbs,Big Ten Conference,11631
+171100,13,ncaa_fbs,Big Ten Conference,17503
+171128,33,ncaa_football,Great Lakes Intercollegiate Athletic Conference,3215
+171137,12,other_national,,0
+171146,13,none,,715
+171456,33,ncaa_football,Great Lakes Intercollegiate Athletic Conference,3155
+171492,13,ncaa_football,Great Midwest Athletic Conference,920
+171571,21,ncaa,,3000
+171599,42,ncaa_football,Michigan Intercollegiate Athletic Association,798
+171881,21,other_national,,145
+172051,22,ncaa_football,Great Lakes Intercollegiate Athletic Conference,2413
+172264,32,other_national,,639
+172334,41,other_national,,966
+172644,11,ncaa_football,Great Lakes Intercollegiate Athletic Conference,3216
+172699,13,ncaa_fbs,Mid-American Conference,4775
+173045,11,ncaa_football,Minnesota Intercollegiate Athletic Conference,1078
+173124,33,ncaa_football,Northern Sun Intercollegiate Conference,935
+173142,13,ncaa,,497
+173160,21,ncaa_football,Minnesota Intercollegiate Athletic Conference,1566
+173258,32,ncaa_football,Minnesota Intercollegiate Athletic Conference,1840
+173300,22,ncaa_football,Minnesota Intercollegiate Athletic Conference,1177
+173328,11,ncaa_football,Northern Sun Intercollegiate Conference,520
+173452,32,ncaa_football,Upper Midwest Athletic Conference,717
+173647,31,ncaa_football,Minnesota Intercollegiate Athletic Conference,2125
+173665,11,ncaa_football,Minnesota Intercollegiate Athletic Conference,882
+173902,11,ncaa_football,Minnesota Intercollegiate Athletic Conference,1304
+173920,13,ncaa_football,Northern Sun Intercollegiate Conference,2889
+174020,11,none,,0
+174066,11,ncaa_fbs,Big Ten Conference,7558
+174075,32,ncaa,,558
+174127,11,none,,389
+174154,13,none,,0
+174233,13,ncaa_football,Northern Sun Intercollegiate Conference,2970
+174251,33,ncaa_football,Upper Midwest Athletic Conference,936
+174358,22,ncaa_football,Northern Sun Intercollegiate Conference,1482
+174437,11,ncaa,,898
+174491,21,ncaa_football,Upper Midwest Athletic Conference,966
+174747,22,ncaa,,1638
+174783,13,ncaa,,1116
+174792,41,ncaa_football,Minnesota Intercollegiate Athletic Conference,1555
+174817,32,ncaa,,1049
+174844,32,ncaa_football,Minnesota Intercollegiate Athletic Conference,2987
+174862,41,ncaa_football,Upper Midwest Athletic Conference,506
+174899,13,ncaa_football,Minnesota Intercollegiate Athletic Conference,795
+174914,11,ncaa_football,Pioneer Football League,2943
+175005,11,ncaa,,800
+175078,33,ncaa_football,Northern Sun Intercollegiate Conference,1049
+175272,32,ncaa_football,Northern Sun Intercollegiate Conference,1853
+175342,43,ncaa_football,Southwestern Athletic Conference,2109
+175421,12,ncaa_football,USA South Athletic Conference,672
+175430,42,other_national,,357
+175616,33,ncaa_football,Gulf South Conference,1277
+175856,12,ncaa_football,Southwestern Athletic Conference,2149
+175980,12,ncaa_football,Southern Athletic Association,819
+176017,33,ncaa_fbs,Southeastern Conference,5690
+176035,33,ncaa,,644
+176044,42,ncaa_football,Southwestern Athletic Conference,998
+176053,21,ncaa_football,Gulf South Conference,1893
+176080,33,ncaa_fbs,Southeastern Conference,5333
+176318,32,other_national,,800
+176372,13,ncaa_fbs,Sun Belt Conference,3539
+176406,12,other_national,,670
+176479,13,other_national,,876
+176628,11,other_national,,415
+176789,11,other_national,,192
+176947,42,other_national,,816
+176965,32,ncaa_football,Mid-America Intercollegiate Athletic Association,2859
+177038,12,none,,0
+177083,43,none,,130
+177117,33,other_national,,350
+177144,43,other_national,,843
+177214,12,ncaa,,1059
+177339,12,other_national,,1465
+177542,33,other_national,,311
+177746,11,none,,282
+177968,13,ncaa_football,Ohio Valley Conference,2541
+177986,21,none,,0
+178059,21,ncaa,,1059
+178208,11,other_national,,290
+178244,21,other_national,,398
+178341,13,ncaa_football,Mid-America Intercollegiate Athletic Association,798
+178369,33,other_national,,1136
+178396,12,ncaa_fbs,Southeastern Conference,6530
+178402,11,ncaa,,1114
+178411,33,ncaa_football,Great Lakes Valley Conference,2209
+178420,21,ncaa,,715
+178615,33,ncaa_football,Great Lakes Valley Conference,1403
+178624,33,ncaa_football,Mid-America Intercollegiate Athletic Association,2339
+178679,13,other_national,,585
+178697,32,other_national,,1378
+178767,11,none,,0
+179043,11,ncaa,,851
+179159,11,ncaa,,4188
+179265,11,other_national,,505
+179326,32,ncaa_football,Great Lakes Valley Conference,873
+179548,12,other_national,,327
+179557,13,ncaa_football,Ohio Valley Conference,2330
+179566,12,ncaa_football,Missouri Valley Conference,3788
+179867,21,ncaa_football,College Conference of Illinois and Wisconsin,7088
+179894,21,ncaa,,850
+179946,32,ncaa_football,Upper Midwest Athletic Conference,756
+179955,21,ncaa_football,Great Lakes Valley Conference,856
+179964,32,other_national,,741
+180106,13,other_national,,1050
+180258,13,other_national,,310
+180416,33,other_national,,460
+180461,13,ncaa_football,Big Sky Conference,4764
+180489,13,ncaa_football,Big Sky Conference,3029
+180595,12,other_national,,571
+180692,33,other_national,,430
+180832,11,none,,144
+180878,11,none,,0
+180984,32,other_national,,959
+181002,11,ncaa,,2281
+181020,32,other_national,,606
+181127,32,other_national,,752
+181215,32,ncaa_football,Mid-America Intercollegiate Athletic Association,1921
+181297,11,none,,101
+181330,32,other_national,,722
+181394,11,ncaa,,2408
+181446,11,ncaa_football,American Rivers Conference,900
+181464,11,ncaa_fbs,Big Ten Conference,5814
+181604,11,other_national,,295
+181738,11,other_national,,832
+181853,33,other_national,,661
+182281,12,ncaa_fbs,Mountain West Conference,1740
+182290,11,ncaa_fbs,Mountain West Conference,3291
+182634,43,ncaa,,884
+182670,33,ncaa_football,Ivy Group,3875
+182795,42,ncaa_football,Northeast 10 Conference,1205
+182980,42,ncaa,,815
+183026,22,ncaa,,1789
+183044,31,ncaa_football,Colonial Athletic Association,6523
+183062,32,ncaa,,1999
+183071,12,none,,0
+183080,33,ncaa_football,Massachusetts State College Athletic Association,2364
+183211,13,ncaa,,495
+183239,22,ncaa_football,Northeast 10 Conference,1958
+183822,21,ncaa,,679
+183910,21,ncaa,,607
+183974,21,ncaa,,756
+184348,21,ncaa,,1554
+184603,21,ncaa,,991
+184694,21,ncaa_football,Middle Atlantic States Athletic Corporation,1570
+184773,13,ncaa,,501
+184782,21,ncaa_football,New Jersey Athletic Conference,6371
+185129,11,ncaa,,617
+185262,21,ncaa_football,New Jersey Athletic Conference,1905
+185572,21,ncaa_football,Colonial Athletic Association,1932
+185590,21,ncaa_football,New Jersey Athletic Conference,5093
+185828,11,ncaa,,2444
+186131,13,ncaa_football,Ivy Group,5526
+186186,21,none,,310
+186201,21,ncaa,,2615
+186283,21,ncaa,,2409
+186371,13,ncaa,,830
+186380,13,ncaa_fbs,Big Ten Conference,15305
+186399,11,ncaa,,2015
+186432,11,ncaa,,654
+186584,21,ncaa,,2606
+186618,21,ncaa,,470
+186867,21,ncaa_football,Middle Atlantic States Athletic Corporation,2028
+186876,41,ncaa,,3418
+187134,21,ncaa_football,New Jersey Athletic Conference,3867
+187444,21,ncaa_football,New Jersey Athletic Conference,1486
+187648,33,ncaa_football,Lone Star Conference,730
+187745,41,none,,186
+187967,33,none,,807
+187985,11,ncaa_fbs,Mountain West Conference,2492
+188030,22,ncaa_fbs,Conference USA,3269
+188429,21,ncaa,,1260
+188526,12,other_national,,555
+188641,42,ncaa_football,Empire Eight,1482
+189088,41,ncaa,,1400
+189097,11,ncaa,,2425
+189705,11,ncaa,,1046
+189857,11,none,,350
+190044,33,ncaa,,2417
+190099,42,ncaa_football,Patriot League,2958
+190114,11,none,,0
+190150,11,ncaa_football,Ivy Group,13284
+190372,11,none,,170
+190415,13,ncaa_football,Ivy Group,8747
+190512,11,ncaa,,288
+190549,11,ncaa,,0
+190558,11,ncaa,,440
+190567,11,ncaa,,589
+190576,11,none,,0
+190594,11,ncaa,,706
+190600,11,ncaa,,0
+190637,11,ncaa,,0
+190646,11,ncaa,,0
+190655,11,ncaa,,0
+190664,11,ncaa_football,East Coast Conference,510
+190691,11,ncaa,,0
+190716,11,ncaa,,433
+190725,21,ncaa,,643
+190752,11,none,,42
+190761,21,ncaa,,656
+190983,13,ncaa,,1191
+191205,21,other_national,,208
+191241,11,ncaa_football,Patriot League,4759
+191515,22,ncaa_football,New England Small College Athletic Conference,2055
+191533,33,ncaa_football,Empire Eight,1183
+191621,21,ncaa_football,Division III Independents,300
+191630,32,ncaa_football,Upstate Collegiate Athletic Association,1704
+191649,21,ncaa,,3500
+191676,43,ncaa,,978
+191931,21,ncaa,,1408
+191968,23,ncaa_football,Upstate Collegiate Athletic Association,4174
+192040,11,none,,156
+192110,11,none,,348
+192192,32,ncaa,,754
+192271,11,none,,384
+192323,21,ncaa,,1520
+192448,21,ncaa_football,Northeast Conference,3335
+192624,11,none,,40
+192703,11,ncaa,,1536
+192712,11,none,,600
+192749,21,ncaa,,988
+192819,21,ncaa_football,Pioneer Football League,3463
+192864,11,none,,704
+193016,21,ncaa,,771
+193052,11,none,,200
+193070,11,none,,140
+193292,21,ncaa,,337
+193353,13,ncaa,,586
+193399,11,ncaa,,931
+193584,21,ncaa,,1294
+193654,11,none,,1738
+193900,11,ncaa,,12577
+193973,21,ncaa,,1442
+194091,41,none,,250
+194310,11,ncaa_football,Northeast 10 Conference,3311
+194392,42,other_national,,735
+194569,42,none,,796
+194578,11,ncaa,,1875
+194657,11,none,,128
+194718,21,none,,120
+194763,11,none,,229
+194824,13,ncaa_football,Upstate Collegiate Athletic Association,3899
+194958,21,ncaa,,618
+195003,21,ncaa,,6886
+195030,12,ncaa_football,University Athletic Association,5618
+195128,13,ncaa,,715
+195164,33,ncaa,,1612
+195216,33,ncaa_football,Upstate Collegiate Athletic Association,2362
+195243,21,ncaa,,657
+195304,21,ncaa,,1070
+195474,21,ncaa,,2455
+195526,23,ncaa,,2213
+195544,11,ncaa,,0
+195720,21,ncaa_football,Empire Eight,1495
+195809,11,ncaa,,3191
+196015,33,ncaa,,1250
+196033,32,ncaa,,1222
+196042,21,ncaa,,495
+196060,12,ncaa_football,Colonial Athletic Association,6890
+196079,22,ncaa,,7586
+196088,21,ncaa_fbs,Mid-American Conference,7725
+196097,21,ncaa_football,Colonial Athletic Association,10501
+196103,12,other_national,,620
+196112,22,ncaa,,1076
+196121,31,ncaa_football,Empire Eight,2700
+196130,11,ncaa_football,Upstate Collegiate Athletic Association,2782
+196149,32,ncaa_football,Empire Eight,3110
+196158,32,ncaa,,2936
+196167,32,ncaa,,2587
+196176,31,ncaa,,3198
+196185,33,ncaa,,3270
+196194,32,ncaa,,3828
+196200,33,ncaa,,2069
+196219,21,ncaa,,2750
+196237,21,ncaa,,1000
+196246,32,ncaa,,2300
+196291,11,ncaa_football,Eastern Collegiate Football Conference,1405
+196413,12,ncaa_fbs,Atlantic Coast Conference,8370
+196431,11,none,,300
+196440,12,none,,50
+196592,11,none,,403
+196866,13,ncaa_football,Upstate Collegiate Athletic Association,2043
+197027,21,ncaa_football,New England Women's & Men's Athletic Conference,934
+197045,13,ncaa_football,Empire Eight,1034
+197133,21,ncaa,,2455
+197142,13,other_national,,0
+197151,11,none,,1128
+197197,11,ncaa_football,Northeast Conference,1403
+197221,21,none,,122
+197285,13,none,,0
+197692,11,none,,176
+197708,11,ncaa,,1645
+197869,32,ncaa_fbs,Sun Belt Conference,6313
+197911,31,ncaa_football,South Atlantic Conference,651
+197984,22,ncaa,,1157
+197993,11,none,,179
+198066,32,ncaa_football,USA South Athletic Conference,711
+198136,31,ncaa_football,Colonial Athletic Association,1387
+198215,21,ncaa_football,South Atlantic Conference,688
+198303,43,ncaa_football,Gulf South Conference,1518
+198385,21,ncaa_football,Pioneer Football League,1788
+198419,11,ncaa_fbs,Atlantic Coast Conference,5775
+198464,13,ncaa_fbs,American Athletic Conference,5549
+198507,32,ncaa_football,Central Intercollegiate Athletic Association,1583
+198516,22,ncaa_football,Colonial Athletic Association,4196
+198543,12,ncaa_football,Central Intercollegiate Athletic Association,1485
+198561,42,ncaa_football,Big South Conference,1368
+198598,11,ncaa_football,USA South Athletic Conference,550
+198613,11,ncaa_football,Old Dominion Athletic Conference,990
+198695,12,ncaa,,5222
+198756,11,ncaa_football,Central Intercollegiate Athletic Association,1039
+198808,42,ncaa,,673
+198835,13,ncaa_football,South Atlantic Conference,1017
+198862,21,ncaa_football,Central Intercollegiate Athletic Association,880
+198899,41,ncaa_football,South Atlantic Conference,818
+198950,11,ncaa,,1150
+198969,12,ncaa_football,USA South Athletic Conference,1176
+199032,21,other_national,,597
+199069,42,ncaa,,697
+199102,11,ncaa_football,Colonial Athletic Association,6010
+199111,13,ncaa,,1563
+199120,13,ncaa_fbs,Atlantic Coast Conference,10006
+199139,11,ncaa_fbs,American Athletic Conference,6225
+199148,11,ncaa,,5600
+199157,11,ncaa_football,Mid-Eastern Athletic Conference,3375
+199184,11,none,,614
+199193,11,ncaa_fbs,Atlantic Coast Conference,10291
+199209,13,ncaa_football,USA South Athletic Conference,826
+199218,12,ncaa,,5173
+199272,11,ncaa,,491
+199281,32,ncaa_football,Mountain East Conference,1848
+199306,41,ncaa,,593
+199412,11,ncaa,,1029
+199458,32,other_national,,236
+199582,11,ncaa_football,Central Intercollegiate Athletic Association,1044
+199607,11,ncaa,,320
+199643,11,ncaa_football,Central Intercollegiate Athletic Association,773
+199759,21,none,,815
+199847,11,ncaa_fbs,Atlantic Coast Conference,4104
+199865,41,ncaa,,794
+199962,21,ncaa_football,South Atlantic Conference,2112
+199999,11,ncaa_football,Central Intercollegiate Athletic Association,2705
+200004,32,ncaa_football,Southern Conference,4760
+200059,33,other_national,,383
+200156,33,ncaa_football,North Star Athletic Association,875
+200217,41,ncaa_football,Northern Sun Intercollegiate Conference,1441
+200253,13,ncaa_football,Northern Sun Intercollegiate Conference,633
+200280,13,ncaa_football,Missouri Valley Conference,2986
+200332,12,ncaa_football,Missouri Valley Conference,5563
+200484,43,other_national,,287
+200572,33,other_national,,462
+200800,12,ncaa_fbs,Mid-American Conference,2485
+200846,41,none,,0
+201061,11,none,,110
+201104,31,ncaa_football,Great Midwest Athletic Conference,1593
+201195,21,ncaa_football,Ohio Athletic Conference,1638
+201371,42,ncaa_football,Heartland Collegiate Athletic Conference,780
+201441,31,ncaa_fbs,Mid-American Conference,5215
+201548,21,ncaa_football,Ohio Athletic Conference,977
+201645,11,ncaa_football,Presidents' Athletic Conference,4494
+201654,42,ncaa,,3284
+201690,41,ncaa_football,Southern Intercollegiate Athletic Conference,1437
+201821,11,none,,0
+201885,11,ncaa_fbs,Big Twelve Conference,8342
+201964,41,other_national,,230
+202046,11,none,,319
+202073,11,none,,126
+202134,11,ncaa,,2202
+202170,11,none,,456
+202480,12,ncaa_football,Pioneer Football League,6630
+202514,32,other_national,,545
+202523,23,ncaa_football,North Coast Athletic Conference,2387
+202763,32,ncaa_football,Great Midwest Athletic Conference,1425
+203085,32,ncaa_football,Ohio Athletic Conference,920
+203128,42,ncaa_football,North Coast Athletic Conference,719
+203368,21,ncaa_football,North Coast Athletic Conference,1437
+203517,21,ncaa_fbs,Mid-American Conference,5674
+203535,41,ncaa_football,North Coast Athletic Conference,1968
+203544,13,none,,160
+203580,21,ncaa_football,Great Midwest Athletic Conference,452
+203757,21,other_national,,525
+203775,13,ncaa,,757
+203845,31,ncaa_football,Ohio Athletic Conference,1185
+203960,11,none,,0
+204024,31,ncaa_fbs,Mid-American Conference,8279
+204176,11,none,,0
+204185,31,ncaa_football,Ohio Athletic Conference,1658
+204194,32,other_national,,1076
+204200,21,ncaa_football,Heartland Collegiate Athletic Conference,486
+204264,42,ncaa_football,Ohio Athletic Conference,1014
+204501,31,ncaa_football,North Coast Athletic Conference,2694
+204617,11,ncaa_football,Great Midwest Athletic Conference,536
+204635,31,ncaa_football,Ohio Athletic Conference,1930
+204796,11,ncaa_fbs,Big Ten Conference,15097
+204857,32,ncaa_fbs,Mid-American Conference,8323
+204909,21,ncaa_football,North Coast Athletic Conference,1521
+204936,21,ncaa_football,Ohio Athletic Conference,1295
+205027,11,none,,220
+205124,21,none,,300
+205957,13,ncaa,,1873
+206048,32,ncaa_football,Great Midwest Athletic Conference,1037
+206084,11,ncaa_fbs,Mid-American Conference,2080
+206349,21,ncaa,,217
+206437,21,ncaa_football,Great Midwest Athletic Conference,936
+206491,41,other_national,,400
+206507,32,ncaa_football,Ohio Athletic Conference,835
+206525,13,ncaa_football,North Coast Athletic Conference,1630
+206589,32,ncaa_football,North Coast Athletic Conference,1892
+206604,21,ncaa,,2599
+206622,11,ncaa,,2352
+206695,13,ncaa_football,Missouri Valley Conference,1160
+206835,32,other_national,,509
+206941,21,ncaa_football,Mid-America Intercollegiate Athletic Association,1882
+207041,33,ncaa_football,Great American Conference,1291
+207157,21,other_national,,125
+207263,33,ncaa_football,Mid-America Intercollegiate Athletic Association,1194
+207306,33,ncaa_football,Great American Conference,886
+207324,11,ncaa,,1709
+207388,32,ncaa_fbs,Big Twelve Conference,6417
+207403,32,ncaa_football,Great American Conference,1200
+207458,11,other_national,,1197
+207500,22,ncaa_fbs,Southeastern Conference,6340
+207582,11,ncaa,,2607
+207722,32,other_national,,564
+207847,32,ncaa_football,Great American Conference,625
+207971,11,ncaa_fbs,American Athletic Conference,2430
+208646,33,other_national,,407
+208725,12,none,,74
+208822,31,ncaa_football,Northwest Conference,1380
+209056,11,ncaa_football,Northwest Conference,1516
+209065,32,ncaa_football,Northwest Conference,1098
+209241,41,none,,125
+209409,12,other_national,,359
+209506,33,other_national,,725
+209542,13,ncaa_fbs,Pacific-12 Conference,5322
+209551,12,ncaa_fbs,Big Ten Conference,6135
+209603,11,ncaa_football,Northwest Conference,130
+209612,21,ncaa_football,Northwest Conference,1048
+209807,11,ncaa_football,Big Sky Conference,2032
+209825,11,ncaa,,2112
+209922,11,none,,1149
+210146,22,other_national,,1000
+210304,11,other_national,,218
+210331,12,other_national,,440
+210401,12,ncaa_football,Northwest Conference,1295
+210429,31,ncaa_football,Lone Star Conference,1300
+210492,21,ncaa,,299
+210571,13,ncaa_football,Middle Atlantic States Athletic Corporation,1220
+210669,32,ncaa_football,Presidents' Athletic Conference,1667
+210739,21,ncaa,,1160
+210775,13,ncaa_football,Middle Atlantic States Athletic Corporation,956
+211088,21,ncaa,,1085
+211273,21,ncaa,,1279
+211291,32,ncaa_football,Patriot League,3376
+211431,11,ncaa,,404
+211440,11,ncaa_football,Presidents' Athletic Conference,3996
+211468,12,ncaa,,440
+211556,11,ncaa,,757
+211583,11,ncaa,,478
+211893,11,none,,102
+211981,21,ncaa_football,Middle Atlantic States Athletic Corporation,1150
+212009,13,ncaa_football,Centennial Conference,2078
+212054,11,ncaa,,3361
+212106,11,ncaa_football,Northeast Conference,3552
+212115,31,ncaa_football,Pennsylvania State Athletic Conference,2728
+212133,21,ncaa_football,Middle Atlantic States Athletic Corporation,960
+212197,21,ncaa,,1501
+212577,13,ncaa_football,Centennial Conference,2154
+212601,13,ncaa_football,Pennsylvania State Athletic Conference,1522
+212674,31,ncaa_football,Centennial Conference,2263
+212805,32,ncaa_football,Presidents' Athletic Conference,2211
+212832,21,ncaa,,309
+212911,21,ncaa,,1423
+212984,11,ncaa,,298
+213011,21,ncaa,,576
+213020,32,ncaa_football,Pennsylvania State Athletic Conference,3888
+213251,32,ncaa_football,Landmark Conference,1222
+213303,21,ncaa_football,Landmark Conference,394
+213321,13,ncaa_football,Division III Independents,1052
+213349,31,ncaa_football,Pennsylvania State Athletic Conference,3620
+213358,21,ncaa,,490
+213367,11,ncaa,,1700
+213385,21,ncaa_football,Patriot League,2506
+213400,21,ncaa,,450
+213507,23,ncaa_football,Middle Atlantic States Athletic Corporation,1319
+213543,13,ncaa_football,Patriot League,3021
+213598,21,ncaa_football,Central Intercollegiate Athletic Association,1714
+213668,13,ncaa_football,Landmark Conference,1010
+213826,13,ncaa,,865
+213987,13,ncaa_football,Northeast Conference,2000
+213996,21,ncaa,,2403
+214041,21,ncaa_football,Pennsylvania State Athletic Conference,2109
+214069,21,ncaa_football,Middle Atlantic States Athletic Corporation,848
+214148,11,none,,271
+214157,13,ncaa_football,Landmark Conference,1227
+214166,31,ncaa,,540
+214175,12,ncaa_football,Centennial Conference,1641
+214272,21,ncaa,,742
+214591,22,ncaa,,1603
+214625,41,other_national,,0
+214634,31,other_national,,0
+214643,41,other_national,,0
+214652,21,other_national,,0
+214670,21,other_national,,0
+214689,13,ncaa,,889
+214698,21,other_national,,208
+214704,21,ncaa,,805
+214713,21,ncaa,,699
+214731,21,ncaa,,250
+214740,33,other_national,,0
+214759,41,other_national,,0
+214768,23,other_national,,337
+214777,13,ncaa_fbs,Big Ten Conference,14238
+214786,21,other_national,,210
+214795,41,other_national,,305
+214801,21,ncaa,,400
+214810,31,other_national,,304
+214829,22,other_national,,0
+215053,13,none,,183
+215062,11,ncaa_football,Ivy Group,6022
+215114,21,ncaa,,479
+215266,33,ncaa,,1085
+215275,21,ncaa,,625
+215284,23,ncaa,,1831
+215293,11,ncaa_fbs,Atlantic Coast Conference,8860
+215442,11,ncaa,,998
+215655,21,ncaa_football,Northeast Conference,1694
+215691,21,ncaa,,357
+215743,42,ncaa_football,Northeast Conference,1280
+215770,11,ncaa,,2723
+215798,21,ncaa_football,Presidents' Athletic Conference,1274
+215929,13,ncaa,,2363
+215947,21,ncaa_football,Pennsylvania State Athletic Conference,880
+216010,31,ncaa_football,Pennsylvania State Athletic Conference,2538
+216038,32,ncaa_football,Pennsylvania State Athletic Conference,2800
+216047,21,none,,246
+216278,32,ncaa_football,Centennial Conference,2092
+216287,21,ncaa,,1574
+216311,11,none,,230
+216339,11,ncaa_fbs,American Athletic Conference,5061
+216357,32,ncaa_football,Presidents' Athletic Conference,862
+216366,11,ncaa,,2080
+216524,21,ncaa_football,Centennial Conference,1468
+216542,21,ncaa,,629
+216597,21,ncaa_football,Colonial Athletic Association,5400
+216667,21,ncaa_football,Presidents' Athletic Conference,1398
+216694,32,ncaa_football,Presidents' Athletic Conference,1068
+216764,21,ncaa_football,Pennsylvania State Athletic Conference,5383
+216807,42,ncaa_football,Presidents' Athletic Conference,1005
+216852,21,ncaa_football,Middle Atlantic States Athletic Corporation,1400
+216931,13,ncaa_football,Landmark Conference,1135
+217013,13,ncaa,,467
+217059,22,ncaa,,2043
+217156,12,ncaa_football,Ivy Group,5336
+217165,21,ncaa_football,Colonial Athletic Association,2974
+217235,12,ncaa,,2248
+217402,12,ncaa,,3356
+217420,21,ncaa,,840
+217484,21,ncaa_football,Colonial Athletic Association,6379
+217493,12,none,,1452
+217518,21,ncaa,,2962
+217536,21,ncaa_football,New England Women's & Men's Athletic Conference,1284
+217624,12,ncaa_football,Southern Intercollegiate Athletic Conference,425
+217633,13,ncaa_football,South Atlantic Conference,2073
+217688,12,ncaa_football,Big South Conference,1382
+217721,12,ncaa_football,Southern Intercollegiate Athletic Conference,1689
+217776,22,ncaa,,570
+217819,12,ncaa,,3749
+217864,12,ncaa_football,Southern Conference,2372
+217873,32,ncaa,,1171
+217882,22,ncaa_fbs,Atlantic Coast Conference,7500
+217907,32,ncaa,,603
+217925,12,other_national,,400
+217934,12,other_national,,618
+217961,13,ncaa,,500
+217998,42,ncaa_football,Conference Carolinas,750
+218061,41,ncaa,,1539
+218070,21,ncaa_football,Southern Conference,2398
+218229,32,ncaa,,1800
+218414,32,ncaa_football,South Atlantic Conference,1212
+218441,41,ncaa_football,Gulf South Conference,1382
+218539,32,ncaa_football,Pioneer Football League,1099
+218645,21,ncaa,,986
+218654,31,ncaa,,1066
+218663,12,ncaa_fbs,Southeastern Conference,9956
+218724,13,ncaa_fbs,Sun Belt Conference,5199
+218733,32,ncaa_football,Mid-Eastern Athletic Conference,1460
+218742,22,ncaa,,904
+218964,13,ncaa,,1779
+218973,13,ncaa_football,Southern Conference,1640
+219000,12,ncaa_football,Northern Sun Intercollegiate Conference,1376
+219046,32,ncaa_football,Rocky Mountain Athletic Conference,836
+219082,32,other_national,,895
+219091,33,other_national,,512
+219198,33,other_national,,441
+219240,12,none,,0
+219259,33,ncaa_football,Northern Sun Intercollegiate Conference,773
+219347,13,ncaa_football,Rocky Mountain Athletic Conference,1083
+219356,33,ncaa_football,Missouri Valley Conference,4499
+219383,12,ncaa_football,Northern Sun Intercollegiate Conference,766
+219471,32,ncaa_football,Missouri Valley Conference,2128
+219602,12,ncaa_football,Atlantic Sun Conference,1723
+219639,11,none,,148
+219709,11,ncaa,,4374
+219718,32,other_national,,918
+219806,23,ncaa_football,South Atlantic Conference,1147
+219833,11,ncaa,,605
+219949,31,other_national,,625
+219976,11,ncaa,,1600
+220075,13,ncaa_football,Southern Conference,3072
+220181,11,other_national,,894
+220215,32,other_national,,1240
+220473,41,other_national,,776
+220516,13,ncaa,,443
+220604,11,ncaa,,384
+220613,13,ncaa,,2037
+220631,32,ncaa,,1145
+220701,32,other_national,,390
+220710,21,ncaa_football,Collegiate Conference of the South,898
+220862,11,ncaa_fbs,American Athletic Conference,2864
+220978,12,ncaa_fbs,Conference USA,2518
+221351,11,ncaa_football,Southern Athletic Association,1613
+221519,42,ncaa_football,Southern Athletic Association,1800
+221661,21,none,,1500
+221731,32,other_national,,446
+221740,12,ncaa_football,Southern Conference,3557
+221759,12,ncaa_fbs,Southeastern Conference,8700
+221768,33,ncaa_football,Ohio Valley Conference,2071
+221838,11,ncaa_football,Ohio Valley Conference,3662
+221847,33,ncaa_football,Ohio Valley Conference,2509
+221892,11,ncaa,,1016
+221953,32,ncaa_football,South Atlantic Conference,650
+221971,13,ncaa,,1286
+221999,11,ncaa_fbs,Southeastern Conference,6009
+222178,12,ncaa_football,United Athletic Conference,2508
+222831,13,ncaa_football,Lone Star Conference,2118
+222983,13,ncaa_football,American Southwest Conference,1198
+223117,32,none,,24
+223232,12,ncaa_fbs,Big Twelve Conference,4750
+224004,11,ncaa,,507
+224147,11,ncaa,,2833
+224226,11,ncaa,,2419
+224244,21,other_national,,166
+224323,11,ncaa,,932
+224527,32,ncaa_football,American Southwest Conference,1282
+224545,13,other_national,,294
+224554,32,ncaa_football,Southland Conference,2300
+225247,12,ncaa_football,American Southwest Conference,1180
+225399,11,ncaa_football,Southland Conference,1032
+225414,12,none,,552
+225432,11,none,,0
+225502,13,other_national,,692
+225511,11,ncaa_fbs,Big Twelve Conference,8397
+225548,33,ncaa_football,American Southwest Conference,701
+225575,11,other_national,,573
+225627,11,ncaa_football,Southland Conference,1217
+226091,12,ncaa_football,Southland Conference,2505
+226152,11,ncaa,,680
+226231,13,ncaa,,1230
+226383,11,ncaa,,604
+226471,22,ncaa_football,American Southwest Conference,2054
+226587,12,ncaa_football,Southern Collegiate Athletic Conference,571
+226833,12,ncaa_football,Lone Star Conference,1536
+227216,12,ncaa_fbs,American Athletic Conference,6419
+227368,12,ncaa,,1106
+227429,11,other_national,,216
+227526,42,ncaa_football,Southwestern Athletic Conference,4808
+227757,11,ncaa_fbs,American Athletic Conference,3477
+227845,11,ncaa,,1521
+227863,11,ncaa,,507
+227881,32,ncaa_fbs,Conference USA,4112
+228042,33,ncaa,,1157
+228149,11,ncaa,,1611
+228246,21,ncaa_fbs,Atlantic Coast Conference,3251
+228325,21,other_national,,848
+228343,13,ncaa_football,Southern Athletic Association,1070
+228431,33,ncaa_football,Southland Conference,3911
+228459,13,ncaa_fbs,Sun Belt Conference,6753
+228468,31,other_national,,375
+228501,33,ncaa_football,Lone Star Conference,671
+228529,33,ncaa_football,Atlantic Sun Conference,4202
+228705,32,ncaa_football,Lone Star Conference,1508
+228723,12,ncaa_fbs,Southeastern Conference,11357
+228769,11,ncaa,,9531
+228778,11,ncaa_fbs,Southeastern Conference,7960
+228787,12,ncaa,,5543
+228796,11,ncaa_fbs,Conference USA,998
+228802,12,ncaa,,1924
+228875,11,ncaa_fbs,Big Twelve Conference,5187
+228981,31,ncaa_football,Southern Collegiate Athletic Conference,972
+229018,12,ncaa_football,Lone Star Conference,1100
+229027,11,ncaa_fbs,American Athletic Conference,4585
+229063,11,ncaa_football,Southwestern Athletic Conference,2322
+229115,11,ncaa_fbs,Big Twelve Conference,8349
+229160,11,other_national,,523
+229179,12,ncaa,,2323
+229267,11,ncaa_football,Southern Athletic Association,2087
+229780,33,other_national,,810
+229814,31,ncaa_football,Lone Star Conference,2154
+230038,12,ncaa_fbs,Big Twelve Conference,7697
+230047,31,none,,2070
+230603,33,ncaa_football,United Athletic Conference,1011
+230728,13,ncaa_fbs,Mountain West Conference,3297
+230764,12,ncaa_fbs,Big Twelve Conference,5956
+230807,12,ncaa,,496
+230816,32,none,,799
+230852,13,none,,1414
+230959,32,ncaa_football,New England Small College Athletic Conference,2682
+230995,42,ncaa_football,New England Women's & Men's Athletic Conference,2215
+231059,22,ncaa,,1265
+231095,43,other_national,,120
+231165,43,ncaa_football,Massachusetts State College Athletic Association,3027
+231174,13,ncaa,,6734
+231420,32,ncaa_football,Old Dominion Athletic Conference,529
+231554,32,other_national,,420
+231581,23,ncaa_football,Old Dominion Athletic Conference,1538
+231624,23,ncaa_football,Colonial Athletic Association,4455
+231651,11,other_national,,958
+231712,12,ncaa_football,New Jersey Athletic Conference,3801
+232025,41,ncaa_football,South Atlantic Conference,1008
+232043,13,ncaa,,672
+232089,42,ncaa_football,Old Dominion Athletic Conference,1293
+232186,21,ncaa,,6251
+232256,42,ncaa_football,Old Dominion Athletic Conference,934
+232265,21,ncaa_football,Colonial Athletic Association,2150
+232308,22,ncaa_football,Old Dominion Athletic Conference,695
+232423,13,ncaa_fbs,Sun Belt Conference,6481
+232557,13,ncaa_fbs,Conference USA,8807
+232566,32,ncaa,,2454
+232609,13,ncaa,,1247
+232681,22,ncaa,,2261
+232706,12,ncaa,,1022
+232937,12,ncaa_football,Mid-Eastern Athletic Conference,3337
+232982,12,ncaa_fbs,Sun Belt Conference,4790
+233277,31,ncaa,,3229
+233295,21,ncaa_football,Old Dominion Athletic Conference,1272
+233301,13,ncaa,,621
+233374,12,ncaa_football,Colonial Athletic Association,2872
+233426,22,ncaa,,1540
+233541,13,ncaa_football,Old Dominion Athletic Conference,1295
+233611,32,ncaa_football,USA South Athletic Conference,623
+233718,41,ncaa,,561
+233897,32,ncaa_football,South Atlantic Conference,589
+233921,13,ncaa_fbs,Atlantic Coast Conference,10213
+234030,12,ncaa,,5973
+234076,22,ncaa_fbs,Atlantic Coast Conference,7363
+234085,32,ncaa_football,Southern Conference,1751
+234155,21,ncaa_football,Central Intercollegiate Athletic Association,4015
+234164,12,ncaa_football,Central Intercollegiate Athletic Association,667
+234173,11,ncaa,,856
+234207,32,ncaa_football,Old Dominion Athletic Conference,1478
+234827,32,ncaa_football,Great Northwest Athletic Conference,4249
+235097,31,ncaa_football,Big Sky Conference,1788
+235167,22,other_national,,520
+235316,12,ncaa,,2990
+236133,21,other_national,,672
+236230,21,ncaa_football,Northwest Conference,1382
+236328,12,ncaa_football,Northwest Conference,1635
+236452,13,ncaa,,630
+236577,11,ncaa,,1775
+236595,11,ncaa,,2448
+236939,32,ncaa_fbs,Pacific-12 Conference,7029
+236948,11,ncaa_fbs,Big Ten Conference,10230
+237011,13,ncaa,,4196
+237057,13,ncaa,,886
+237066,21,ncaa_football,Northwest Conference,1352
+237136,23,other_national,,243
+237181,41,ncaa_football,Presidents' Athletic Conference,720
+237215,32,ncaa_football,Central Intercollegiate Athletic Association,233
+237312,13,ncaa_football,Mountain East Conference,756
+237330,41,ncaa_football,Mountain East Conference,1012
+237358,33,ncaa,,688
+237367,32,ncaa_football,Mountain East Conference,1050
+237525,13,ncaa_fbs,Sun Belt Conference,2283
+237792,41,ncaa_football,Pennsylvania State Athletic Conference,1074
+237899,22,ncaa_football,Mountain East Conference,376
+237932,41,ncaa_football,Mountain East Conference,1291
+237950,13,other_national,,369
+237969,33,ncaa_football,Mountain East Conference,1211
+238032,13,ncaa_fbs,Big Twelve Conference,5458
+238078,13,ncaa_football,Mountain East Conference,829
+238193,11,ncaa,,264
+238324,22,none,,0
+238333,13,ncaa_football,Midwest Conference,1148
+238458,13,ncaa_football,College Conference of Illinois and Wisconsin,1775
+238476,13,ncaa_football,College Conference of Illinois and Wisconsin,1814
+238616,21,ncaa_football,Northern Athletics Collegiate Conference,1500
+238661,11,ncaa,,535
+238980,41,ncaa_football,Northern Athletics Collegiate Conference,672
+239017,13,ncaa_football,Midwest Conference,1450
+239071,31,ncaa,,768
+239080,13,ncaa,,501
+239105,11,ncaa,,5295
+239309,11,none,,450
+239318,11,ncaa,,1431
+239390,11,ncaa,,260
+239628,32,ncaa_football,Midwest Conference,954
+239716,22,ncaa_football,Northern Athletics Collegiate Conference,1814
+240107,13,other_national,,733
+240189,32,ncaa_football,Wisconsin Intercollegiate Athletic Conference,4168
+240268,13,ncaa_football,Wisconsin Intercollegiate Athletic Conference,4031
+240277,12,ncaa,,2005
+240329,13,ncaa_football,Wisconsin Intercollegiate Athletic Conference,3220
+240338,11,ncaa_football,Northern Athletics Collegiate Conference,769
+240365,13,ncaa_football,Wisconsin Intercollegiate Athletic Conference,2522
+240374,41,ncaa,,850
+240417,32,ncaa_football,Wisconsin Intercollegiate Athletic Conference,3169
+240426,22,ncaa,,650
+240444,11,ncaa_fbs,Big Ten Conference,8949
+240453,11,ncaa,,4090
+240462,32,ncaa_football,Wisconsin Intercollegiate Athletic Conference,2978
+240471,32,ncaa_football,Wisconsin Intercollegiate Athletic Conference,2417
+240480,32,ncaa_football,Wisconsin Intercollegiate Athletic Conference,3462
+240727,33,ncaa_fbs,Mountain West Conference,2872
+241191,23,none,,300
+241225,12,other_national,,16
+241331,11,none,,0
+241395,23,none,,0
+241410,12,other_national,,206
+241766,11,none,,0
+241951,11,none,,0
+242617,23,other_national,,390
+242626,22,other_national,,0
+242635,13,other_national,,0
+242644,21,other_national,,0
+242653,11,none,,420
+242662,41,other_national,,0
+242680,23,other_national,,0
+242705,12,other_national,,72
+243106,22,none,,0
+243115,13,other_national,,0
+243133,12,ncaa,,0
+243142,21,other_national,,0
+243151,21,none,,0
+243179,21,none,,0
+243197,13,ncaa,,0
+243212,12,none,,0
+243221,11,ncaa,,0
+243443,11,none,,580
+243586,13,none,,0
+243665,41,other_national,,470
+243744,21,ncaa_fbs,Atlantic Coast Conference,14415
+243780,13,ncaa_fbs,Big Ten Conference,16270
+245652,41,none,,374
+245777,21,none,,0
+245953,11,other_national,,300
+247773,21,none,,70
+262129,13,other_national,,586
+366711,21,ncaa,,1954
+368452,11,none,,0
+377546,12,none,,0
+377555,21,none,,380
+377564,12,none,,304
+384254,22,other_national,,422
+384421,21,none,,115
+385619,13,none,,0
+399911,21,other_national,,572
+407610,13,none,,0
+409698,22,ncaa,,3376
+414878,32,none,,0
+417752,21,none,,64
+420325,21,none,,98
+421708,12,none,,0
+421878,11,none,,0
+426314,13,none,,0
+430670,13,none,,0
+433004,21,none,,0
+433660,21,ncaa,,4748
+436818,12,none,,0
+436827,22,other_national,,0
+436836,12,none,,462
+439701,21,none,,0
+440396,32,none,,0
+440828,12,none,,297
+441900,41,none,,0
+441937,41,none,,1528
+441982,21,none,,366
+443058,42,none,,4
+443410,13,none,,329
+444413,11,none,,150
+445188,22,other_national,,4341
+445267,42,none,,0
+445692,12,none,,418
+446048,42,other_national,,1133
+446233,41,other_national,,140
+446385,12,none,,104
+446640,13,other_national,,231
+447689,21,other_national,,990
+447953,21,none,,7
+449384,11,none,,0
+449658,13,none,,125
+449764,11,none,,100
+449870,21,none,,150
+451370,21,none,,0
+451398,21,none,,223
+451404,11,none,,0
+451927,31,none,,301
+454227,21,none,,0
+454236,11,none,,0
+454245,11,none,,0
+455257,11,none,,0
+455664,11,none,,0
+455770,12,other_national,,250
+456959,12,none,,717
+457129,11,none,,0
+459842,13,none,,0
+459949,11,other_national,,413
+460349,12,none,,0
+460871,21,none,,0
+461847,21,none,,96
+462354,21,none,,231
+463056,12,none,,0
+464226,21,other_national,,401
+466921,21,none,,0
+466930,11,none,,0
+475200,21,none,,0
+475608,11,none,,218
+475732,12,none,,0
+475741,11,none,,0
+476601,21,none,,180
+476975,11,none,,0
+479956,13,none,,0
+480198,11,none,,0
+480781,11,other_national,,0
+480985,12,none,,0
+481225,11,none,,40
+481410,21,none,,85
+481438,21,none,,90
+482149,12,ncaa,,1228
+482158,12,other_national,,1738
+482228,31,none,,0
+482413,11,none,,0
+482468,21,none,,0
+482556,21,none,,0
+482574,11,none,,0
+482680,32,ncaa,,2789
+482936,41,none,,1381
+483018,41,none,,221
+483036,41,none,,0
+483780,12,none,,0
+484473,12,ncaa_fbs,Southeastern Conference,0
+484844,11,none,,615
+484905,11,other_national,,112
+485698,12,none,,0
+485999,11,none,,0
+486017,11,none,,26
+486026,11,none,,150
+486284,13,none,,284
+486840,21,ncaa_fbs,Conference USA,5912
+486901,22,other_national,,647
+486938,11,none,,0
+486947,13,none,,0
+486956,21,none,,0
+487375,21,none,,0
+487524,13,ncaa_football,Eastern Collegiate Football Conference,1197
+487746,11,none,,40
+488314,21,none,,56
+489344,11,none,,0
+489353,13,none,,0
+489937,11,other_national,,225
+490133,11,other_national,,0
+490319,13,none,,80
+490504,21,none,,40
+490513,13,none,,61
+490805,21,ncaa,,776
+491057,11,none,,60
+491613,21,none,,120
+491631,11,none,,0
+491710,21,none,,90
+491765,41,none,,100
+492759,21,none,,0
+493594,42,none,,62
+493664,11,none,,0
+494162,11,none,,0
+494542,11,none,,500
+494630,21,none,,60
+494685,21,none,,438
+495031,21,none,,0
+495420,11,none,,0
+495448,11,none,,0
+495457,11,none,,0
+496627,21,none,,0
+497037,21,ncaa_football,United Athletic Conference,0
+497213,12,none,,44
+497268,13,none,,0
+497462,42,none,,0
+497480,11,none,,0
+497824,12,none,,0
+498049,13,none,,0
+498447,21,none,,0
+498456,12,none,,0
+498562,32,ncaa_football,Pennsylvania State Athletic Conference,6301
+498571,32,ncaa_football,Pennsylvania State Athletic Conference,4565
+499370,21,none,,0
+499389,11,none,,0
+499398,21,none,,0
+499404,21,none,,0
+500290,11,none,,
+500306,13,none,,
+500333,21,none,,
+500342,11,none,,

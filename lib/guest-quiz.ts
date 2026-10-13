@@ -10,16 +10,16 @@ import type { Profile, UniversitySummary } from "@/lib/types";
 
 // The answer options live in lib/quiz-options.ts (no scoring code there),
 // so the quiz form in the browser doesn't download the scoring engine.
-import { ANY_COUNTRY, QUIZ_BUDGETS, QUIZ_MAJORS, QUIZ_VISA, type QuizVisa } from "@/lib/quiz-options";
-export { ANY_COUNTRY, QUIZ_BUDGETS, QUIZ_MAJORS, QUIZ_VISA };
+import { ANY_COUNTRY, QUIZ_BUDGETS, QUIZ_CAMPUS, QUIZ_MAJORS, QUIZ_VISA, type QuizCampus, type QuizVisa } from "@/lib/quiz-options";
+export { ANY_COUNTRY, QUIZ_BUDGETS, QUIZ_CAMPUS, QUIZ_MAJORS, QUIZ_VISA };
 
-export type QuizAnswers = { country: string; budget: number; major: string; visa?: QuizVisa };
+export type QuizAnswers = { country: string; budget: number; major: string; visa?: QuizVisa; campus?: QuizCampus };
 
 export type QuizParse = { ok: true; answers: QuizAnswers } | { ok: false; error: string };
 
 // Only accept values the quiz offers, so a hand-made request can't feed the
 // scoring anything odd.
-export function parseQuizAnswers(input: { country: unknown; budget: unknown; major: unknown; visa?: unknown }): QuizParse {
+export function parseQuizAnswers(input: { country: unknown; budget: unknown; major: unknown; visa?: unknown; campus?: unknown }): QuizParse {
   const country = typeof input.country === "string" ? input.country : "";
   const budget = Number(input.budget);
   const major = typeof input.major === "string" ? input.major : "";
@@ -30,7 +30,9 @@ export function parseQuizAnswers(input: { country: unknown; budget: unknown; maj
   if (!(QUIZ_MAJORS as readonly string[]).includes(major)) return { ok: false, error: "Choose what you'd like to study." };
   const visa = typeof input.visa === "string" && input.visa ? input.visa : "ignore";
   if (!(visa in QUIZ_VISA)) return { ok: false, error: "Choose whether visa rules should count." };
-  return { ok: true, answers: { country, budget, major, visa: visa as QuizVisa } };
+  const campus = typeof input.campus === "string" && input.campus ? input.campus : "none";
+  if (!(campus in QUIZ_CAMPUS)) return { ok: false, error: "Choose whether campus life should count." };
+  return { ok: true, answers: { country, budget, major, visa: visa as QuizVisa, campus: campus as QuizCampus } };
 }
 
 // What the quiz doesn't know about a guest: grades, test scores and English
@@ -56,7 +58,12 @@ export function guestProfile(answers: QuizAnswers): Profile {
     budget_max: answers.budget,
     preferred_countries: answers.country === ANY_COUNTRY ? [] : [answers.country],
     preferred_degree_level: "Undergraduate",
-    focuses: [],
+    // The optional campus-life question picks the matching focuses.
+    focuses:
+      answers.campus === "both" ? ["academic_community", "social_life"]
+      : answers.campus === "academic" ? ["academic_community"]
+      : answers.campus === "social" ? ["social_life"]
+      : [],
     // The optional visa question: factored in at Medium, or ignored.
     visa_mode: answers.visa && answers.visa !== "ignore" ? "factor" : "ignore",
     visa_weight: answers.visa && answers.visa !== "ignore" ? "medium" : null,

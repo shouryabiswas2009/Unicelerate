@@ -1,11 +1,12 @@
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { createInMemoryDb } from "./in-memory-db.mjs";
 
 // Data-changing migrations, run against a real (in-memory) Postgres with
 // rows shaped the way they were before the migration.
-const sql = (file) => readFileSync(join(import.meta.dirname, "..", "supabase", file), "utf8");
+const SUPABASE = join(import.meta.dirname, "..", "supabase");
+const sql = (file) => readFileSync(join(SUPABASE, file), "utf8");
 
 describe("migration_009 (multi-select focus + co-op)", () => {
   it("keeps each student's old focus, retires the old columns, and is safe to re-run", async () => {
@@ -401,4 +402,51 @@ describe("migration_022 (profile courses)", () => {
     expect((await db.query("select count(*)::int as n from public.profile_courses where user_id = $1", [A])).rows[0].n).toBe(0);
     expect((await db.query("select count(*)::int as n from public.profile_courses where user_id = $1", [B])).rows[0].n).toBe(1);
   }, 30_000);
+});
+
+describe("migration_023 (campus life)", () => {
+  const id = "00000000-0000-0000-0000-0000000000d1";
+  async function withStudent() {
+    const { db } = await createInMemoryDb();
+    await db.query("insert into auth.users (id) values ($1)", [id]);
+    await db.query(
+      `insert into public.profiles (id, full_name, country, intended_majors, gpa_percentage,
+        budget_min, budget_max, preferred_countries, preferred_degree_level)
+        values ($1, 'Student', 'Canada', '{CS}', 90, 0, 40000, '{Canada}', 'Undergraduate')`,
+      [id]
+    );
+    return db;
+  }
+
+  it("accepts the two new focuses and their follow-ups, rejects anything else, and is safe to re-run", async () => {
+    const db = await withStudent();
+    await db.exec(sql("migration_023_campus_life.sql"));
+    const { rows } = await db.query("select campus_academic_prefs, campus_social_prefs from public.profiles where id = $1", [id]);
+    expect(rows[0]).toEqual({ campus_academic_prefs: [], campus_social_prefs: [] });
+    await db.query(
+      `update public.profiles set focuses = '{research,academic_community,social_life}',
+        campus_academic_prefs = '{hackathons_tech,research}', campus_social_prefs = '{quiet_close_knit}' where id = $1`,
+      [id]
+    );
+    await expect(db.query("update public.profiles set focuses = '{parties}' where id = $1", [id])).rejects.toThrow(/profiles_focuses_check/);
+    await expect(db.query("update public.profiles set campus_academic_prefs = '{robotics}' where id = $1", [id])).rejects.toThrow(/profiles_campus_academic_prefs_check/);
+    await expect(db.query("update public.profiles set campus_social_prefs = '{party_school}' where id = $1", [id])).rejects.toThrow(/profiles_campus_social_prefs_check/);
+  }, 30_000);
+
+  it("stores campus life on shared schools only, and the seed files run", async () => {
+    const db = await withStudent();
+    const shared = (await db.query("select id from public.universities where created_by is null order by id limit 1")).rows[0].id;
+    await db.query(`update public.universities set campus_life = '{"locale":11,"academic_score":0.5}'::jsonb where id = $1`, [shared]);
+    await db.query(
+      `insert into public.universities (name, country, tuition, acceptance_rate, description, created_by, source) values ('Mine', 'Canada', 1, 50, '', $1, 'user-entered')`,
+      [id]
+    );
+    await expect(
+      db.query(`update public.universities set campus_life = '{"locale":11}'::jsonb where created_by = $1`, [id])
+    ).rejects.toThrow(/universities_campus_life_check/);
+    await expect(db.query(`update public.universities set campus_life = '[1]'::jsonb where id = $1`, [shared])).rejects.toThrow(/universities_campus_life_check/);
+    for (const file of readdirSync(join(SUPABASE, "seed_campus_life"))) {
+      await db.exec(readFileSync(join(SUPABASE, "seed_campus_life", file), "utf8"));
+    }
+  }, 60_000);
 });

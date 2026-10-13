@@ -27,6 +27,9 @@ export const LIST_COLUMNS = [
   // The strength index (lib/strength.ts), shown on every card.
   "strength_index", "strength_low", "strength_high", "strength_tier", "strength_confidence",
   "strength_is_estimate", "strength_position", "strength_signals",
+  // Campus-life proxies (lib/campus-life.ts), shown on cards and scored
+  // when a student ticks a campus-life focus.
+  "campus_life",
 ] as const;
 
 // Supabase's default limit on rows per API response.
@@ -132,7 +135,7 @@ const loadSharedCached = unstable_cache(
     if (result.missing.length > 0) throw new Error("pending migration");
     return packRows(result.rows);
   },
-  ["shared-universities", "v4"], // bump the version when LIST_COLUMNS changes
+  ["shared-universities", "v5"], // bump the version when LIST_COLUMNS changes
   { revalidate: 86400, tags: ["universities"] }
 );
 
@@ -228,7 +231,8 @@ export const getPublicUniversity = unstable_cache(
   },
   // Bump the version when a migration adds columns: the data cache outlives
   // deploys, so old rows (without the new columns) would be served for up
-  // to a day otherwise. v2: the strength index (migration_019).
-  ["public-university", "v2"],
+  // to a day otherwise. v2: the strength index (migration_019); v3: campus
+  // life (migration_023).
+  ["public-university", "v3"],
   { revalidate: 86400, tags: ["universities"] }
 );

@@ -63,12 +63,15 @@ describe("parseQuizAnswers", () => {
   it("accepts the quiz's own options", () => {
     expect(parseQuizAnswers({ country: "Canada", budget: "40000", major: "Computer Science" })).toEqual({
       ok: true,
-      answers: { country: "Canada", budget: 40000, major: "Computer Science", visa: "ignore" },
+      answers: { country: "Canada", budget: 40000, major: "Computer Science", visa: "ignore", campus: "none" },
     });
     // The optional visa question: missing = ignore; only listed values.
     expect(parseQuizAnswers({ country: "Canada", budget: "40000", major: "Law", visa: "home" })).toMatchObject({ ok: true, answers: { visa: "home" } });
     expect(parseQuizAnswers({ country: "Canada", budget: "40000", major: "Law", visa: "always" }).ok).toBe(false);
     expect(parseQuizAnswers({ country: ANY_COUNTRY, budget: "15000", major: "Law" }).ok).toBe(true);
+    // The optional campus-life question: missing = none; only listed values.
+    expect(parseQuizAnswers({ country: "Canada", budget: "40000", major: "Law", campus: "both" })).toMatchObject({ ok: true, answers: { campus: "both" } });
+    expect(parseQuizAnswers({ country: "Canada", budget: "40000", major: "Law", campus: "parties" }).ok).toBe(false);
   });
 
   it("rejects anything the quiz doesn't offer", () => {

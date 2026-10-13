@@ -38,6 +38,9 @@ export const PENDING_COLUMNS: Record<string, string> = {
   strength_is_estimate: "migration_019_strength_index.sql",
   strength_position: "migration_019_strength_index.sql",
   strength_signals: "migration_019_strength_index.sql",
+  campus_life: "migration_023_campus_life.sql",
+  campus_academic_prefs: "migration_023_campus_life.sql",
+  campus_social_prefs: "migration_023_campus_life.sql",
 };
 
 type DbError = { code?: string; message?: string } | null;

@@ -99,6 +99,27 @@ if (strengthFiles.length) {
   }
 }
 
+// Campus-life proxies (migration_023): run twice; every statement must find
+// its university.
+const CAMPUS_DIR = join(import.meta.dirname, "..", "supabase", "seed_campus_life");
+const campusFiles = existsSync(CAMPUS_DIR) ? readdirSync(CAMPUS_DIR).filter((f) => f.endsWith(".sql")).sort() : [];
+if (campusFiles.length) {
+  let expectedCampus = 0;
+  for (let run = 0; run < 2; run++) {
+    for (const f of campusFiles) {
+      const text = readFileSync(join(CAMPUS_DIR, f), "utf8");
+      if (run === 0) expectedCampus += (text.match(/^update /gm) ?? []).length;
+      await db.exec(text);
+    }
+  }
+  const { rows } = await db.query("select count(*)::int as n from public.universities where campus_life is not null");
+  console.log(`OK  seed_campus_life (${campusFiles.length} files) run twice: ${rows[0].n} universities with campus-life data (expected ${expectedCampus})`);
+  if (rows[0].n !== expectedCampus) {
+    console.error("FAIL some campus-life rows didn't find their university.");
+    process.exit(1);
+  }
+}
+
 // The featured rule exists twice (SQL for the database, JavaScript for counts
 // and tests). Run the SQL and check both agree on the Scorecard schools.
 const FEATURED_SQL = join(import.meta.dirname, "..", "supabase", "featured", "featured.sql");

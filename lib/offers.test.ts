@@ -51,6 +51,8 @@ const only = (key: keyof OfferWeights): OfferWeights => ({
   researchImpact: 0,
   coop: 0,
   visa: 0,
+  campusAcademic: 0,
+  campusSocial: 0,
   [key]: 10,
 });
 
@@ -117,7 +119,7 @@ describe("rankOffers", () => {
   });
 
   it("scores everything 0 when every weight is 0, without crashing", () => {
-    const zero = { cost: 0, ranking: 0, subjectRanking: 0, match: 0, country: 0, research: 0, researchImpact: 0, coop: 0, visa: 0 };
+    const zero = { cost: 0, ranking: 0, subjectRanking: 0, match: 0, country: 0, research: 0, researchImpact: 0, coop: 0, visa: 0, campusAcademic: 0, campusSocial: 0 };
     const ranked = rankOffers([cheapLowRanked, pricyTopRanked], zero);
     expect(ranked.every((r) => r.score === 0)).toBe(true);
   });

@@ -32,3 +32,13 @@ export const QUIZ_VISA = {
   home: "Consider it: I'll return home after",
 } as const;
 export type QuizVisa = keyof typeof QUIZ_VISA;
+
+// Optional fifth question: should campus life count? Same default rule:
+// "none" leaves the matches exactly as before.
+export const QUIZ_CAMPUS = {
+  none: "Don't consider it",
+  academic: "Academic & career community",
+  social: "Campus social life & fun",
+  both: "Both",
+} as const;
+export type QuizCampus = keyof typeof QUIZ_CAMPUS;

@@ -58,6 +58,12 @@ export type OfferInput = {
   // the student ignores the visa or nothing is known for the country.
   visaScore?: number | null;
   visaLabel?: string | null;
+  // The two campus-life proxies (lib/campus-life.ts), 0..1 with the
+  // confidence as the label; null when nothing is published.
+  campusAcademicScore?: number | null;
+  campusAcademicLabel?: string | null;
+  campusSocialScore?: number | null;
+  campusSocialLabel?: string | null;
 };
 
 export type OfferCriterion =
@@ -69,7 +75,9 @@ export type OfferCriterion =
   | "research"
   | "researchImpact"
   | "coop"
-  | "visa";
+  | "visa"
+  | "campusAcademic"
+  | "campusSocial";
 
 // How much each criterion matters, 0-10 (the sliders on the offers page).
 export type OfferWeights = Record<OfferCriterion, number>;
@@ -78,15 +86,18 @@ export type OfferWeights = Record<OfferCriterion, number>;
 // these only decide where they start. Balanced keeps the weights the app
 // used before focuses existed, with the two newer criteria at a low 1. Each
 // focus raises the criteria it's about.
+// The campus-life sliders start at 0 unless their focus is ticked.
 export const BALANCED_OFFER_WEIGHTS: OfferWeights = {
-  cost: 5, ranking: 3, subjectRanking: 3, match: 2, country: 1, research: 1, researchImpact: 3, coop: 1, visa: 0,
+  cost: 5, ranking: 3, subjectRanking: 3, match: 2, country: 1, research: 1, researchImpact: 3, coop: 1, visa: 0, campusAcademic: 0, campusSocial: 0,
 };
 
 export const FOCUS_OFFER_WEIGHTS: Record<Focus, OfferWeights> = {
-  academic: { cost: 3, ranking: 7, subjectRanking: 7, match: 2, country: 1, research: 2, researchImpact: 6, coop: 1, visa: 0 },
-  work_experience: { cost: 4, ranking: 2, subjectRanking: 2, match: 2, country: 1, research: 1, researchImpact: 2, coop: 8, visa: 0 },
-  research: { cost: 3, ranking: 2, subjectRanking: 7, match: 2, country: 1, research: 8, researchImpact: 8, coop: 1, visa: 0 },
-  affordability: { cost: 9, ranking: 2, subjectRanking: 2, match: 2, country: 1, research: 1, researchImpact: 2, coop: 1, visa: 0 },
+  academic: { cost: 3, ranking: 7, subjectRanking: 7, match: 2, country: 1, research: 2, researchImpact: 6, coop: 1, visa: 0, campusAcademic: 0, campusSocial: 0 },
+  work_experience: { cost: 4, ranking: 2, subjectRanking: 2, match: 2, country: 1, research: 1, researchImpact: 2, coop: 8, visa: 0, campusAcademic: 0, campusSocial: 0 },
+  research: { cost: 3, ranking: 2, subjectRanking: 7, match: 2, country: 1, research: 8, researchImpact: 8, coop: 1, visa: 0, campusAcademic: 0, campusSocial: 0 },
+  affordability: { cost: 9, ranking: 2, subjectRanking: 2, match: 2, country: 1, research: 1, researchImpact: 2, coop: 1, visa: 0, campusAcademic: 0, campusSocial: 0 },
+  academic_community: { cost: 4, ranking: 3, subjectRanking: 3, match: 2, country: 1, research: 2, researchImpact: 2, coop: 3, visa: 0, campusAcademic: 8, campusSocial: 0 },
+  social_life: { cost: 4, ranking: 3, subjectRanking: 2, match: 2, country: 1, research: 1, researchImpact: 2, coop: 1, visa: 0, campusAcademic: 0, campusSocial: 8 },
 };
 
 export const DEFAULT_OFFER_WEIGHTS: OfferWeights = BALANCED_OFFER_WEIGHTS;
@@ -136,6 +147,8 @@ export const CRITERION_LABELS: Record<OfferCriterion, string> = {
   researchImpact: "Research impact (Leiden Ranking / OpenAlex)",
   coop: "Co-op / internships",
   visa: "Visa and work rights",
+  campusAcademic: "Academic & career community",
+  campusSocial: "Campus social life",
 };
 
 // Generic so callers can pass extra fields (e.g. for display) and get them
@@ -210,6 +223,8 @@ function scoreOffers<T extends OfferInput>(
       researchImpact: offer.researchImpact,
       coop: offer.coopScore,
       visa: offer.visaScore ?? null,
+      campusAcademic: offer.campusAcademicScore ?? null,
+      campusSocial: offer.campusSocialScore ?? null,
     };
 
     let earned = 0;
@@ -259,6 +274,10 @@ function strongPhrase(key: OfferCriterion, offer: OfferInput, value: number): st
       return `its co-op program (${offer.coopLabel?.toLowerCase()})`;
     case "visa":
       return `its visa and work rights (${offer.visaLabel})`;
+    case "campusAcademic":
+      return `its published academic & career community figures (${offer.campusAcademicLabel})`;
+    case "campusSocial":
+      return `its published campus-life figures for what you chose (${offer.campusSocialLabel})`;
   }
 }
 
@@ -283,6 +302,10 @@ function weakPhrase(key: OfferCriterion, offer: OfferInput): string {
       return `its co-op situation (${offer.coopLabel?.toLowerCase()})`;
     case "visa":
       return `its visa and work rights (${offer.visaLabel})`;
+    case "campusAcademic":
+      return `fewer published academic & career community figures (${offer.campusAcademicLabel})`;
+    case "campusSocial":
+      return `published campus-life figures that point less to what you chose (${offer.campusSocialLabel})`;
   }
 }
 

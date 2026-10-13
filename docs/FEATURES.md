@@ -194,3 +194,25 @@ Required-course checks for 16 programs, each from the program's own page,
 add a concern line when a listed requirement is missing. Weights and their
 sources: `docs/COURSE-RELEVANCE-SOURCES.md`; all numbers in
 `lib/course-config.ts`.
+
+## Campus life: two separate focuses (optional)
+
+**Why.** A school can be full of design teams, hackathons and co-op events
+but quiet socially, or the reverse. One blended "social" score would hide
+that, and there is no free, official rating of either.
+
+**How.** Two new focuses in "What matters most": *Academic & career
+community* and *Campus social life & fun*, each with optional follow-ups
+(e.g. Hackathons & tech, Quiet & close-knit). They split the 20 focus
+points like the others; Balanced is unchanged, so picking neither changes
+nothing (regression test). Each is built only from cited proxies (IPEDS
+setting, housing and athletics; Scorecard enrolment; existing co-op and
+research data; a few hand-checked team counts and conference memberships),
+stored at import time (`npm run data:campus-life:download` then
+`data:campus-life:build`, migration_023 + `seed_campus_life/`). Unknown
+proxies are left out and re-weighted; each kind has a confidence label
+(High 3+ proxies, Medium 2, Low 1). Cards and the detail page list the
+proxies with sources, side by side and never as a number; compare shows a
+row per proxy; the offers page has a slider for each; What-if can switch
+them on; the landing quiz has an optional question. Data, weights, licences
+and what was rejected: `docs/CAMPUS-LIFE-DATA.md`.

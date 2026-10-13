@@ -63,6 +63,7 @@ describe("LIST_COLUMNS", () => {
       research_impact: null,
       strength_index: null, strength_low: null, strength_high: null, strength_tier: null, strength_confidence: null,
       strength_is_estimate: null, strength_position: null, strength_signals: null,
+      campus_life: null,
     };
     const summaryFields = Object.keys(everyField).filter(
       (f) => !(DETAIL_ONLY_FIELDS as readonly string[]).includes(f)
@@ -94,12 +95,21 @@ describe("packRows / unpackRows (the cached list)", () => {
       strength.set(Number(m[3]), { strength_index: Number(m[1]), strength_signals: JSON.parse(m[2].replaceAll("''", "'")) });
     }
   }
+  // …and the real campus-life proxies (supabase/seed_campus_life, migration_023).
+  const campus = new Map<number, unknown>();
+  for (const file of readdirSync(join(__dirname, "..", "..", "supabase", "seed_campus_life"))) {
+    const sql = readFileSync(join(__dirname, "..", "..", "supabase", "seed_campus_life", file), "utf8");
+    for (const m of sql.matchAll(/campus_life = '(.*)'::jsonb where created_by is null and scorecard_id = (\d+);/g)) {
+      campus.set(Number(m[2]), JSON.parse(m[1].replaceAll("''", "'")));
+    }
+  }
   const rows = scorecard.universities.map((u: Record<string, unknown>) => ({
     ...Object.fromEntries(LIST_COLUMNS.map((c) => [c, u[c] ?? null])),
     id: "6845fafb-6f85-41bc-9d31-878a990bb4ff",
     strength_low: null, strength_high: null, strength_tier: "B", strength_confidence: "High",
     strength_is_estimate: false, strength_position: 412,
     ...strength.get(u.scorecard_id as number),
+    campus_life: campus.get(u.scorecard_id as number) ?? null,
   }));
 
   it("gives back exactly the rows it was given", () => {
@@ -108,10 +118,12 @@ describe("packRows / unpackRows (the cached list)", () => {
     expect(unpackRows(packRows([]))).toEqual([]);
   });
 
-  it("keeps the whole list, strength index included, well under the 2 MB data-cache limit", () => {
+  it("keeps the whole list, strength index and campus life included, well under the 2 MB data-cache limit", () => {
     expect(strength.size).toBe(scorecard.universities.length);
+    expect(campus.size).toBe(scorecard.universities.length);
     const packed = new TextEncoder().encode(JSON.stringify(packRows(rows))).length;
     // These are 1,577 of the 1,688 rows; the 111 curated ones add ~10% more.
+    console.log(`packed list ≈ ${Math.round((packed * 1.1) / 1024)} KB`);
     expect(packed * 1.1).toBeLessThan(1.5 * 1024 * 1024);
   });
 });

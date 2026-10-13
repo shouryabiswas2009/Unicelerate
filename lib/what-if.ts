@@ -1,6 +1,7 @@
 import { scoreUniversity } from "@/lib/matching";
 import type { AdmissionChance } from "@/lib/matching";
-import type { Profile, UniversitySummary } from "@/lib/types";
+import { focusesOf } from "@/lib/focus";
+import type { Focus, Profile, UniversitySummary } from "@/lib/types";
 
 // The "What if?" panel on the details page: the student moves sliders for
 // GPA, SAT and IELTS and sees the match score and admission estimate
@@ -16,11 +17,35 @@ export const WHAT_IF_RANGES: Record<WhatIfKey, { label: string; min: number; max
   ielts_score: { label: "IELTS", min: 0, max: 9, step: 0.5, tryValue: 6.5 },
 };
 
-// SAT and IELTS may be "not taken" (null); GPA is always set.
-export type WhatIfValues = { gpa_percentage: number; sat_score: number | null; ielts_score: number | null };
+// SAT and IELTS may be "not taken" (null); GPA is always set. The two
+// campus-life focuses can be switched on or off too ("what if campus life
+// counted?"); left out, the saved choice stays.
+export type WhatIfValues = {
+  gpa_percentage: number;
+  sat_score: number | null;
+  ielts_score: number | null;
+  academic_community?: boolean;
+  social_life?: boolean;
+};
+
+const CAMPUS_FOCUSES = ["academic_community", "social_life"] as const satisfies readonly Focus[];
 
 export function valuesFromProfile(profile: Profile): WhatIfValues {
-  return { gpa_percentage: profile.gpa_percentage, sat_score: profile.sat_score, ielts_score: profile.ielts_score };
+  const focuses = focusesOf(profile);
+  return {
+    gpa_percentage: profile.gpa_percentage,
+    sat_score: profile.sat_score,
+    ielts_score: profile.ielts_score,
+    academic_community: focuses.includes("academic_community"),
+    social_life: focuses.includes("social_life"),
+  };
+}
+
+// The saved focuses with the campus-life ones switched as chosen.
+function whatIfFocuses(profile: Profile, values: WhatIfValues): Focus[] {
+  const focuses = focusesOf(profile).filter((f) => !(CAMPUS_FOCUSES as readonly Focus[]).includes(f) || values[f as (typeof CAMPUS_FOCUSES)[number]] !== false);
+  for (const f of CAMPUS_FOCUSES) if (values[f] && !focuses.includes(f)) focuses.push(f);
+  return focuses;
 }
 
 // Keeps a slider value inside its range and on its step (e.g. SAT 1347 → 1350),
@@ -40,6 +65,7 @@ export function applyWhatIf(profile: Profile, values: WhatIfValues): Profile {
     gpa_percentage: snapToStep("gpa_percentage", values.gpa_percentage),
     sat_score: values.sat_score === null ? null : snapToStep("sat_score", values.sat_score),
     ielts_score: values.ielts_score === null ? null : snapToStep("ielts_score", values.ielts_score),
+    focuses: whatIfFocuses(profile, values),
   };
 }
 
@@ -85,7 +111,8 @@ export function compareWhatIf(profile: Profile, university: UniversitySummary, v
     changed:
       whatIfProfile.gpa_percentage !== profile.gpa_percentage ||
       whatIfProfile.sat_score !== profile.sat_score ||
-      whatIfProfile.ielts_score !== profile.ielts_score,
+      whatIfProfile.ielts_score !== profile.ielts_score ||
+      [...whatIfProfile.focuses!].sort().join() !== [...focusesOf(profile)].sort().join(),
   };
 }
 

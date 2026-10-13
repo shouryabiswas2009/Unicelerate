@@ -1,6 +1,7 @@
 import type { GradeBasis, GradeSystem } from "@/lib/grades";
 import type { ProfileCourse } from "@/lib/courses";
 import type { StrengthConfidence, StrengthSignalKey, StrengthTier } from "@/lib/strength-config";
+import type { AcademicPref, AthleticsLevel, SocialPref } from "@/lib/campus-life-config";
 // Shared types matching the Supabase schema in supabase/seed.sql plus the
 // numbered migrations in supabase/.
 
@@ -11,9 +12,14 @@ export const DEGREE_LEVELS: DegreeLevel[] = ["Undergraduate", "Masters", "PhD"];
 // "What matters most to me" (migration_009): a student ticks any number of
 // these. None ticked means Balanced. Labels, descriptions and how they
 // steer scoring live in lib/focus.ts and lib/matching.ts.
-export const FOCUSES = ["academic", "work_experience", "research", "affordability"] as const;
+// The two campus-life focuses (migration_023, lib/campus-life.ts) come
+// last and are not part of Balanced: nothing ticked still means the first
+// four, so a student who picks neither sees exactly the same scores.
+export const FOCUSES = ["academic", "work_experience", "research", "affordability", "academic_community", "social_life"] as const;
 
 export type Focus = (typeof FOCUSES)[number];
+
+export const BALANCED_FOCUSES: readonly Focus[] = ["academic", "work_experience", "research", "affordability"];
 
 export type Profile = {
   id: string;
@@ -49,6 +55,10 @@ export type Profile = {
   // separately and attached by the page; missing for guests or before that
   // migration runs, which reads as "no courses". See lib/courses.ts.
   courses?: ProfileCourse[];
+  // Optional follow-ups to the two campus-life focuses (migration_023);
+  // empty or missing = "Not sure" (equal weights).
+  campus_academic_prefs?: AcademicPref[];
+  campus_social_prefs?: SocialPref[];
   created_at: string;
   updated_at: string;
 };
@@ -149,6 +159,33 @@ export type University = {
   strength_is_estimate?: boolean | null;
   strength_position?: number | null;
   strength_signals?: StrengthDetails | null;
+
+  // Campus-life proxies (migration_023), stored at import time by
+  // scripts/campus-life/build.mjs. Null for a student's own school, and
+  // missing until that migration runs. See lib/campus-life.ts.
+  campus_life?: CampusLife | null;
+};
+
+export type CampusConfidence = "High" | "Medium" | "Low" | "Not available";
+
+// Published figures behind the two campus-life focuses. Every field is
+// null/missing when unknown. US figures come from IPEDS / College
+// Scorecard (whole-dataset sources); curated ones carry their own page.
+export type CampusLife = {
+  locale?: number | null; // NCES locale code, e.g. 11 = large city
+  undergrads?: number | null;
+  housing?: number | null; // campus housing capacity
+  athletics?: AthleticsLevel | null;
+  football?: string | null; // football conference (IPEDS), e.g. "Big Ten Conference"
+  project_teams?: number | null;
+  academic_clubs?: number | null;
+  hackathons?: number | null;
+  social_clubs?: number | null;
+  curated?: { proxy: string; source_url: string; checked_on: string; label?: string }[];
+  // Precomputed at import with "Not sure" weights (the confidence follows
+  // from how many proxies are known, so it isn't stored).
+  academic_score?: number | null;
+  social_score?: number | null;
 };
 
 // universities.strength_signals: which signals were used, each with its

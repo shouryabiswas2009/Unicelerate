@@ -97,3 +97,17 @@ University of Toronto (Computer Science, Engineering), University of
 Cambridge (Computer Science, Economics, Engineering, Medicine, Natural
 Sciences), LSE (Economics), and MIT's general preparation guidance. URLs and
 check dates: [COURSE-RELEVANCE-SOURCES.md](https://github.com/shouryabiswas2009/Unicelerate/blob/main/docs/COURSE-RELEVANCE-SOURCES.md).
+
+### Campus life (proxies, not ratings)
+
+| Source | What we use | Licence / terms |
+| --- | --- | --- |
+| [IPEDS data files](https://nces.ed.gov/ipeds/datacenter/DataFiles.aspx) (NCES): HD2024, IC2024, IC2023 revised | Setting (NCES locale code), athletic association and football conference, campus housing capacity | U.S. government work, public domain |
+| [NCAA.com FBS standings](https://www.ncaa.com/standings/football/fbs) | Which football conferences are the top division (names only) | Facts, linked |
+| [Canada West member directory](https://canadawest.org/insidecw/memberdirectory), [SFU News](https://www.sfu.ca/sfunews/media/media-releases/2026/06/simon-fraser-university-becomes-u-sports--59th-member-university.html) | U SPORTS membership for UBC, Alberta, Calgary and SFU | Facts, linked |
+| [Waterloo Sedra Student Design Centre](https://uwaterloo.ca/sedra-student-design-centre/catalogs/directory-teams/category), [UBC Engineering design teams](https://engineering.ubc.ca/engineering-design-teams-list) | Design-team counts | Facts from the schools' own pages, linked |
+
+Enrolment, research activity, research impact and co-op come from the
+sources above. What was checked and rejected (no review sites, no ranking
+sites, nothing behind a bot check):
+[CAMPUS-LIFE-DATA.md](https://github.com/shouryabiswas2009/Unicelerate/blob/main/docs/CAMPUS-LIFE-DATA.md).

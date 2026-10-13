@@ -26,6 +26,7 @@ export async function guestMatches(_prevState: QuizState, formData: FormData): P
     budget: formData.get("budget"),
     major: formData.get("major"),
     visa: formData.get("visa"),
+    campus: formData.get("campus"),
   });
   if (!parsed.ok) return { error: parsed.error };
 
