@@ -14,6 +14,7 @@ import type { Application, Profile, University } from "@/lib/types";
 import { getCurrentUser } from "@/lib/auth";
 import { canonicalCountry } from "@/lib/countries";
 import { getCountryInfo } from "@/lib/data/country-info";
+import { getProfileCourses } from "@/lib/data/courses";
 import { CountryGuidance } from "@/components/universities/country-guidance";
 
 export const metadata: Metadata = { title: "Compare your offers" };
@@ -28,7 +29,7 @@ export default async function OffersPage() {
 
   // Admitted offers, plus an accepted one — accepting doesn't make the
   // comparison stop being useful until you've actually enrolled.
-  const [{ data: profile }, { data: applications }, countryInfo] = await Promise.all([
+  const [{ data: profile }, { data: applications }, countryInfo, courses] = await Promise.all([
     // Everything at once (they don't depend on each other).
     supabase.from("profiles").select("*").eq("id", user.id).maybeSingle<Profile>(),
     supabase
@@ -38,9 +39,12 @@ export default async function OffersPage() {
       .in("status", ["admitted", "accepted"])
       .returns<OfferApplication[]>(),
     getCountryInfo(),
+    // The student's courses, for the relevant-coursework average (lib/courses.ts).
+    getProfileCourses(supabase, user.id),
   ]);
 
   if (!profile) redirect("/profile");
+  profile.courses = courses;
   // One guidance card per destination country among the offers.
   const offerCountries = [
     ...new Set((applications ?? []).map((a) => canonicalCountry(a.universities.country))),

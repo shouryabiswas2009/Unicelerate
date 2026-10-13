@@ -350,3 +350,55 @@ describe("migration_021 (more grade systems)", () => {
     await expect(db.query("update public.profiles set grade_system = 'made_up' where id = $1", [id])).rejects.toThrow(/profiles_grade_system_check/);
   }, 30_000);
 });
+
+describe("migration_022 (profile courses)", () => {
+  const A = "00000000-0000-0000-0000-0000000000c1";
+  const B = "00000000-0000-0000-0000-0000000000c2";
+  async function twoStudents() {
+    const { db } = await createInMemoryDb();
+    for (const id of [A, B]) {
+      await db.query("insert into auth.users (id) values ($1)", [id]);
+      await db.query(
+        `insert into public.profiles (id, full_name, country, intended_majors, gpa_percentage,
+          budget_min, budget_max, preferred_countries, preferred_degree_level)
+          values ($1, 'Student', 'Canada', '{CS}', 90, 0, 40000, '{Canada}', 'Undergraduate')`,
+        [id]
+      );
+      await db.query("insert into public.profile_courses (user_id, subject, level, grade_percentage) values ($1, 'calculus', 'ap', 95)", [id]);
+    }
+    return db;
+  }
+
+  it("keeps courses private to their owner (row level security)", async () => {
+    const db = await twoStudents();
+    await db.exec(`
+      create role student nologin;
+      grant usage on schema public, auth to student;
+      grant select, insert, update, delete on public.profile_courses to student;
+      set role student;
+      set test.uid = '${A}';
+    `);
+    expect((await db.query("select count(*)::int as n from public.profile_courses")).rows[0].n).toBe(1);
+    await expect(
+      db.query("insert into public.profile_courses (user_id, subject, grade_percentage) values ($1, 'physics', 90)", [B])
+    ).rejects.toThrow(/row-level security/);
+    await db.query("delete from public.profile_courses where user_id = $1", [B]); // matches nothing
+    await db.exec("reset role");
+    expect((await db.query("select count(*)::int as n from public.profile_courses where user_id = $1", [B])).rows[0].n).toBe(1);
+  }, 30_000);
+
+  it("rejects unknown subjects, levels and grades outside 0-100", async () => {
+    const db = await twoStudents();
+    for (const values of ["'astrology', 'standard', 90", "'physics', 'olympiad', 90", "'physics', 'standard', 101"]) {
+      await expect(db.query(`insert into public.profile_courses (user_id, subject, level, grade_percentage) values ($1, ${values})`, [A])).rejects.toThrow(/check/);
+    }
+  }, 30_000);
+
+  it("goes with the account (delete_my_account)", async () => {
+    const db = await twoStudents();
+    await db.exec(`set test.uid = '${A}'`);
+    await db.query("select public.delete_my_account()");
+    expect((await db.query("select count(*)::int as n from public.profile_courses where user_id = $1", [A])).rows[0].n).toBe(0);
+    expect((await db.query("select count(*)::int as n from public.profile_courses where user_id = $1", [B])).rows[0].n).toBe(1);
+  }, 30_000);
+});

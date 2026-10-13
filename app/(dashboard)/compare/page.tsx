@@ -9,6 +9,7 @@ import type { Profile, University } from "@/lib/types";
 import { getCurrentUser } from "@/lib/auth";
 import { getVisibleUniversities } from "@/lib/data/universities";
 import { getCountryInfo } from "@/lib/data/country-info";
+import { getProfileCourses } from "@/lib/data/courses";
 import { featuredReady, isShownByDefault } from "@/lib/university-filters";
 
 export const metadata: Metadata = { title: "Compare universities" };
@@ -27,7 +28,7 @@ export default async function ComparePage({
   if (!user) redirect("/login");
 
 
-  const [{ data: profile }, universities, { data: selected }, countryInfo] = await Promise.all([
+  const [{ data: profile }, universities, { data: selected }, countryInfo, courses] = await Promise.all([
     // Everything at once (they don't depend on each other).
     supabase.from("profiles").select("*").eq("id", user.id).maybeSingle<Profile>(),
     // The cached list (every row, not just the first 1,000) for the picker.
@@ -37,10 +38,13 @@ export default async function ComparePage({
       : Promise.resolve({ data: [] as University[] }),
     // Visa guidance (cached; used only when the student shows or factors it).
     getCountryInfo(),
+    // The student's courses, for the relevant-coursework average (lib/courses.ts).
+    getProfileCourses(supabase, user.id),
   ]);
 
   // Most rows compare the schools against the student's own scores.
   if (!profile) redirect("/profile");
+  profile.courses = courses;
 
   // The picker offers featured schools unless the student asks for all
   // (same rule as browse; see lib/university-filters.ts).

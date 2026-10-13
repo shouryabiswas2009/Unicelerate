@@ -86,3 +86,14 @@ student's own nearest percentage, marked approximate.
 Saskatchewan and the Atlantic provinces are offered too, kept approximate
 until an official page confirms how their marks are reported. What was
 checked and left out: [GRADE-SYSTEMS-CONSIDERED.md](https://github.com/shouryabiswas2009/Unicelerate/blob/main/docs/GRADE-SYSTEMS-CONSIDERED.md).
+
+### Course relevance and required courses (profile)
+
+Our own weights, based on published preparation guidance; not official.
+The required-course checks quote each program's own page: University of
+Waterloo (Computer Science, Software, Mechanical, Electrical and Biomedical
+Engineering, Mathematics, Accounting and Financial Management, Economics),
+University of Toronto (Computer Science, Engineering), University of
+Cambridge (Computer Science, Economics, Engineering, Medicine, Natural
+Sciences), LSE (Economics), and MIT's general preparation guidance. URLs and
+check dates: [COURSE-RELEVANCE-SOURCES.md](https://github.com/shouryabiswas2009/Unicelerate/blob/main/docs/COURSE-RELEVANCE-SOURCES.md).

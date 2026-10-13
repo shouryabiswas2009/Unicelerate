@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { VISA_MODES } from "@/lib/visa";
 import { SECTION_FIELDS, isProfileSection, mergeSectionForm } from "@/lib/profile-sections";
+import { validateCourses } from "@/lib/courses";
 import type { Profile } from "@/lib/types";
 import { createClient } from "@/lib/supabase/server";
 import {
@@ -61,6 +62,14 @@ export async function saveProfile(
   // Validate on the server even though the inputs have min/max attributes:
   // browser checks are easy to bypass.
   const result = validateProfileForm(formData);
+  const courseCheck = formData.has("courses_present") ? validateCourses(formData) : null;
+  if (courseCheck && !courseCheck.ok) {
+    return {
+      error: courseCheck.error,
+      values: submittedValues(formData),
+      focuses: formData.getAll("focuses").map(String),
+    };
+  }
   if (!result.ok) {
     return {
       error: "Please fix the highlighted fields.",
@@ -81,6 +90,10 @@ export async function saveProfile(
 
   if (error) {
     return { error: error.message, values: submittedValues(formData), focuses: formData.getAll("focuses").map(String) };
+  }
+  const courses = await saveCoursesIfPresent(supabase, user.id, formData);
+  if (courses.error || courses.notice) {
+    return { error: courses.error, notice: courses.notice, values: submittedValues(formData), focuses: formData.getAll("focuses").map(String) };
   }
   if (skipped.length > 0) {
     return { notice: skippedNotice(skipped), values: submittedValues(formData), focuses: formData.getAll("focuses").map(String) };
@@ -132,6 +145,10 @@ export async function saveProfileSection(_prev: SectionState, formData: FormData
   if (!profile) return { error: "Create your profile first (the form below saves everything at once)." };
 
   const echo = Object.fromEntries(SECTION_FIELDS[section].map((name) => [name, String(formData.get(name) ?? "")]));
+  if (formData.has("courses_present")) {
+    const courses = validateCourses(formData);
+    if (!courses.ok) return { error: courses.error, values: echo };
+  }
   const result = validateProfileForm(mergeSectionForm(profile, section, formData));
   if (!result.ok) {
     const own = Object.keys(result.errors).some((k) => SECTION_FIELDS[section].includes(k));
@@ -147,8 +164,32 @@ export async function saveProfileSection(_prev: SectionState, formData: FormData
     skipped,
   } = await writeSkippingPendingColumns({ id: user.id, ...result.data }, (row) => supabase.from("profiles").upsert(row));
   if (error) return { error: "Couldn't save. Please try again.", values: echo };
+  const courses = await saveCoursesIfPresent(supabase, user.id, formData);
+  if (courses.error) return { error: courses.error, values: echo };
 
   revalidatePath("/profile");
   revalidatePath("/recommendations");
-  return { ok: true, savedAt: Date.now(), notice: skipped.length ? skippedNotice(skipped) : undefined };
+  return { ok: true, savedAt: Date.now(), notice: courses.notice ?? (skipped.length ? skippedNotice(skipped) : undefined) };
+}
+
+// Replaces the student's course list when the form included the course
+// editor (the hidden "courses_present" field), so saving another section
+// never touches courses. Returns a notice instead of failing the whole save
+// if the courses table doesn't exist yet (migration_022 not run).
+async function saveCoursesIfPresent(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  userId: string,
+  formData: FormData
+): Promise<{ error?: string; notice?: string }> {
+  if (!formData.has("courses_present")) return {};
+  const result = validateCourses(formData);
+  if (!result.ok) return { error: result.error };
+  const removed = await supabase.from("profile_courses").delete().eq("user_id", userId);
+  if (removed.error) {
+    const pending = removed.error.code === "PGRST205" || removed.error.code === "42P01";
+    return pending ? { notice: "Courses can't be saved yet (a database step is pending); everything else was saved." } : { error: "Couldn't save your courses." };
+  }
+  if (result.courses.length === 0) return {};
+  const inserted = await supabase.from("profile_courses").insert(result.courses.map((c) => ({ ...c, user_id: userId })));
+  return inserted.error ? { error: "Couldn't save your courses." } : {};
 }

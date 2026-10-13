@@ -1,4 +1,5 @@
 import type { GradeBasis, GradeSystem } from "@/lib/grades";
+import type { ProfileCourse } from "@/lib/courses";
 import type { StrengthConfidence, StrengthSignalKey, StrengthTier } from "@/lib/strength-config";
 // Shared types matching the Supabase schema in supabase/seed.sql plus the
 // numbered migrations in supabase/.
@@ -44,6 +45,10 @@ export type Profile = {
   visa_mode?: "ignore" | "show" | "factor" | null;
   visa_weight?: "low" | "medium" | "high" | null;
   stay_after?: "yes" | "unsure" | "no" | null;
+  // The student's courses (table profile_courses, migration_022), loaded
+  // separately and attached by the page; missing for guests or before that
+  // migration runs, which reads as "no courses". See lib/courses.ts.
+  courses?: ProfileCourse[];
   created_at: string;
   updated_at: string;
 };

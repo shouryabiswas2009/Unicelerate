@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { VisaQuickControl } from "@/components/universities/visa-quick-control";
 import { getCountryInfo } from "@/lib/data/country-info";
 import { visaModeOf } from "@/lib/visa";
+import { getProfileCourses } from "@/lib/data/courses";
 import type { Profile } from "@/lib/types";
 
 export const metadata: Metadata = { title: "Your recommendations" };
@@ -28,7 +29,7 @@ export default async function RecommendationsPage({
   const user = await getCurrentUser();
   if (!user) redirect("/login");
 
-  const [{ data: profile }, universities, { data: saved }, searchIds, countryInfo] = await Promise.all([
+  const [{ data: profile }, universities, { data: saved }, searchIds, countryInfo, courses] = await Promise.all([
     supabase.from("profiles").select("*").eq("id", user.id).maybeSingle<Profile>(),
     getVisibleUniversities(supabase, user.id),
     supabase.from("saved_universities").select("university_id").eq("user_id", user.id),
@@ -36,10 +37,13 @@ export default async function RecommendationsPage({
     state.filters.query.trim() ? searchUniversityIds(supabase, state.filters.query) : null,
     // Visa guidance (cached; only used when the student shows or factors it).
     getCountryInfo(),
+    // The student's courses, for the relevant-coursework average (lib/courses.ts).
+    getProfileCourses(supabase, user.id),
   ]);
 
   // No profile yet — we need it to compute matches, so send them there first.
   if (!profile) redirect("/profile");
+  profile.courses = courses;
 
   const scored = universities
     // Schools without the student's degree level aren't recommendations at

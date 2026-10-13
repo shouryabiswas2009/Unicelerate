@@ -7,6 +7,7 @@ import { FieldError } from "@/components/field-error";
 import { TagInput } from "@/components/tag-input";
 import { GradesField } from "@/components/profile/grades-field";
 import { VisaFields } from "@/components/profile/visa-fields";
+import { CoursesEditor } from "@/components/profile/courses-editor";
 import { SectionForm, type FieldState } from "@/components/profile/section-form";
 import { COUNTRY_OPTIONS } from "@/lib/countries";
 import { APPROX_NOTE, DEFAULT_DISPLAY_CURRENCY, DISPLAY_CURRENCIES, approxInCurrency, currencyName } from "@/lib/display-currency";
@@ -87,6 +88,7 @@ export function AcademicsSection({ profile }: { profile: P }) {
           <Field id="sat_score" label="SAT (optional)" hint="Used for admission estimates at US schools. Not entered: left out, not zero." error={state.errors.sat_score}>
             <Input id="sat_score" name="sat_score" type="number" step="10" min={400} max={1600} defaultValue={valueOf(state, profile, "sat_score")} placeholder="e.g. 1350" aria-describedby="sat_score-hint" aria-invalid={!!state.errors.sat_score} className={control} />
           </Field>
+          <CoursesEditor initial={profile?.courses ?? []} overall={profile?.gpa_percentage ?? null} majors={profile?.intended_majors ?? []} />
         </div>
       )}
     </SectionForm>

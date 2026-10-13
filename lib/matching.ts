@@ -18,6 +18,7 @@ import type { CountryInfo } from "@/lib/country-info";
 import { visaFit, visaLine, visaModeOf, type VisaFit, type VisaMode } from "@/lib/visa";
 import { rankUniversity, type RankInfo } from "@/lib/ranking";
 import { researchImpactFor } from "@/lib/research-impact";
+import { effectiveGrade, prerequisiteConcerns } from "@/lib/courses";
 import { FOCUSES, type Focus, type Profile, type UniversitySummary } from "@/lib/types";
 
 // ─── Scoring weights ─────────────────────────────────────────────────────
@@ -194,7 +195,9 @@ function budgetFit(profile: Profile, university: UniversitySummary): number | nu
 // +5 or more → 1, exactly average → 0.75, -10 → 0.25, -15 or worse → 0.
 function gpaFit(profile: Profile, university: UniversitySummary): number | null {
   if (!isKnown(university.avg_admitted_gpa)) return null;
-  const gap = profile.gpa_percentage - university.avg_admitted_gpa;
+  // The grade blended with the relevant-coursework average when the student
+  // entered enough courses (lib/courses.ts); otherwise the overall grade.
+  const gap = effectiveGrade(profile) - university.avg_admitted_gpa;
   return clamp01(0.75 + gap / 20);
 }
 
@@ -700,6 +703,9 @@ export function scoreUniversity(
   }
 
   const explanation = explainMatch(profile, university);
+  // Required courses this program publishes that aren't in the student's
+  // list (only once they've entered courses; lib/program-prerequisites.ts).
+  explanation.concerns.push(...prerequisiteConcerns(profile, university));
   if (factored) {
     explanation.strengths.push(...factored.reasons);
     explanation.concerns.push(...factored.concerns);

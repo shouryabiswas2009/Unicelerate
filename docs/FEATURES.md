@@ -173,3 +173,24 @@ nothing saying what matters, what's optional or how complete it was.
 - Native inputs and selects (no dropdown library), 44px targets, labels
   tied to inputs. The page's browser JavaScript went from 9 chunks / 238 KB
   to 7 chunks / 161 KB (uncompressed, from the build's client manifest).
+
+## Course weighting by major (optional)
+
+**Why.** One overall average hides that a Computer Science applicant is read
+on Maths and Computer Science, an Engineering applicant on Maths, Physics
+and Chemistry.
+
+**How.** In "Your academics" a student can list courses (subject, level,
+grade %, year; up to 20; table `profile_courses`, migration_022, owner-only,
+removed with the account). `lib/courses.ts` (tested) maps their major to a
+family, weights each course by relevance (core 1.0 / supporting 0.6 /
+general 0.3) × a capped level multiplier, and computes a relevant-coursework
+average (null with fewer than 2 relevant courses). Academic fit uses
+`0.7 × overall + 0.3 × relevant average`; with no courses nothing changes.
+The demo admission model is untouched (trained without courses). Honest
+limit: no shared school publishes an admitted-student average, so today the
+blend only affects schools a student adds with one; the profile says so.
+Required-course checks for 16 programs, each from the program's own page,
+add a concern line when a listed requirement is missing. Weights and their
+sources: `docs/COURSE-RELEVANCE-SOURCES.md`; all numbers in
+`lib/course-config.ts`.

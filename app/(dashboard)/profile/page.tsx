@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Suspense, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/auth";
+import { getProfileCourses } from "@/lib/data/courses";
 import { CombinedProfileForm } from "@/components/profile/section-form";
 import { AboutSection, AcademicsSection, MoneySection, PrioritiesSection, StudySection } from "@/components/profile/sections";
 import { DeleteAccount } from "@/components/profile/delete-account";
@@ -37,7 +38,7 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
 
   // Route protection already happens in proxy.ts, but `user` is still
   // typed as possibly-null here, so guard before querying with it.
-  const [{ data: profile }, { data: reports }] = user
+  const [{ data: profile }, { data: reports }, courses] = user
     ? await Promise.all([
         supabase.from("profiles").select("*").eq("id", user.id).maybeSingle<Profile>(),
         // Row level security returns only this student's reports; an error
@@ -48,8 +49,10 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
           .order("created_at", { ascending: false })
           .limit(20)
           .returns<MyReport[]>(),
+        getProfileCourses(supabase, user.id),
       ])
-    : [{ data: null }, { data: null }];
+    : [{ data: null }, { data: null }, []];
+  if (profile) profile.courses = courses;
 
   const values = withPreset(profile, preset);
   const completeness = profileCompleteness(profile);

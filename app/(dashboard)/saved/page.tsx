@@ -8,6 +8,7 @@ import { buildBoard, parseBoardParams } from "@/lib/university-filters";
 import { Button } from "@/components/ui/button";
 import type { ApplicationStatus, Profile, University } from "@/lib/types";
 import { getCountryInfo } from "@/lib/data/country-info";
+import { getProfileCourses } from "@/lib/data/courses";
 import { getCurrentUser } from "@/lib/auth";
 
 export const metadata: Metadata = { title: "Saved universities" };
@@ -24,7 +25,7 @@ export default async function SavedPage({
   if (!user) redirect("/login");
 
 
-  const [{ data: profile }, { data: saved }, { data: applications }, countryInfo] = await Promise.all([
+  const [{ data: profile }, { data: saved }, { data: applications }, countryInfo, courses] = await Promise.all([
     // Everything at once (they don't depend on each other).
     supabase.from("profiles").select("*").eq("id", user.id).maybeSingle<Profile>(),
     supabase
@@ -38,9 +39,12 @@ export default async function SavedPage({
       .eq("user_id", user.id)
       .returns<{ id: string; university_id: string; status: ApplicationStatus }[]>(),
     getCountryInfo(),
+    // The student's courses, for the relevant-coursework average (lib/courses.ts).
+    getProfileCourses(supabase, user.id),
   ]);
 
   if (!profile) redirect("/profile");
+  profile.courses = courses;
 
   const universities = (saved ?? []).map((row) => row.universities);
 

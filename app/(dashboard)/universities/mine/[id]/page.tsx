@@ -11,6 +11,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/auth";
 import { getCountryInfo } from "@/lib/data/country-info";
 import { scoreUniversity } from "@/lib/matching";
+import { getProfileCourses } from "@/lib/data/courses";
 import type { Profile, University } from "@/lib/types";
 
 export const metadata: Metadata = { title: "Your university", robots: { index: false } };
@@ -25,13 +26,16 @@ export default async function OwnUniversityPage({ params }: { params: Promise<{ 
   const supabase = await createClient();
 
   // Everything at once: the school, the profile, the saved state, country guidance.
-  const [{ data: university }, { data: profile }, { data: savedRow }, countryInfo] = await Promise.all([
+  const [{ data: university }, { data: profile }, { data: savedRow }, countryInfo, courses] = await Promise.all([
     supabase.from("universities").select("*").eq("id", id).eq("created_by", user.id).maybeSingle<University>(),
     supabase.from("profiles").select("*").eq("id", user.id).maybeSingle<Profile>(),
     supabase.from("saved_universities").select("id").eq("user_id", user.id).eq("university_id", id).maybeSingle(),
     getCountryInfo(),
+    // The student's courses, for the relevant-coursework average (lib/courses.ts).
+    getProfileCourses(supabase, user.id),
   ]);
   if (!university) notFound();
+  if (profile) profile.courses = courses;
   const entry = profile ? scoreUniversity(profile, university, { countryInfo: countryInfo.byCountry }) : null;
 
   return (
