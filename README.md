@@ -6,9 +6,9 @@
 
 Unicelerate helps a student find universities that actually fit them: their
 budget, grades, subject, countries and what matters to them, instead of a
-generic ranking list. It covers **1,688 universities in 27 countries**:
+generic ranking list. It covers **1,877 universities in 27 countries**:
 1,577 US schools from the US Department of Education's College Scorecard
-and 111 international universities whose fees and programs were checked on
+and 300 international universities whose fees and programs were checked on
 each school's own website.
 
 - **Two scores, kept apart.** *Fit* ("does it work for me?") and *strength*
@@ -210,7 +210,7 @@ and in the compare table:
 | Label | What it means | Coverage |
 | --- | --- | --- |
 | **College Scorecard** | Official US Department of Education data, fetched from the [College Scorecard API](https://collegescorecard.ed.gov/data/api-documentation/) | 1,577 US schools (operating, mainly bachelor's-granting, with a published admission rate); data year 2024 in the current import |
-| **Source: <university site>** (curated) | Checked by hand on the university's **own** website; every figure has its page linked on the details page. Never shown as "official" | 111 universities in 26 countries (see the coverage report below) |
+| **Source: <university site>** (curated) | Checked by hand on the university's **own** website; every figure has its page linked on the details page. Never shown as "official" | 300 universities in 26 countries (see the coverage report below; the ones still missing a fee are listed in [docs/HAND-CHECK.md](docs/HAND-CHECK.md)) |
 | **Illustrative** | Hand-written sample figures for this demo, **not** official statistics | None left: every sample school was replaced by a curated or Scorecard row. The label stays for anything added later |
 | **Added by you** | Figures a student entered themselves, optionally with a source link | Only visible to that student |
 
@@ -243,8 +243,8 @@ and rejected (QS, THE, U.S. News, ShanghaiRanking, Webometrics, uniRank):
 
 A percentile of how often a university's 2020–2023 papers are among the
 world's 10% most cited, from the CWTS Leiden Ranking Open Edition 2025
-(CC0, built from OpenAlex, CC0), overall and per field. 350 of our 1,688
-universities have one: 241 in the US and 109 of the 111 elsewhere
+(CC0, built from OpenAlex, CC0), overall and per field. 539 of our 1,877
+universities have one: 241 in the US and 298 of the 300 elsewhere
 ([coverage by country](data/research-impact/coverage.md)). Used in the
 quality score, offers and compare; how it works and why:
 [docs/RESEARCH-IMPACT.md](docs/RESEARCH-IMPACT.md).

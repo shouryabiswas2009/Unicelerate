@@ -58,18 +58,18 @@ rating of how fun the place is.* Nothing says "party school", "not fun" or
 
 ### Academic & career community
 
-| Proxy | Source | Year | Turned into 0..1 | Coverage (of 1,688) |
+| Proxy | Source | Year | Turned into 0..1 | Coverage (of 1,877) |
 | --- | --- | --- | --- | --- |
 | Design / project teams | The school's own page (curated, with URL and date) | checked 2026-10-13 | count ÷ 40, capped at 1 (J) | 2 |
 | Academic & professional clubs | School or student-union page (curated) | checked 2026-10-13 | count ÷ 150 (J) | 1 (Warwick) |
 | Hackathons | School page or an official organiser's page (curated) | none yet | count ÷ 2 (J) | 0 |
 | Co-op / internships | Existing co-op data (school's own page) | as checked | mandatory 1, optional 0.5, none 0 (existing) | 8 |
 | Research activity | Carnegie Classification via College Scorecard (existing) | Scorecard 2024 | R1 1, R2 0.7, doctoral/professional 0.4, other 0 (existing) | 1,519 |
-| Research impact | Leiden Ranking Open Edition 2025 (existing) | 2020–2023 | percentile ÷ 100 | 350 |
+| Research impact | Leiden Ranking Open Edition 2025 (existing) | 2020–2023 | percentile ÷ 100 | 539 |
 
 ### Campus social life & fun
 
-| Proxy | Source | Year | Turned into 0..1 | Coverage (of 1,688) |
+| Proxy | Source | Year | Turned into 0..1 | Coverage (of 1,877) |
 | --- | --- | --- | --- | --- |
 | Setting | IPEDS HD `LOCALE` (NCES locale codes, the same code Scorecard publishes) | 2024-25 | large city 1 … rural (remote) 0; order is NCES's, spacing ours (J) | 1,577 |
 | Size | College Scorecard undergraduate enrolment | 2024 | log scale, 1,000 → 0, 40,000 → 1 (J) | 1,577 |

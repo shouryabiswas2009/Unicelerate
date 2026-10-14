@@ -32,7 +32,7 @@ each course counts by how relevant it is to their intended major:
   rule-based path (when the model doesn't apply).
 - **Honest limit, today**: academic fit compares the grade with a school's
   published average for admitted students, and **no school in our shared
-  list publishes one** (0 of 1,688; 924 have an SAT range). So for shared
+  list publishes one** (0 of 1,877; 924 have an SAT range). So for shared
   schools the blend changes nothing yet; it applies to schools a student
   adds with an admitted average, and the required-course checks below work
   everywhere they're listed. The profile page says so.

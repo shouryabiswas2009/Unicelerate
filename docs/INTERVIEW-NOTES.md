@@ -10,9 +10,9 @@ measurements (sources in brackets). Resume bullets are at the end.
 Unknown values are stored as `null`, shown as "not available", and left out
 of a score (the remaining weights are re-scaled), never counted as zero.
 
-**Why.** Most data is missing for most schools. Of 1,688 schools, an
+**Why.** Most data is missing for most schools. Of 1,877 schools, an
 admitted-student grade average is published for 0, an SAT range for 924,
-an admission rate for 1,577, and research impact for 350. Treating missing
+an admission rate for 1,577, and research impact for 539. Treating missing
 as zero would bury every school outside the US. [PENDING-DB-STEPS,
 COURSE-RELEVANCE-SOURCES, research-impact/coverage]
 
@@ -63,8 +63,8 @@ become available.
 
 ## 4. The strength index
 
-**What.** Our own labelled 0–100 estimate for every one of the 1,688
-schools: 1,674 measured, 14 estimated from similar schools and shown as a
+**What.** Our own labelled 0–100 estimate for every one of the 1,877
+schools: 1,863 measured, 14 estimated from similar schools and shown as a
 range. It's computed at import time from Scorecard outcomes, Carnegie
 level, Leiden and OpenAlex citation figures. [data/strength/report.md]
 
@@ -143,7 +143,7 @@ database, plus Lighthouse in CI.
 ## Resume bullets (only numbers the project produced)
 
 - Built and shipped Unicelerate, a university-matching web app (Next.js,
-  TypeScript, Supabase), covering **1,688 universities in 27 countries**
+  TypeScript, Supabase), covering **1,877 universities in 27 countries**
   from official and cited sources; live at unicelerate.com.
 - Designed a ranking that separates fit from school strength and found, with
   an 8-profile test harness on the real dataset, a bug that treated schools
@@ -155,7 +155,7 @@ database, plus Lighthouse in CI.
 - Trained a logistic-regression admission model on 78,850 synthetic
   applicants (test ROC-AUC **0.895** vs 0.627 for a rule baseline), clearly
   labelled as a demo.
-- Built our own strength index for all 1,688 schools from open data (rank
+- Built our own strength index for all 1,877 schools from open data (rank
   correlation 0.74 with the Leiden Ranking on signals independent of it).
 - Wrote **537** automated tests plus 17 browser and accessibility tests
   (Lighthouse accessibility **100**), including row-level-security tests
