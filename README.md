@@ -36,10 +36,11 @@ and Lighthouse in CI.
 | Landing page | Browse: strength index, data source and campus life on every card |
 | ![A university page](docs/screenshots/university-page.png) | ![Campus life with its sources](docs/screenshots/university-campus-life.png) |
 | A university page: every figure with its source | Campus life: published proxies with their data coverage, never a score |
-| ![Sample matches](docs/screenshots/sample-matches.png) | [X] *Recommendations and profile (logged in): add `docs/screenshots/recommendations.png` and `profile.png`* |
-| Matches with their reasons (sample student, real data) | |
+| ![Recommendations](docs/screenshots/recommendations.png) | ![Sample matches](docs/screenshots/sample-matches.png) |
+| Recommendations (logged in): top picks by country, then "Best you can get into" | Matches with their reasons (sample student, real data) |
 
-Captured from the live site, logged out, with `node scripts/screenshots.mjs`.
+The public pages were captured from the live site, logged out, with
+`node scripts/screenshots.mjs`; the recommendations page while logged in.
 
 ## How it fits together
 
