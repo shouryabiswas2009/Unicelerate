@@ -101,7 +101,7 @@ export function CampusLifeDetails({ university, selected, className }: { univers
             )}
             {lines.length > 0 && coverageOf(kind, university) === "Partial" && (
               <p className="text-xs text-muted-foreground">
-                Partial: {kind === "academic" ? "no club, team or hackathon counts" : "no club or event counts"} are
+                Partial: {kind === "academic" ? "no club, team or hackathon counts" : "no club or event counts"}{" "}are
                 published for this school, so these are indirect signals only. Read them lightly.
               </p>
             )}

@@ -78,3 +78,10 @@ test("the footer's links all load", async ({ page, request }) => {
     expect([200, 307], href).toContain(response.status());
   }
 });
+
+test("numbers in running text keep the space after them", async ({ page }) => {
+  await page.goto("/signup");
+  await expect(page.locator("#password-hint")).toContainText("At least 8 characters");
+  await page.goto(`/universities/${WATERLOO_ID}`);
+  await expect(page.getByText(/[\d,]+ universities in the ranking/)).toBeVisible();
+});

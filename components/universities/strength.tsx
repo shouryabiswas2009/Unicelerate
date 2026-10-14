@@ -93,7 +93,7 @@ export function StrengthBreakdown({ university }: { university: UniversitySummar
     <span className="block space-y-2">
       <span className="block font-medium">{STRENGTH_LABEL}</span>
       <span className="block text-muted-foreground">
-        {STRENGTH_DISCLAIMER} Each figure becomes a percentile among comparable schools; the index is their weighted
+        {STRENGTH_DISCLAIMER}{" "}Each figure becomes a percentile among comparable schools; the index is their weighted
         average (0–100). Tier: A top 10%, B next 20%, C next 30%, D next 25%, E bottom 15% of our list.
       </span>
       {s.isEstimate ? (

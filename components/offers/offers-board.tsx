@@ -204,7 +204,7 @@ export function OffersBoard({
               </p>
               {spread && offers.length > 1 && (
                 <p className="text-xs text-muted-foreground">
-                  First in {pct(spread.firstShare)} of {sensitivity.runs.toLocaleString("en-US")} variations · rank
+                  First in {pct(spread.firstShare)} of {sensitivity.runs.toLocaleString("en-US")}{" "}variations · rank
                   spread:{" "}
                   {spread.rankShares
                     .map((share, i) => ({ share, rank: i + 1 }))
@@ -231,7 +231,7 @@ export function OffersBoard({
           rather than counted as zero.
           {missingCost && " Some offers are missing cost details, so cost can't separate them yet."}{" "}
           &ldquo;Clear winner&rdquo; / &ldquo;close call&rdquo;: the ranking is
-          re-run {sensitivity.runs.toLocaleString("en-US")} times with every
+          re-run {sensitivity.runs.toLocaleString("en-US")}{" "}times with every
           non-zero slider moved randomly by up to ±{Math.round(SENSITIVITY_SPREAD * 100)}%,
           counting how often each offer comes first.
         </p>

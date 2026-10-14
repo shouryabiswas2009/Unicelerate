@@ -70,9 +70,9 @@ export function ResearchImpactPanel({ university }: { university: UniversitySumm
             ))}
           </dl>
           <p className="text-xs text-muted-foreground">
-            {Math.round(impact.pp_top10 * 1000) / 10}% of its {impact.publications.toLocaleString("en-US")} research
+            {Math.round(impact.pp_top10 * 1000) / 10}% of its {impact.publications.toLocaleString("en-US")}{" "}research
             papers from {impact.data_year} are among the 10% most cited in their field worldwide, a higher share than{" "}
-            {impact.overall}% of the {LEIDEN_UNIVERSITY_COUNT.toLocaleString("en-US")} universities in the ranking.
+            {impact.overall}% of the {LEIDEN_UNIVERSITY_COUNT.toLocaleString("en-US")}{" "}universities in the ranking.
             It measures research, not teaching. A field shows &ldquo;not available&rdquo; when the university has
             fewer than 100 papers in it. Source:{" "}
             <a href={impact.source_url} target="_blank" rel="noopener noreferrer" className="underline">

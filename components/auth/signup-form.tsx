@@ -78,7 +78,7 @@ export function SignupForm() {
           <p id="password-error" className="text-sm text-destructive">{errors.password}</p>
         ) : (
           <p id="password-hint" className="text-xs text-muted-foreground">
-            At least {MIN_PASSWORD_LENGTH} characters, and not a very common password like &ldquo;password1&rdquo; or
+            At least {MIN_PASSWORD_LENGTH}{" "}characters, and not a very common password like &ldquo;password1&rdquo; or
             &ldquo;12345678&rdquo;.
           </p>
         )}

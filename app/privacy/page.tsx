@@ -21,7 +21,7 @@ export default function PrivacyPage() {
       <div className="mt-8 space-y-8 leading-relaxed">
         <Section title="In short">
           <p>
-            {BRAND_NAME} is a free, non-commercial project. It stores only what it needs to match you
+            {BRAND_NAME}{" "}is a free, non-commercial project. It stores only what it needs to match you
             with universities, only you can see your data, nothing is sold or shared, there are no ads,
             and you can delete everything at any time.
           </p>

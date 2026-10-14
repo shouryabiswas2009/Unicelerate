@@ -71,7 +71,7 @@ export function AdmissionEstimate({
         College Scorecard admission rates and SAT ranges. The applicants and
         how they were admitted are invented, so this isn&apos;t a real
         prediction — don&apos;t rely on it. On held-out simulated data it scored ROC-AUC{" "}
-        {testMetrics.roc_auc.toFixed(3)} vs. {baselineTestMetrics.roc_auc.toFixed(3)} for
+        {testMetrics.roc_auc.toFixed(3)} vs. {baselineTestMetrics.roc_auc.toFixed(3)}{" "}for
         the old rule of thumb.
       </p>
     </div>

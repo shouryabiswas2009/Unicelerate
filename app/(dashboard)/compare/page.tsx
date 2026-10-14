@@ -65,7 +65,7 @@ export default async function ComparePage({
       <div className="mb-8 space-y-2">
         <h1 className="text-2xl font-semibold">Compare universities</h1>
         <p className="text-muted-foreground">
-          Pick up to {MAX_COMPARE} universities to see costs, admission
+          Pick up to {MAX_COMPARE}{" "}universities to see costs, admission
           figures and your fit side by side.
         </p>
       </div>

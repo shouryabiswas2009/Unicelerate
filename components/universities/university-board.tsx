@@ -366,7 +366,7 @@ export function UniversityBoard({
           {featured && <FeaturedToggle featured={featured} state={state} onChange={navigate} />}
           {hiddenUnknownTuition > 0 && (
             <span>
-              {hiddenUnknownTuition.toLocaleString("en-US")} more {hiddenUnknownTuition === 1 ? "school has" : "schools have"} no
+              {hiddenUnknownTuition.toLocaleString("en-US")} more {hiddenUnknownTuition === 1 ? "school has" : "schools have"}{" "}no
               published tuition, so the tuition filter leaves {hiddenUnknownTuition === 1 ? "it" : "them"} out.
             </span>
           )}
@@ -394,7 +394,7 @@ export function UniversityBoard({
       ) : groups ? (
         <div className={`space-y-10 transition-opacity ${isPending ? "opacity-60" : ""}`} aria-busy={isPending}>
           <p className="border-l-2 border-primary py-1 pl-3 text-sm">
-            A balanced list often has {LIST_MIX.reach} reach, {LIST_MIX.match} match and {LIST_MIX.safety} safety
+            A balanced list often has {LIST_MIX.reach} reach, {LIST_MIX.match} match and {LIST_MIX.safety}{" "}safety
             schools. The labels come from a demo estimate, not a prediction: very selective schools are a reach for
             almost everyone, even strong applicants, and nothing here is a promise.
           </p>
