@@ -1,7 +1,7 @@
 import { createClient as createSupabaseClient, type SupabaseClient } from "@supabase/supabase-js";
 import { unstable_cache } from "next/cache";
 import { PENDING_COLUMNS } from "@/lib/pending-migrations";
-import type { University, UniversitySummary } from "@/lib/types";
+import type { StrengthDetails, University, UniversitySummary } from "@/lib/types";
 
 // Loading the university list for browse, recommendations and the compare
 // picker. Three problems this solves (measured in docs/PERFORMANCE.md):
@@ -122,6 +122,25 @@ export function packRows<T extends object>(rows: T[]): PackedRows {
   return { columns, rows: rows.map((r) => columns.map((c) => (r as Record<string, unknown>)[c] ?? null)) };
 }
 
+// What the cached list leaves out, to stay well under the 2 MB limit as
+// schools are added. Nothing a list page shows is lost:
+// - each strength signal keeps its percentile (cards, compare and the
+//   field-specific index use it), not its raw figure (a graduation rate, a
+//   SAT score), which the school's own page shows from its full row;
+// - fetched_at keeps the day (pages show "Fetched 2026-10-06"), not the time.
+type Slimmable = { strength_signals?: StrengthDetails | null; fetched_at?: string | null };
+export function slimForList<T extends Slimmable>(row: T): T {
+  const details = row.strength_signals;
+  const signals = details?.signals
+    ? Object.fromEntries(Object.entries(details.signals).map(([key, s]) => [key, { percentile: s!.percentile }]))
+    : null;
+  return {
+    ...row,
+    ...(details && signals ? { strength_signals: { ...details, signals } } : {}),
+    ...(row.fetched_at ? { fetched_at: row.fetched_at.slice(0, 10) } : {}),
+  };
+}
+
 export function unpackRows<T>({ columns, rows }: PackedRows): T[] {
   return rows.map((values) => Object.fromEntries(columns.map((c, i) => [c, values[i]])) as T);
 }
@@ -133,9 +152,9 @@ const loadSharedCached = unstable_cache(
     // the next request should see it, not wait 15 minutes. Throwing skips
     // the cache; the caller then loads it uncached.
     if (result.missing.length > 0) throw new Error("pending migration");
-    return packRows(result.rows);
+    return packRows(result.rows.map(slimForList));
   },
-  ["shared-universities", "v5"], // bump the version when LIST_COLUMNS changes
+  ["shared-universities", "v6"], // bump the version when LIST_COLUMNS (or what's cached) changes
   { revalidate: 86400, tags: ["universities"] }
 );
 

@@ -191,9 +191,10 @@ export type CampusLife = {
 };
 
 // universities.strength_signals: which signals were used, each with its
-// value and percentile; for an estimate, the peers it came from.
+// value and percentile; for an estimate, the peers it came from. The cached
+// list leaves value out (slimForList); a school's page has it.
 export type StrengthDetails = {
-  signals: Partial<Record<StrengthSignalKey, { value: number; percentile: number }>>;
+  signals: Partial<Record<StrengthSignalKey, { value?: number; percentile: number }>>;
   of: number; // schools in our list
   computed_on: string;
   openalex_fetched_on?: string;

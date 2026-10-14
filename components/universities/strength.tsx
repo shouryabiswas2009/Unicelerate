@@ -88,7 +88,7 @@ export function StrengthBreakdown({ university }: { university: UniversitySummar
   const details = university.strength_signals;
   const s = strengthSummary(university);
   if (!details || !s) return <span className="block">Not available for this school.</span>;
-  const signals = Object.entries(details.signals) as [StrengthSignalKey, { value: number; percentile: number }][];
+  const signals = Object.entries(details.signals) as [StrengthSignalKey, { percentile: number }][];
   return (
     <span className="block space-y-2">
       <span className="block font-medium">{STRENGTH_LABEL}</span>

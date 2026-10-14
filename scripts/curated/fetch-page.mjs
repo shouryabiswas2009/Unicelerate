@@ -15,6 +15,7 @@
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { pathToFileURL } from "node:url";
 import { parseCsv } from "./csv.mjs";
 
 const ROOT = join(import.meta.dirname, "..", "..");
@@ -35,14 +36,26 @@ export async function fetchPage(url) {
   last = Date.now();
   let result;
   try {
-    const res = await fetch(url, { headers: { "User-Agent": UA, "Accept-Language": "en" }, redirect: "follow", signal: AbortSignal.timeout(25000) });
-    const html = await res.text();
+    const res = await guarded(fetch(url, { headers: { "User-Agent": UA, "Accept-Language": "en" }, redirect: "follow", signal: AbortSignal.timeout(25000) }));
+    const html = await guarded(res.text());
     result = { url, status: res.status, final: res.url, text: toText(html) };
   } catch (e) {
     result = { url, status: 0, final: url, text: "", error: String(e.cause?.code ?? e.message) };
   }
   writeFileSync(file, JSON.stringify(result));
   return result;
+}
+
+// Node's fetch (undici) can throw an internal assertion from a socket event
+// when a server closes the connection mid-page; that error escapes
+// try/catch and would end the whole run. While a request is in flight, such
+// an error fails just that page (reported as status 0, like any failed fetch).
+function guarded(promise) {
+  return new Promise((resolve, reject) => {
+    const onCrash = (e) => reject(e);
+    process.once("uncaughtException", onCrash);
+    promise.then(resolve, reject).finally(() => process.off("uncaughtException", onCrash));
+  });
 }
 
 // Visible text, one line per block, entities decoded (enough to read fees).
@@ -71,7 +84,9 @@ const DEGREE_PATTERNS = {
   PhD: /\bph\.?\s?d\b|doctoral|doctorate|doctorat|promotion|research degree/i,
 };
 
-if (process.argv[2] === "--degrees") {
+// Command-line use only (other scripts import fetchPage).
+const direct = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+if (direct && process.argv[2] === "--degrees") {
   // Optional country, to check one country's candidates.
   const rows = parseCsv(readFileSync(process.argv[3], "utf8")).filter((r) => !process.argv[4] || r.country === process.argv[4]);
   for (const r of rows) {
@@ -79,7 +94,7 @@ if (process.argv[2] === "--degrees") {
     const levels = Object.entries(DEGREE_PATTERNS).filter(([, re]) => re.test(page.text)).map(([level]) => level);
     console.log([r.ror, page.status, page.final, levels.join(";") || "-", page.error ?? ""].join(" | "));
   }
-} else if (process.argv[2]) {
+} else if (direct && process.argv[2]) {
   const page = await fetchPage(process.argv[2]);
   console.log(`${page.status} ${page.final}${page.error ? ` (${page.error})` : ""}`);
   const patterns = process.argv.slice(3).map((p) => new RegExp(p, "i"));

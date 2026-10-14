@@ -2,8 +2,9 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import scorecard from "../../data/scorecard/universities.json";
-import { LIST_COLUMNS, MAX_ROWS_PER_REQUEST, fetchAllRows, packRows, unpackRows } from "./universities";
-import { DETAIL_ONLY_FIELDS, type University } from "@/lib/types";
+import { LIST_COLUMNS, MAX_ROWS_PER_REQUEST, fetchAllRows, packRows, unpackRows, slimForList, type PackedRows } from "./universities";
+import { DETAIL_ONLY_FIELDS, type StrengthDetails, type University } from "@/lib/types";
+import { parseCsv } from "../../scripts/curated/csv.mjs";
 
 // Regression guards for the slowness and the missing-schools bug measured
 // in docs/PERFORMANCE.md.
@@ -118,12 +119,41 @@ describe("packRows / unpackRows (the cached list)", () => {
     expect(unpackRows(packRows([]))).toEqual([]);
   });
 
-  it("keeps the whole list, strength index and campus life included, well under the 2 MB data-cache limit", () => {
+  it("keeps the whole list, strength index and campus life included, under the 2 MB data-cache limit with headroom", () => {
     expect(strength.size).toBe(scorecard.universities.length);
     expect(campus.size).toBe(scorecard.universities.length);
-    const packed = new TextEncoder().encode(JSON.stringify(packRows(rows))).length;
-    // These are 1,577 of the 1,688 rows; the 111 curated ones add ~10% more.
-    console.log(`packed list ≈ ${Math.round((packed * 1.1) / 1024)} KB`);
-    expect(packed * 1.1).toBeLessThan(1.5 * 1024 * 1024);
+    const packed = new TextEncoder().encode(JSON.stringify(packRows(rows.map((r) => slimForList(r as { strength_signals?: StrengthDetails | null; fetched_at?: string }))))).length;
+    // These are the College Scorecard rows only. The hand-curated
+    // international rows are added at their measured size: in the exported
+    // list (data/fixtures) a curated row is larger than a Scorecard one
+    // (fee notes, other names), by this ratio.
+    const fixture = JSON.parse(readFileSync(join(__dirname, "..", "..", "data", "fixtures", "shared-universities.json"), "utf8")) as PackedRows;
+    const source = fixture.columns.indexOf("source");
+    const avg = (kind: string) => {
+      const sizes = fixture.rows.filter((r) => r[source] === kind).map((r) => JSON.stringify(r).length);
+      return sizes.reduce((a, b) => a + b, 0) / sizes.length;
+    };
+    const ratio = avg("curated") / avg("College Scorecard");
+    const curated = parseCsv(readFileSync(join(__dirname, "..", "..", "data", "curated", "international_universities.csv"), "utf8")).length;
+    const estimate = packed + (packed / rows.length) * ratio * curated;
+    console.log(`packed list ≈ ${Math.round(estimate / 1024)} KB for ${rows.length + curated} schools (curated rows ×${ratio.toFixed(2)})`);
+    // Next.js skips caching an entry over 2 MB; keep 10% headroom.
+    expect(estimate).toBeLessThan(0.9 * 2 * 1024 * 1024);
   });
+
+  it("caches each strength signal's percentile and the fetch day, not raw figures or times", () => {
+    const row = {
+      name: "X",
+      fetched_at: "2026-10-06T13:27:54.954+00:00",
+      strength_signals: { signals: { sat: { value: 1400, percentile: 91.2 } }, of: 1790, computed_on: "2026-10-14" },
+    };
+    expect(slimForList(row)).toEqual({
+      name: "X",
+      fetched_at: "2026-10-06",
+      strength_signals: { signals: { sat: { percentile: 91.2 } }, of: 1790, computed_on: "2026-10-14" },
+    });
+    expect(row.strength_signals.signals.sat.value).toBe(1400); // the original isn't changed
+    expect(slimForList({ name: "Y", strength_signals: null, fetched_at: null })).toEqual({ name: "Y", strength_signals: null, fetched_at: null });
+  });
+
 });
