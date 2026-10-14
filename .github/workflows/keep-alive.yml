@@ -8,20 +8,50 @@ on:
     - cron: "0 12 */3 * *"
   workflow_dispatch: # lets you run it by hand from the Actions tab
 
+permissions:
+  contents: read
+
 jobs:
   ping:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: Query one row from the universities table
         env:
-          # Set these under Settings → Secrets and variables → Actions.
+          # Set these under Settings → Secrets and variables → Actions:
+          # SUPABASE_URL = the Project / API URL (https://<ref>.supabase.co)
+          # SUPABASE_ANON_KEY = the anon / publishable key (never service_role).
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
-          status=$(curl -s -o /dev/null -w "%{http_code}" \
-            "$SUPABASE_URL/rest/v1/universities?select=id&limit=1" \
-            -H "apikey: $SUPABASE_ANON_KEY")
+          # Forgive the usual copy-paste extras: spaces, line breaks, quotes,
+          # a trailing slash or /rest/v1 on the URL.
+          url=$(printf '%s' "$SUPABASE_URL" | tr -d ' \r\n"'"'" | sed -E 's#/+$##; s#/rest/v1$##; s#/+$##')
+          key=$(printf '%s' "$SUPABASE_ANON_KEY" | tr -d ' \r\n"'"'")
+
+          # Say what's wrong without printing either value.
+          [ -n "$url" ] || { echo "::error::The SUPABASE_URL secret is missing or empty."; exit 1; }
+          [ -n "$key" ] || { echo "::error::The SUPABASE_ANON_KEY secret is missing or empty."; exit 1; }
+          if ! printf '%s' "$url" | grep -Eq '^https://[a-z0-9]+\.supabase\.co$'; then
+            echo "::error::SUPABASE_URL doesn't look like https://<project-ref>.supabase.co (check for typos or a missing https://)."
+            exit 1
+          fi
+          case "$key" in
+            sb_secret_*) echo "::warning::SUPABASE_ANON_KEY is a secret key; the publishable (anon) key is enough here." ;;
+            sb_publishable_*) echo "Key type: publishable" ;;
+            *.*.*) echo "Key type: legacy anon (JWT)" ;;
+            *) echo "::warning::SUPABASE_ANON_KEY doesn't look like a Supabase key (sb_publishable_… or a JWT)." ;;
+          esac
+
+          status=$(curl -s -o /dev/null -m 20 -w "%{http_code}" \
+            "$url/rest/v1/universities?select=id&limit=1" \
+            -H "apikey: $key")
           echo "Supabase responded with HTTP $status"
-          # Fail loudly (GitHub emails you) if the project is down or the
-          # secrets are missing, instead of silently doing nothing.
-          test "$status" = "200"
+          case "$status" in
+            200) ;;
+            000) echo "::error::Couldn't reach the URL at all: check SUPABASE_URL."; exit 1 ;;
+            401|403) echo "::error::Supabase refused the key (HTTP $status): check SUPABASE_ANON_KEY is the anon/publishable key of this same project."; exit 1 ;;
+            404) echo "::error::Not found (HTTP 404): SUPABASE_URL may point at a different project."; exit 1 ;;
+            5*) echo "::error::Supabase answered HTTP $status: the project may be paused; restore it in the dashboard."; exit 1 ;;
+            *) echo "::error::Unexpected HTTP $status."; exit 1 ;;
+          esac
