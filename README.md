@@ -1,10 +1,118 @@
 # Unicelerate
 
-Unicelerate matches students to universities based on their budget, academic
-profile, and preferences instead of showing generic rankings.
+**Live: [www.unicelerate.com](https://www.unicelerate.com)**
 
-Built with Next.js (App Router), React, TypeScript, Tailwind CSS, shadcn/ui,
-Supabase (Auth + Database), and Framer Motion.
+## In 30 seconds
+
+Unicelerate helps a student find universities that actually fit them: their
+budget, grades, subject, countries and what matters to them, instead of a
+generic ranking list. It covers **1,688 universities in 27 countries**:
+1,577 US schools from the US Department of Education's College Scorecard
+and 111 international universities whose fees and programs were checked on
+each school's own website.
+
+- **Two scores, kept apart.** *Fit* ("does it work for me?") and *strength*
+  ("how strong is it?", our own labelled index from open data) are separate.
+  The default order, "Best you can get into", is strength weighted by the
+  student's chance of admission, so a long shot sits below a strong school
+  they can actually get into.
+- **Honest data.** Every figure says where it came from. Unknown is shown as
+  "not available" and left out of the score, never counted as zero. There's
+  no LLM in the app and nothing is invented.
+- **Built for real students:** grades in your own system (Canadian
+  provinces, CBSE, IB, A Levels and more), optional visa and campus-life
+  factors, an application tracker and an offer comparison.
+
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 ·
+Supabase (Postgres, Auth, row level security) · Vercel.
+537 unit and integration tests, 17 browser tests, axe accessibility checks
+and Lighthouse in CI.
+
+## Screenshots
+
+| | |
+| --- | --- |
+| ![Landing page](docs/screenshots/landing.png) | ![Browse universities](docs/screenshots/browse.png) |
+| Landing page | Browse: strength index, data source and campus life on every card |
+| ![A university page](docs/screenshots/university-page.png) | ![Campus life with its sources](docs/screenshots/university-campus-life.png) |
+| A university page: every figure with its source | Campus life: published proxies with their data coverage, never a score |
+| ![Sample matches](docs/screenshots/sample-matches.png) | [X] *Recommendations and profile (logged in): add `docs/screenshots/recommendations.png` and `profile.png`* |
+| Matches with their reasons (sample student, real data) | |
+
+Captured from the live site, logged out, with `node scripts/screenshots.mjs`.
+
+## How it fits together
+
+```mermaid
+flowchart LR
+  subgraph Sources["Open data (cited, dated)"]
+    SC[College Scorecard API]
+    IP[IPEDS files]
+    LR[Leiden Ranking / OpenAlex]
+    CU[Curated CSVs:<br/>school pages, visa pages]
+    ECB[ECB exchange rates]
+  end
+  subgraph Import["Import scripts (run by hand)"]
+    N[normalize + validate]
+    S[strength index,<br/>campus life]
+    SQL[seed SQL files]
+  end
+  subgraph DB["Supabase Postgres"]
+    U[(universities)]
+    P[(profiles, courses,<br/>applications, saved)]
+  end
+  subgraph App["Next.js on Vercel"]
+    C[cached shared list<br/>packed, 1 day]
+    M[scoring: fit, quality,<br/>plausibility]
+    UI[pages]
+  end
+  SC --> N
+  IP --> S
+  LR --> S
+  CU --> N
+  ECB --> N
+  N --> SQL
+  S --> SQL
+  SQL -->|run in SQL editor| U
+  U --> C --> M --> UI
+  P -->|row level security:<br/>own rows only| M
+```
+
+- **Import time:** scripts download open data once, validate it, compute the
+  strength index and campus-life proxies, and write numbered SQL files that
+  are run by hand (`docs/PENDING-DB-STEPS.md`).
+- **Request time:** the shared list is read once and cached; each page scores
+  it against the student's profile with pure, tested functions
+  (`lib/matching.ts`, `lib/ranking.ts`, `lib/quality.ts`).
+- **Privacy:** a student's own rows are protected by Postgres row level
+  security (tested for every table), and "delete my account" removes all of
+  them.
+
+## Honest-data principles
+
+1. Every figure is cited: a source, a year or checked date, and a link.
+2. Unknown is "not available", left out of the score and re-weighted, never
+   a zero.
+3. Our own estimates are labelled as ours (the strength index, campus-life
+   coverage), with the method in `docs/`.
+4. No rankings or reviews are copied from QS, THE, U.S. News, Niche or
+   similar sites, and nothing is invented.
+5. The admission estimate is a demo model trained on *synthetic* applicants,
+   and says so wherever it appears.
+
+## Run it locally
+
+```bash
+npm install
+cp .env.local.example .env.local   # then add your Supabase URL and anon key
+npm run dev                        # http://localhost:3000
+```
+
+Database setup is in [Getting started](#getting-started) below. Checks:
+`npm test`, `npm run lint`, `npx tsc --noEmit`, `npm run db:check`,
+`npm run build`, then `npm run test:e2e:build && npm run test:e2e` for the
+browser tests. Interview notes on the main decisions:
+[docs/INTERVIEW-NOTES.md](docs/INTERVIEW-NOTES.md).
 
 ## Getting started
 
