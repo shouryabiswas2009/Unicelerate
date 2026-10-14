@@ -111,3 +111,26 @@ describe("validateRankings", () => {
     expect(validateRankings([row]).errors).toHaveLength(2);
   });
 });
+
+describe("validateUniversities: links, duplicates and plausible fees", () => {
+  it("refuses plain http links", () => {
+    expect(validateUniversities([good({ source_url: "http://www.example.ac.uk" })]).errors.join(" ")).toMatch(/https/);
+  });
+
+  it("refuses two rows with the same website, even with different names", () => {
+    const { errors } = validateUniversities([
+      good({ curated_id: "a", name: "A University", source_url: "https://www.same.ac.uk" }),
+      good({ curated_id: "b", name: "B University", source_url: "https://same.ac.uk/" }),
+    ]);
+    expect(errors.join(" ")).toMatch(/same website/);
+  });
+
+  it("stops a tuition figure outside its currency's plausible band, without changing it", () => {
+    const row = good({ tuition_local: "290000", tuition_currency: "GBP", tuition_basis: "x", tuition_year: "2026-27", tuition_source_url: "https://www.example.ac.uk/fees" });
+    expect(validateUniversities([row]).errors.join(" ")).toMatch(/outside the plausible band/);
+    expect(row.tuition_local).toBe("290000");
+    const unknownCurrency = good({ tuition_local: "1000", tuition_currency: "XYZ", tuition_basis: "x", tuition_year: "2026-27", tuition_source_url: "https://www.example.ac.uk/fees" });
+    expect(validateUniversities([unknownCurrency]).errors.join(" ")).toMatch(/no plausible-tuition band/);
+  });
+});
+

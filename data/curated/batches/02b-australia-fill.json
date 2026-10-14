@@ -1,0 +1,83 @@
+{
+ "data_year": "2026",
+ "checked_on": "2026-10-14",
+ "rows": [
+  {
+   "curated_id": "unimelb",
+   "tuition": {
+    "local": 62385,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 002167E): whole-course tuition $187,154 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition from the CRICOS register (The University of Melbourne (UniMelb) (CRICOS 00116K)), filled 2026-10-14"
+  },
+  {
+   "curated_id": "anu",
+   "tuition": {
+    "local": 51232,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 074016B): whole-course tuition $153,695 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition from the CRICOS register (Australian National University (CRICOS 00120C)), filled 2026-10-14"
+  },
+  {
+   "curated_id": "monash",
+   "tuition": {
+    "local": 47330,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 075404D): whole-course tuition $141,989 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition from the CRICOS register (Monash University (Monash) (CRICOS 00008C)), filled 2026-10-14"
+  },
+  {
+   "curated_id": "unsw",
+   "tuition": {
+    "local": 52000,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 001916C): whole-course tuition $156,000 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition from the CRICOS register (The University of New South Wales (UNSW) (CRICOS 00098G)), filled 2026-10-14"
+  },
+  {
+   "curated_id": "uq",
+   "tuition": {
+    "local": 37100,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 001942A): whole-course tuition $111,299 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition from the CRICOS register (The University of Queensland (CRICOS 00025B)), filled 2026-10-14"
+  },
+  {
+   "curated_id": "uwa",
+   "tuition": {
+    "local": 42500,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 003005D): whole-course tuition $127,500 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition from the CRICOS register (The University of Western Australia (UWA) (CRICOS 00126G)), filled 2026-10-14"
+  },
+  {
+   "curated_id": "uts",
+   "tuition": {
+    "local": 47942,
+    "currency": "AUD",
+    "basis": "Bachelor of Business (CRICOS 113425B): whole-course tuition $153,045 for 166 weeks, as a yearly figure (÷ 166 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition from the CRICOS register (University of Technology Sydney (UTS) (CRICOS 00099F)), filled 2026-10-14"
+  }
+ ]
+}

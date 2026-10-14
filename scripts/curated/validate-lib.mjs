@@ -20,14 +20,36 @@ export const RANKING_COLUMNS = ["university", "ranking_year", "overall_rank", "s
 const DEGREE_LEVELS = ["Undergraduate", "Masters", "PhD"];
 const COOP_VALUES = ["mandatory", "optional", "none", "unknown"];
 
+// Every link must be https: a plain http link can be changed on the way
+// and browsers warn about it.
 const isUrl = (v) => {
   try {
-    const u = new URL(v);
-    return u.protocol === "https:" || u.protocol === "http:";
+    return new URL(v).protocol === "https:";
   } catch {
     return false;
   }
 };
+
+// A yearly international bachelor's tuition outside these bands is far
+// more likely a typo (an extra zero, a monthly or per-credit figure, the
+// wrong currency) than a real fee, so the import stops until a person
+// looks. Wide on purpose: 0 is allowed (tuition-free countries), and the
+// top is above the most expensive real fees we've seen in each currency.
+export const TUITION_BANDS = {
+  AUD: [10000, 90000], CAD: [8000, 90000], GBP: [5000, 75000], EUR: [0, 60000], CHF: [0, 60000],
+  USD: [0, 90000], NZD: [15000, 80000], SGD: [10000, 80000], HKD: [60000, 400000], AED: [20000, 200000],
+  INR: [20000, 2500000], SEK: [0, 350000], DKK: [0, 200000], NOK: [0, 250000], JPY: [300000, 5000000],
+  KRW: [0, 30000000] /* 0: KAIST's full exemption */, CNY: [15000, 300000], TWD: [50000, 800000], MYR: [10000, 150000],
+};
+
+// "https://www.ox.ac.uk/" and "http://ox.ac.uk" are the same site.
+export function siteKey(url) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "").toLowerCase();
+  } catch {
+    return "";
+  }
+}
 const isNumber = (v) => v !== "" && Number.isFinite(Number(v));
 export const list = (v) => (v ? v.split(";").map((s) => s.trim()).filter(Boolean) : []);
 
@@ -36,6 +58,7 @@ export function validateUniversities(records) {
   const warnings = [];
   const seenIds = new Map();
   const seenNames = new Map();
+  const seenSites = new Map();
 
   for (const r of records) {
     const at = `line ${r._line} (${r.name || r.curated_id || "?"})`;
@@ -46,6 +69,11 @@ export function validateUniversities(records) {
     if (!r.name) err("name is required");
     if (!r.country) err("country is required");
     if (!r.source_url || !isUrl(r.source_url)) err("source_url must be the university's own web address (https://...)");
+    const site = siteKey(r.source_url);
+    if (site) {
+      if (seenSites.has(site)) err(`same website as line ${seenSites.get(site)}: a duplicate school?`);
+      seenSites.set(site, r._line);
+    }
     if (!/^\d{4}(-\d{2})?$/.test(r.data_year ?? "")) err("data_year must look like 2025 or 2025-26");
     if (!/^\d{4}-\d{2}-\d{2}$/.test(r.checked_on ?? "")) err("checked_on must be a date like 2026-10-06");
 
@@ -69,6 +97,14 @@ export function validateUniversities(records) {
       if (!r.tuition_basis) err("tuition_basis must say exactly what the figure is");
       if (!r.tuition_year) err("tuition_year is required with a tuition figure");
       if (!isUrl(r.tuition_source_url ?? "")) err("tuition_source_url is required with a tuition figure");
+      const band = TUITION_BANDS[r.tuition_currency];
+      const amount = Number(r.tuition_local);
+      if (!/^[A-Z]{3}$/.test(r.tuition_currency ?? "")) {
+        // already reported above
+      } else if (!band) err(`no plausible-tuition band for ${r.tuition_currency}: add one to TUITION_BANDS`);
+      else if (amount < band[0] || amount > band[1]) {
+        err(`tuition ${amount} ${r.tuition_currency} is outside the plausible band ${band[0]}–${band[1]}: check the figure (not fixed automatically)`);
+      }
     } else if (r.tuition_currency || r.tuition_source_url) {
       warnings.push(`${at}: tuition source given but no amount — tuition will show as not available`);
     }

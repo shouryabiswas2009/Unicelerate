@@ -199,7 +199,8 @@ describe("data files", () => {
   }
 
   it("covers every shared school, and stores the same Not-sure scores the site computes", () => {
-    expect(seeded.size).toBe(1688);
+    const curatedCount = parseCsv(readFileSync(join(ROOT, "data", "curated", "international_universities.csv"), "utf8")).length;
+    expect(seeded.size).toBe(scorecard.universities.length + curatedCount);
     for (const s of scorecard.universities.slice(0, 300)) {
       const life = seeded.get(`scorecard_id:${s.scorecard_id}`)!;
       const row = { campus_life: life, coop_program: "unknown" as const, research_intensity: s.research_intensity as University["research_intensity"], research_impact: null };

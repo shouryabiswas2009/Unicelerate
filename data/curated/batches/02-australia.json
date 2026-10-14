@@ -1,0 +1,398 @@
+{
+ "data_year": "2026",
+ "checked_on": "2026-10-14",
+ "rows": [
+  {
+   "ror": "00892tw58",
+   "curated_id": "adelaide-uni",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 43400,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 115677K): whole-course tuition $130,200 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "name": "Adelaide University",
+   "aliases": "University of Adelaide;University of South Australia;UniSA",
+   "notes": "Tuition and degree levels from the CRICOS register (Adelaide University (CRICOS 04249J)); Formed in 2026 by merging the University of Adelaide and the University of South Australia; research figures are the University of Adelaide's"
+  },
+  {
+   "ror": "02czsnj07",
+   "curated_id": "deakin",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 38859,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 012762C): whole-course tuition $116,576 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Deakin University (Deakin) (CRICOS 00113B))"
+  },
+  {
+   "ror": "02sc3r913",
+   "curated_id": "griffith",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 37424,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 000609M): whole-course tuition $112,273 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Griffith University (CRICOS 00233E))"
+  },
+  {
+   "ror": "03pnv4752",
+   "curated_id": "qut",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 39767,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 120879B): whole-course tuition $119,300 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Queensland University of Technology (QUT) (CRICOS 00213J))"
+  },
+  {
+   "ror": "04ttjf776",
+   "curated_id": "rmit",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 48960,
+    "currency": "AUD",
+    "basis": "Bachelor of Business (CRICOS 106623K): whole-course tuition $146,880 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Royal Melbourne Institute of Technology (CRICOS 00122A))"
+  },
+  {
+   "ror": "02n415q13",
+   "curated_id": "curtin",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 41491,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 068750M): whole-course tuition $124,474 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Curtin University (CRICOS 00301J))"
+  },
+  {
+   "ror": "01sf06y89",
+   "curated_id": "macquarie",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 42833,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 001357G): whole-course tuition $128,500 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Macquarie University (Macquarie) (CRICOS 00002J))"
+  },
+  {
+   "ror": "00jtmb277",
+   "curated_id": "uow",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 32640,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 000612E): whole-course tuition $97,920 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (University of Wollongong (UoW) (CRICOS 00102E))"
+  },
+  {
+   "ror": "00eae9z71",
+   "curated_id": "newcastle-au",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 38303,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 001602K): whole-course tuition $114,909 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (The University of Newcastle (UoN) (CRICOS 00109J))"
+  },
+  {
+   "ror": "01rxfrp27",
+   "curated_id": "latrobe",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 35800,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 002080A): whole-course tuition $107,400 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (La Trobe University (La Trobe) (CRICOS 00115M))"
+  },
+  {
+   "ror": "01nfmeh72",
+   "curated_id": "utas",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 39144,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 001694A): whole-course tuition $117,430.63 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (University of Tasmania (UTas) (CRICOS 00586B))"
+  },
+  {
+   "ror": "03t52dk35",
+   "curated_id": "westernsydney",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 32496,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 040992A): whole-course tuition $97,488 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Western Sydney University (CRICOS 00917K))"
+  },
+  {
+   "ror": "01kpzv902",
+   "curated_id": "flinders",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 31867,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 002633F): whole-course tuition $95,600 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Flinders University (CRICOS 00114A))"
+  },
+  {
+   "ror": "031rekg67",
+   "curated_id": "swinburne",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 37800,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 088388C): whole-course tuition $113,400 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Swinburne University of Technology (CRICOS 00111D))"
+  },
+  {
+   "ror": "04gsp2c11",
+   "curated_id": "jcu",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 36054,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 010346B): whole-course tuition $108,160.94 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (James Cook University (CRICOS 00117J))"
+  },
+  {
+   "ror": "05jhnwe22",
+   "curated_id": "ecu",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 35300,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 0100518): whole-course tuition $105,900 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Edith Cowan University (CRICOS 00279B))"
+  },
+  {
+   "ror": "00r4sry34",
+   "curated_id": "murdoch",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 34160,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 001572M): whole-course tuition $102,480 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Murdoch University (Murdoch) (CRICOS 00125J))"
+  },
+  {
+   "ror": "04sjbnx57",
+   "curated_id": "unisq",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 28840,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 009258A): whole-course tuition $86,520 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (University of Southern Queensland (CRICOS 00244B))"
+  },
+  {
+   "ror": "00wfvh315",
+   "curated_id": "csu",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 33120,
+    "currency": "AUD",
+    "basis": "Bachelor of Business Studies (CRICOS 029254F): whole-course tuition $99,360 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Charles Sturt University (CSU) (CRICOS 00005F))"
+  },
+  {
+   "ror": "04s1nv328",
+   "curated_id": "canberra",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 35000,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 116129H): whole-course tuition $105,000 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (University of Canberra (CRICOS 00212K))"
+  },
+  {
+   "ror": "016gb9e15",
+   "curated_id": "usc-au",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 28500,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 022806B): whole-course tuition $85,500 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (University of the Sunshine Coast (CRICOS 01595D))"
+  },
+  {
+   "ror": "023q4bk22",
+   "curated_id": "cqu",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 35250,
+    "currency": "AUD",
+    "basis": "Bachelor of Business (CRICOS 052447E): whole-course tuition $105,750 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Central Queensland University (CRICOS 00219C))"
+  },
+  {
+   "ror": "04r659a56",
+   "curated_id": "une",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 29905,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 000380E): whole-course tuition $91,440 for 159 weeks, as a yearly figure (÷ 159 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (University of New England (CRICOS 00003G))"
+  },
+  {
+   "ror": "04j757h98",
+   "curated_id": "vu-au",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 32689,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 068927B): whole-course tuition $98,066 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Victoria University (CRICOS 00124K))"
+  },
+  {
+   "ror": "048zcaj52",
+   "curated_id": "cdu",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 27096,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 0101026): whole-course tuition $81,288 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Charles Darwin University (CDU) (CRICOS 00300K))"
+  },
+  {
+   "ror": "04cxm4j25",
+   "curated_id": "acu",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 36624,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 001300B): whole-course tuition $109,872 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Australian Catholic University Limited (CRICOS 00004G))"
+  },
+  {
+   "ror": "001xkv632",
+   "curated_id": "scu",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 26000,
+    "currency": "AUD",
+    "basis": "Bachelor of Business (CRICOS 016157C): whole-course tuition $78,000 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Southern Cross University (SCU) (CRICOS 01241G))"
+  },
+  {
+   "ror": "05qbzwv83",
+   "curated_id": "federation",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 25700,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 085611C): whole-course tuition $77,100 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Federation University Australia (CRICOS 00103D))"
+  },
+  {
+   "ror": "006jxzx88",
+   "curated_id": "bond",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 72338,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 063052M): whole-course tuition $150,240 for 108 weeks, as a yearly figure (÷ 108 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (Bond University (CRICOS 00017B))"
+  },
+  {
+   "ror": "02stey378",
+   "curated_id": "notredame-au",
+   "degree_levels": "Undergraduate;Masters;PhD",
+   "tuition": {
+    "local": 34371,
+    "currency": "AUD",
+    "basis": "Bachelor of Arts (CRICOS 015324A): whole-course tuition $103,113 for 156 weeks, as a yearly figure (÷ 156 × 52)",
+    "year": "CRICOS register as at 2026-09-30",
+    "url": "https://data.gov.au/data/dataset/cricos"
+   },
+   "notes": "Tuition and degree levels from the CRICOS register (The University of Notre Dame Australia (CRICOS 01032F))"
+  }
+ ]
+}

@@ -19,7 +19,10 @@ const byName = (name) => {
 
 describe("the generated strength index", () => {
   it("covers every shared university, and every featured one", () => {
-    expect(rows).toHaveLength(1688);
+    // Every school in the import: College Scorecard plus the curated list.
+    const curated = parseCsv(readFileSync(join(import.meta.dirname, "..", "..", "data", "curated", "international_universities.csv"), "utf8"));
+    const scorecard = JSON.parse(readFileSync(join(import.meta.dirname, "..", "..", "data", "scorecard", "universities.json"), "utf8")).universities;
+    expect(rows).toHaveLength(scorecard.length + curated.length);
     expect(rows.every((r) => r.index !== "" && r.tier !== "")).toBe(true);
   });
 
