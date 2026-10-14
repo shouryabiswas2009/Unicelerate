@@ -11,7 +11,7 @@ import { marked } from "marked";
 export function creditsHtml(): { title: string; html: string } {
   const markdown = readFileSync(join(process.cwd(), "docs", "CREDITS.md"), "utf8");
   // The first "# Heading" becomes the page title; the rest is the body.
-  const [, title = "Credits and licences", body = markdown] = markdown.match(/^# (.+)\n([\s\S]*)$/) ?? [];
+  const [, title = "Credits and citations", body = markdown] = markdown.match(/^# (.+)\n([\s\S]*)$/) ?? [];
   const html = (marked.parse(body, { async: false }) as string).replace(
     /<a href="(https?:\/\/[^"]+)"/g,
     '<a href="$1" target="_blank" rel="noopener noreferrer"'

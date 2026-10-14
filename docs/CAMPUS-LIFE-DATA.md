@@ -118,7 +118,7 @@ the reverse.
 
 | Source | Licence / terms |
 | --- | --- |
-| [IPEDS data files](https://nces.ed.gov/ipeds/datacenter/DataFiles.aspx) (HD2024, IC2024, IC2023 revised), with the documented layout in each file's dictionary (`*_Dict.xlsx`) | U.S. government work (NCES), public domain |
+| [IPEDS data files](https://nces.ed.gov/ipeds/use-the-data) (HD2024, IC2024, IC2023 revised), with the documented layout in each file's dictionary (`*_Dict.xlsx`) | U.S. government work (NCES), public domain |
 | [College Scorecard](https://collegescorecard.ed.gov/data/) | Already used; listed as CC BY on data.gov, credited |
 | [NCAA.com FBS standings](https://www.ncaa.com/standings/football/fbs) | Only the list of conference names is referenced (facts), nothing copied |
 | [Canada West member directory](https://canadawest.org/insidecw/memberdirectory) | Membership facts, linked |

@@ -50,7 +50,7 @@ export const CAMPUS_DISCLAIMER = "A proxy based on published figures, not a rati
 export type CampusProxyLine = { proxy: AcademicProxy | SocialProxy; text: string; source: string; url: string | null };
 
 // Dataset-wide sources (the same for every US school).
-export const IPEDS_SOURCE = { label: "IPEDS (NCES)", url: "https://nces.ed.gov/ipeds/datacenter/DataFiles.aspx" };
+export const IPEDS_SOURCE = { label: "IPEDS (NCES)", url: "https://nces.ed.gov/ipeds/use-the-data" };
 export const SCORECARD_SOURCE = { label: "College Scorecard", url: "https://collegescorecard.ed.gov/data/" };
 
 function curatedSource(life: CampusLife | null | undefined, proxy: string) {

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { creditsHtml } from "@/lib/credits";
 
 export const metadata: Metadata = {
-  title: "Credits and licences",
-  description: "The fonts, icons, images, graphics and data the site uses, and their licences.",
+  title: "Credits",
+  description: "Who provided the data and images on this site, with links and the licence or terms that apply.",
 };
 
 export default function CreditsPage() {

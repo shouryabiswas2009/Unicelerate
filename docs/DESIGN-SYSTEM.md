@@ -72,3 +72,23 @@ Rules:
 Real data visuals (the match scores, numbers, mock screens built from real
 data) and the existing original graphics, shown without frames. No stock
 photos beyond the credited hero, and nothing copied from another brand.
+
+## Brand assets and their licences
+
+(Moved from the credits page, which now lists only data and image
+citations.)
+
+- **Logo**: original, made for this project: a graduation cap lifted by an
+  upward swoosh, hand-drawn as SVG paths in `components/brand/mark.ts`; it
+  doesn't copy or adapt any other brand's logo or a stock icon. The tab
+  icon, app icons and share image are generated from it
+  (`npm run brand:icons`, `app/opengraph-image.tsx`).
+- **Fonts**: Geist and Geist Mono (body, code) and Plus Jakarta Sans
+  (headings), SIL Open Font License 1.1, self-hosted by `next/font`.
+- **Icons**: Lucide (`lucide-react`, ISC) and flag-icons (MIT).
+- The landing page's screen previews are drawn with the site's own
+  components and real computed data, not images.
+
+The credits page keeps one line naming these licences, since the OFL, ISC
+and MIT licences ask for their notices to travel with the software.
+

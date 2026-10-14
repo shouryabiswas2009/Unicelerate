@@ -17,7 +17,7 @@ const COLUMNS: { title: string; links: { href: string; label: string; external?:
     title: "About",
     links: [
       { href: "/privacy", label: "Privacy" },
-      { href: "/credits", label: "Credits and licences" },
+      { href: "/credits", label: "Credits" },
     ],
   },
   {
