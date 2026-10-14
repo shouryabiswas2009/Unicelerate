@@ -49,6 +49,18 @@ if (intlFiles.length) {
     console.error("FAIL re-running seed_international changed the row count — it should upsert.");
     process.exit(1);
   }
+  // Every co-op row with work terms (data/curated/coop_programs.csv) must
+  // land on a school; a key that matches nothing would update zero rows silently.
+  const coopCsv = readFileSync(join(import.meta.dirname, "..", "data", "curated", "coop_programs.csv"), "utf8");
+  const expectedCoop = (await import("./curated/csv.mjs")).parseCsv(coopCsv).filter((r) => r.work_terms).length;
+  const { rows: coop } = await db.query(
+    "select count(*)::int as n from public.universities where coop_work_terms is not null and coop_checked_on is not null and coop_program <> 'unknown'"
+  );
+  console.log(`OK  co-op details: ${coop[0].n} schools with work terms and a checked date (expected ${expectedCoop})`);
+  if (coop[0].n !== expectedCoop) {
+    console.error("FAIL a co-op row in data/curated/coop_programs.csv didn't match a school.");
+    process.exit(1);
+  }
 }
 
 // Visa and post-study guidance per country (migration_012): run twice too.

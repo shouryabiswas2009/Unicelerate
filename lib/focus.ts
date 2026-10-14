@@ -76,3 +76,21 @@ export const COOP_LABELS: Record<CoopProgram, string> = {
   unknown: "Not available",
 };
 
+// The same, short enough for one line on a card.
+export const COOP_SHORT_LABELS: Record<CoopProgram, string> = {
+  mandatory: "Mandatory",
+  optional: "Optional",
+  none: "None",
+  unknown: "Not available",
+};
+
+// "Mandatory co-op program: four to six four-month work terms (checked
+// 2026-10-14)": the status plus what the school's page says, when it says it.
+export function coopDetail(u: { coop_program?: CoopProgram; coop_work_terms?: string | null; coop_checked_on?: string | null }): string {
+  const program = u.coop_program ?? "unknown";
+  if (program === "unknown") return COOP_LABELS.unknown;
+  const terms = u.coop_work_terms ? `: ${u.coop_work_terms.charAt(0).toLowerCase()}${u.coop_work_terms.slice(1)}` : "";
+  const checked = u.coop_checked_on ? ` (checked ${String(u.coop_checked_on).slice(0, 10)})` : "";
+  return `${COOP_LABELS[program]}${terms}${checked}`;
+}
+

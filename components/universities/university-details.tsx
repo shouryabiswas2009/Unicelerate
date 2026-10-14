@@ -13,7 +13,7 @@ import { Flag } from "@/components/flag";
 import { formatRank, type DisplayRanking } from "@/lib/matching";
 import { usd } from "@/lib/format";
 import { livingCostDisplay, tuitionDisplay } from "@/lib/money";
-import { COOP_LABELS, RESEARCH_LABELS } from "@/lib/focus";
+import { RESEARCH_LABELS, coopDetail } from "@/lib/focus";
 import { compareUrl } from "@/lib/compare";
 import { formatCheckedOn, sourcesWithDates } from "@/lib/source-dates";
 import { canonicalCountry } from "@/lib/countries";
@@ -112,7 +112,7 @@ export function UniversityDetails({
     },
     {
       label: "Co-op / internship program",
-      value: COOP_LABELS[university.coop_program ?? "unknown"],
+      value: coopDetail(university),
     },
   ];
 

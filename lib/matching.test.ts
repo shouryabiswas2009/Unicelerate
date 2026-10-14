@@ -319,10 +319,10 @@ describe("what matters most (focuses)", () => {
 
   it("leaves a ticked focus with no data out of the blend, instead of counting it as zero", () => {
     // The R1 has no co-op information. With research + work experience
-    // ticked, each gets 10 points; the co-op 10 can't be judged, so it's
-    // left out and the score is scaled over what is known.
+    // ticked, each gets 10 points; the co-op 10 can't be judged, so they go
+    // to research, the student's other priority, and co-op is left out.
     const both = computeMatchScore(profileWith(["research", "work_experience"]), researchSchool);
-    expect(both.factors.find((f) => f.key === "research")?.max).toBe(10);
+    expect(both.factors.find((f) => f.key === "research")?.max).toBe(20);
     expect(pointsFor(both, "coop")).toBeNull();
     const withNone = computeMatchScore(
       profileWith(["research", "work_experience"]),
@@ -355,6 +355,26 @@ describe("what matters most (focuses)", () => {
     expect(pointsFor(unknown, "coop")).toBeNull();
     expect(pointsFor(none, "coop")).toBe(0);
     expect(unknown.score).toBeGreaterThan(none.score);
+  });
+
+  it("raises a mandatory co-op school for a student who ticked work experience, and only then", () => {
+    // A school that isn't already a perfect 100, so there's room to rise.
+    const unknown = makeUniversity({ coop_program: "unknown", tuition: 70000, acceptance_rate: 20 });
+    const mandatory = { ...unknown, coop_program: "mandatory" as const };
+    const work = profileWith(["work_experience"]);
+    expect(computeMatchScore(work, mandatory).score).toBeGreaterThan(computeMatchScore(work, unknown).score);
+    // Without the focus, a co-op program doesn't move the score.
+    const cost = profileWith(["affordability"]);
+    expect(computeMatchScore(cost, mandatory).score).toBe(computeMatchScore(cost, unknown).score);
+  });
+
+  it("doesn't change a school's score when its co-op is unknown", () => {
+    // Ticking work experience adds a co-op factor; with nothing known it's
+    // left out and the other weights are re-scaled, so the score is the same.
+    const school = makeUniversity({ coop_program: "unknown", tuition: 70000, acceptance_rate: 20 });
+    expect(computeMatchScore(profileWith(["affordability", "work_experience"]), school).score).toBe(
+      computeMatchScore(profileWith(["affordability"]), school).score
+    );
   });
 
   it("scores mandatory co-op above optional above none", () => {

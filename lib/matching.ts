@@ -373,6 +373,19 @@ export function computeMatchScore(
   };
   for (const key of unknown) fits[key] = null;
 
+  // A ticked focus we know nothing about for this school (say, co-op where
+  // the school's page doesn't say) hands its points to the student's other
+  // ticked focuses that we do know, so their priorities still count for the
+  // same share of the score and an unknown never moves it. With no known
+  // focus at all, the rescale below covers it.
+  const focusKeys = [...new Set(Object.values(FOCUS_FACTOR))].filter((key) => weights[key] > 0);
+  const knownFocus = focusKeys.filter((key) => fits[key] !== null);
+  const unknownPoints = focusKeys.filter((key) => fits[key] === null).reduce((sum, key) => sum + weights[key], 0);
+  if (unknownPoints > 0 && knownFocus.length > 0) {
+    const knownPoints = knownFocus.reduce((sum, key) => sum + weights[key], 0);
+    for (const key of knownFocus) weights[key] += (unknownPoints * weights[key]) / knownPoints;
+  }
+
   // Factors worth 0 points for this student (a focus they didn't tick) are
   // left out of the breakdown entirely.
   const factors: FactorScore[] = (Object.keys(weights) as FactorKey[])

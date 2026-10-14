@@ -14,6 +14,7 @@ import { APPROX_NOTE, approxInCurrency } from "@/lib/display-currency";
 import { livingCostDisplay, tuitionDisplay, type MoneyDisplay } from "@/lib/money";
 import { formatRank, type AdmissionChance, type MatchEntry } from "@/lib/matching";
 import { cn } from "@/lib/utils";
+import { COOP_LABELS, COOP_SCORES } from "@/lib/focus";
 import { CAMPUS_KIND_LABELS, CAMPUS_PROXIES, PROXY_LABELS, academicCommunityScore, coverageText, proxyLines, socialFunScore } from "@/lib/campus-life";
 import type { Profile } from "@/lib/types";
 
@@ -142,6 +143,19 @@ const ROWS: Row[] = [
     better: "higher",
     // A field percentile and an overall one aren't the same comparison.
     comparable: (entries, profile) => new Set(entries.map((e) => researchImpactFor(profile, e.university)?.field ?? "overall")).size === 1,
+  },
+  {
+    label: "Co-op / internship program",
+    render: ({ university }) => {
+      const program = university.coop_program ?? "unknown";
+      return program === "unknown" ? muted(COOP_LABELS.unknown) : COOP_LABELS[program];
+    },
+    // Mandatory beats optional beats none; unknown takes no part.
+    value: ({ university }) => {
+      const program = university.coop_program ?? "unknown";
+      return program === "unknown" ? null : COOP_SCORES[program];
+    },
+    better: "higher",
   },
   {
     label: "Visa and work rights",

@@ -122,6 +122,10 @@ export type University = {
   // own page, with that page's URL; "unknown" is left out of scoring.
   coop_program?: CoopProgram;
   internship_support_url?: string | null;
+  // How many / how long the work terms are, as the school's page says, and
+  // the day we read it (migration_025). Detail page only; null = not stated.
+  coop_work_terms?: string | null;
+  coop_checked_on?: string | null;
 
   // Shown by default (migration_010; the rule is scripts/relevance-rule.mjs).
   // Missing until that migration runs, which the app reads as "featured".
@@ -248,6 +252,8 @@ export const DETAIL_ONLY_FIELDS = [
   "living_cost_source_url",
   "acceptance_source_url",
   "programs_source_url",
+  "coop_work_terms",
+  "coop_checked_on",
 ] as const;
 
 type DetailOnlyField = (typeof DETAIL_ONLY_FIELDS)[number];

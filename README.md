@@ -622,6 +622,13 @@ two get 10 each, and so on. Balanced is the average of all four profiles,
 Balanced**: caring about everything equally is the same as not
 prioritizing anything. A unit test checks this.
 
+**A focus with no data hands its points to your other focuses.** If you
+tick Work experience and Affordability and a school's co-op is unknown,
+the co-op's 10 points go to Affordability for that school, so your
+priorities still count for 20 of the 100 points and an unknown never moves
+the score (tested). With no data for any ticked focus, the score is
+re-scaled over what is known, like any other unknown.
+
 **"Work experience" means co-op and internship opportunities**: does the
 school run a co-op or internship program, and is it mandatory or
 optional. It does **not** use employment rates or graduate earnings,
@@ -635,10 +642,18 @@ Where the figures come from:
   Scorecard (`school.carnegie_basic`; 1,519 of 1,577 schools have one). Not
   available for illustrative schools.
 - **Co-op programs** (`coop_program`: mandatory / optional / none /
-  unknown, plus an optional `internship_support_url`): there's no official
-  dataset, so it's only filled in from the school's own page, with that
-  page's URL. It defaults to `unknown`, which is never read as "none". A
-  student can set it on schools they add.
+  unknown, plus `internship_support_url`, `coop_work_terms` and
+  `coop_checked_on`): there's no official dataset, so it's only filled in
+  from the school's own page, with that page's URL, what it says about the
+  work terms ("four to six four-month work terms") and the day we read it
+  ([`data/curated/coop_programs.csv`](data/curated/coop_programs.csv)).
+  **Mandatory** means the page says co-op is a degree requirement for all
+  or most undergraduate programs; **optional** means the school runs one
+  but it's required only in some programs or chosen by students. It
+  defaults to `unknown`, which is never read as "none" and is never
+  inferred (a program-level internship, or a co-op open only to domestic
+  students, isn't recorded). Shown on cards, in compare and on the
+  details page. A student can set it on schools they add.
 
 Ticked focuses also add their own strengths and concerns, listed first so
 they show on cards, e.g. "Has a mandatory co-op program" or "No co-op

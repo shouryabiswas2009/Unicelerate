@@ -14,7 +14,7 @@ export const UNIVERSITY_COLUMNS = [
   "source_url", "data_year", "checked_on", "notes",
 ];
 
-export const COOP_COLUMNS = ["key", "university", "coop_program", "source_url", "checked_on", "notes"];
+export const COOP_COLUMNS = ["key", "university", "coop_program", "work_terms", "source_url", "checked_on", "notes"];
 export const RANKING_COLUMNS = ["university", "ranking_year", "overall_rank", "subject", "subject_rank", "source_url"];
 
 const DEGREE_LEVELS = ["Undergraduate", "Masters", "PhD"];
@@ -146,6 +146,8 @@ export function validateCoop(records) {
     }
     if (!isUrl(r.source_url ?? "")) errors.push(`${at}: source_url (the school's own co-op page) is required`);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(r.checked_on ?? "")) errors.push(`${at}: checked_on must be a date like 2026-10-06`);
+    // Optional; what the page says about how many / how long (migration_025).
+    if ((r.work_terms ?? "").length > 300) errors.push(`${at}: work_terms is longer than 300 characters`);
     if (seen.has(r.key)) errors.push(`${at}: duplicate key (also on line ${seen.get(r.key)})`);
     seen.set(r.key, r._line);
   }

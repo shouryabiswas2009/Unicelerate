@@ -32,6 +32,7 @@ import { StrengthValue } from "@/components/universities/strength";
 import { VisaNote } from "@/components/universities/visa-note";
 import { CampusLifeLines, selectedCampusKinds } from "@/components/universities/campus-life";
 import { STRENGTH_LABEL, hasVerifiedRanking } from "@/lib/strength-display";
+import { COOP_LABELS, COOP_SHORT_LABELS } from "@/lib/focus";
 import type { UniversitySummary } from "@/lib/types";
 import { universityPath } from "@/lib/university-path";
 
@@ -160,6 +161,17 @@ export function UniversityCard({
                 Strength
               </span>
               <StrengthValue university={university} />
+            </div>
+            {/* Co-op next to strength: only from the school's own page, so
+                most schools honestly say "Not available". */}
+            <div className="flex items-baseline justify-between gap-3 text-sm">
+              <span className="shrink-0 text-muted-foreground">Co-op</span>
+              <span
+                className={cn(university.coop_program && university.coop_program !== "unknown" ? "font-medium" : "text-muted-foreground")}
+                title={COOP_LABELS[university.coop_program ?? "unknown"]}
+              >
+                {COOP_SHORT_LABELS[university.coop_program ?? "unknown"]}
+              </span>
             </div>
             {/* A ranking only when someone entered it from the ranking's own page. */}
             {ranking && ranking.rank !== null && hasVerifiedRanking(university) && (

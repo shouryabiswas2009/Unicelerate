@@ -103,6 +103,15 @@ describe("validateCoop", () => {
   it("needs a stable key and a source page", () => {
     expect(validateCoop([{ ...row, key: "Northeastern", source_url: "" }]).errors).toHaveLength(2);
   });
+
+  it("takes optional work terms, as long as they're a short note", () => {
+    expect(validateCoop([{ ...row, work_terms: "Up to two six-month co-ops" }]).errors).toEqual([]);
+    expect(validateCoop([{ ...row, work_terms: "x".repeat(301) }]).errors).toHaveLength(1);
+  });
+
+  it("needs the date the page was checked", () => {
+    expect(validateCoop([{ ...row, checked_on: "" }]).errors).toHaveLength(1);
+  });
 });
 
 describe("validateRankings", () => {
