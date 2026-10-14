@@ -1,10 +1,11 @@
 "use client";
 
-import { createContext, useActionState, useContext, type ReactNode } from "react";
+import { createContext, useActionState, useContext, useState, type FormEvent, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { saveProfile, saveProfileSection, type ProfileFormState, type SectionState } from "@/lib/actions/profile";
 import type { ProfileFieldErrors } from "@/lib/profile-validation";
 import type { ProfileSection } from "@/lib/profile-sections";
+import { fieldOf, withoutEdited } from "@/lib/form-errors";
 
 // How the profile page saves. Normally each section is its own small form
 // with a Save button and a visible status ("Saving…", "Saved ✓", "Couldn't
@@ -17,12 +18,25 @@ export type FieldState = { errors: ProfileFieldErrors; values?: Record<string, s
 
 const Combined = createContext<FieldState | null>(null);
 
+// Fields edited since the last save, so their (now stale) errors hide. A new
+// save result starts a fresh set.
+function useEditedFields(result: unknown) {
+  const [edited, setEdited] = useState<{ result: unknown; fields: Set<string> }>({ result, fields: new Set() });
+  const fields = edited.result === result ? edited.fields : new Set<string>();
+  const onEdit = (event: FormEvent) => {
+    const field = fieldOf(event.target);
+    if (field && !fields.has(field)) setEdited({ result, fields: new Set([...fields, field]) });
+  };
+  return { fields, onEdit };
+}
+
 export function CombinedProfileForm({ children, submitLabel }: { children: ReactNode; submitLabel: string }) {
   const [state, action, pending] = useActionState<ProfileFormState, FormData>(saveProfile, undefined);
+  const { fields, onEdit } = useEditedFields(state);
   return (
     // noValidate: the server's messages are the single source of error text.
-    <form action={action} noValidate>
-      <Combined.Provider value={{ errors: state?.fieldErrors ?? {}, values: state?.values }}>{children}</Combined.Provider>
+    <form action={action} noValidate onChange={onEdit}>
+      <Combined.Provider value={{ errors: withoutEdited(state?.fieldErrors ?? {}, fields), values: state?.values }}>{children}</Combined.Provider>
       <div className="sticky bottom-0 z-10 -mx-4 flex flex-wrap items-center gap-3 border-t bg-background px-4 py-4 sm:mx-0 sm:px-0">
         <Button type="submit" size="lg" disabled={pending} className="min-h-11">
           {pending ? "Saving…" : submitLabel}
@@ -52,10 +66,11 @@ export function SectionForm({
 
 function StandaloneSection({ section, label, children }: { section: ProfileSection; label: string; children: (state: FieldState) => ReactNode }) {
   const [state, action, pending] = useActionState<SectionState, FormData>(saveProfileSection, undefined);
+  const { fields, onEdit } = useEditedFields(state);
   return (
-    <form action={action} noValidate className="space-y-6">
+    <form action={action} noValidate onChange={onEdit} className="space-y-6">
       <input type="hidden" name="section" value={section} />
-      {children({ errors: state?.fieldErrors ?? {}, values: state?.values })}
+      {children({ errors: withoutEdited(state?.fieldErrors ?? {}, fields), values: state?.values })}
       <div className="flex flex-wrap items-center gap-3">
         <Button type="submit" variant="outline" disabled={pending} className="min-h-11">
           {pending ? "Saving…" : `Save ${label}`}

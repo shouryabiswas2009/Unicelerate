@@ -58,6 +58,39 @@ jobs:
       - name: Links on the public pages work (no 404s, no login redirects)
         run: npm run check:links
 
+  # The logged-in happy path (sign up → profile → recommendations → save →
+  # compare → application → offers → delete account) in a real browser,
+  # against the local Supabase stand-in: real Postgres with every migration,
+  # seed and row level security, in memory. No secrets, no real database.
+  e2e-logged-in:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: 1
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install the test browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Logged-in happy path
+        run: npm run test:e2e:local
+
+      - name: Keep the report when something fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-logged-in
+          path: test-results/
+          retention-days: 7
+
   # The public pages in a real browser, against a production build whose
   # database is a small fake serving the real shared list (data/fixtures):
   # smoke tests and an accessibility check (axe; serious/critical fail).

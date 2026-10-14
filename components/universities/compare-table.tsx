@@ -252,7 +252,9 @@ const ROWS: Row[] = [
   },
   {
     label: "Popular programs",
-    render: ({ university }) => university.popular_programs.join(", "),
+    // An empty cell looked like a broken box; say so instead.
+    render: ({ university }) =>
+      university.popular_programs.length > 0 ? university.popular_programs.join(", ") : muted("Not available"),
   },
   // Campus life: the data coverage of each kind, then a row per published
   // proxy (shown when at least one school has it). Never highlighted as

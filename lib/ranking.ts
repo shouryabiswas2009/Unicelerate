@@ -181,19 +181,28 @@ export const CHANCE_GROUPS: AdmissionChance[] = ["Reach", "Match", "Safety", "No
 
 // Groups like a counsellor's list: each group sorted by quality (strongest
 // first), with schools failing the fit gate at the end of their group.
-export function groupByChance<T extends Ranked>(entries: T[]): { chance: AdmissionChance; entries: T[] }[] {
-  return CHANCE_GROUPS.map((chance) => ({
-    chance,
-    entries: entries
-      .filter((e) => e.match.chance === chance)
-      .sort(
-        (a, b) =>
-          gateFirst(a, b) ||
-          (b.rank.quality ?? QUALITY_UNKNOWN) - (a.rank.quality ?? QUALITY_UNKNOWN) ||
-          b.rank.plausibility - a.rank.plausibility ||
-          byName(a, b)
-      ),
-  })).filter((group) => group.entries.length > 0);
+// keepOrder: the entries are already in an order the student picked
+// ("Lowest tuition" and so on), so each group keeps it instead of being
+// re-sorted by strength (which made those sorts do nothing here).
+export function groupByChance<T extends Ranked>(
+  entries: T[],
+  { keepOrder = false }: { keepOrder?: boolean } = {}
+): { chance: AdmissionChance; entries: T[] }[] {
+  return CHANCE_GROUPS.map((chance) => {
+    const inGroup = entries.filter((e) => e.match.chance === chance);
+    return {
+      chance,
+      entries: keepOrder
+        ? inGroup
+        : inGroup.sort(
+            (a, b) =>
+              gateFirst(a, b) ||
+              (b.rank.quality ?? QUALITY_UNKNOWN) - (a.rank.quality ?? QUALITY_UNKNOWN) ||
+              b.rank.plausibility - a.rank.plausibility ||
+              byName(a, b)
+          ),
+    };
+  }).filter((group) => group.entries.length > 0);
 }
 
 // ─── Neutral values for unknowns ─────────────────────────────────────────

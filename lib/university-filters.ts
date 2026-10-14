@@ -295,7 +295,9 @@ export function buildBoard(
   // Grouped view: no pages, just the top of each group. A filter on one
   // chance (from "See all") shows the plain list instead.
   if (state.group && state.filters.chances.length === 0) {
-    const groups = groupByChance(filtered).map((g) => ({
+    // The default order is the groups' own; any other sort the student
+    // chose applies inside each group.
+    const groups = groupByChance(filtered, { keepOrder: state.filters.sortBy !== "best" }).map((g) => ({
       chance: g.chance,
       entries: g.entries.slice(0, GROUP_PREVIEW),
       total: g.entries.length,

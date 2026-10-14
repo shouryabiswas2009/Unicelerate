@@ -335,6 +335,19 @@ describe("grouped view", () => {
     expect(names(board.groups![1].entries)).toEqual(["Match B", "Match A"]);
   });
 
+  it("applies the student's sort inside each group (it used to be ignored)", () => {
+    // Found in the logged-in test pass: "Lowest tuition" didn't reorder
+    // "Not enough data", where most non-US schools sit.
+    const cheapWeak = entry("Cheap weak", { tuition: 9000 }, { chance: "Not enough data", quality: 0.2 });
+    const dearStrong = entry("Dear strong", { tuition: 50000 }, { chance: "Not enough data", quality: 0.9 });
+    const unknown = entry("Unknown fee", { tuition: null }, { chance: "Not enough data", quality: 1 });
+    const order = (sortBy: "best" | "tuition-asc" | "tuition-desc") =>
+      names(buildBoard([dearStrong, unknown, cheapWeak], { ...state, filters: { ...NO_FILTERS, sortBy } }, { withFeatured: false }).groups![0].entries);
+    expect(order("tuition-asc")).toEqual(["Cheap weak", "Dear strong", "Unknown fee"]);
+    expect(order("tuition-desc")).toEqual(["Dear strong", "Cheap weak", "Unknown fee"]);
+    expect(order("best")).toEqual(["Unknown fee", "Dear strong", "Cheap weak"]); // the groups' own order, strongest first
+  });
+
   it("shows the plain list when one group is picked (“See all”)", () => {
     const board = buildBoard([entry("A", {}, { chance: "Reach" })], { ...state, filters: { ...NO_FILTERS, chances: ["Reach"] } }, { withFeatured: false });
     expect(board.groups).toBeUndefined();

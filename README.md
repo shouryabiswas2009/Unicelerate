@@ -112,7 +112,19 @@ npm run dev                        # http://localhost:3000
 Database setup is in [Getting started](#getting-started) below. Checks:
 `npm test`, `npm run lint`, `npx tsc --noEmit`, `npm run db:check`,
 `npm run build`, then `npm run test:e2e:build && npm run test:e2e` for the
-browser tests. Interview notes on the main decisions:
+public-page browser tests and `npm run test:e2e:local` for the logged-in
+happy path (sign up to delete account).
+
+**Logged-in testing without the real database.** `npm run dev:local` runs
+the app on http://localhost:3200 against a local Supabase stand-in
+([`scripts/local-supabase/server.mjs`](scripts/local-supabase/server.mjs)):
+real PostgreSQL (PGlite, in memory) with every migration and seed, so row
+level security, constraints and "delete my account" are the real ones,
+plus a small auth service and the part of the REST API the app uses.
+Accounts live only in memory; the test account is in
+[`e2e/local-test-account.ts`](e2e/local-test-account.ts). No Docker needed.
+
+Interview notes on the main decisions:
 [docs/INTERVIEW-NOTES.md](docs/INTERVIEW-NOTES.md).
 
 ## Getting started

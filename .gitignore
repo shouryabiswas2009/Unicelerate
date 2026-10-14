@@ -50,6 +50,8 @@ ml/data/raw/*
 !ml/data/raw/.gitkeep
 # End-to-end test build and reports
 /.next-e2e/
+/.next-local/
+/.next-local-e2e/
 /test-results/
 /playwright-report/
 /.lighthouseci/

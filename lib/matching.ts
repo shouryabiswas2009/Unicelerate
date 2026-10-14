@@ -435,6 +435,9 @@ function rankingSource(university: UniversitySummary): string {
 function fromWhere(university: UniversitySummary): string {
   if (university.source === "College Scorecard") return "College Scorecard";
   if (university.source === "user-entered") return "entered by you";
+  // Curated figures were read on the university's own pages, so they must
+  // never be called illustrative (found in the logged-in test pass).
+  if (university.source === "curated") return "the school's own website";
   return "illustrative";
 }
 

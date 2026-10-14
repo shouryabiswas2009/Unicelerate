@@ -17,6 +17,8 @@ const eslintConfig = defineConfig([
     ".next/**",
     // The end-to-end build and test/Lighthouse output.
     ".next-e2e/**",
+    ".next-local/**",
+    ".next-local-e2e/**",
     "test-results/**",
     "playwright-report/**",
     ".lighthouseci/**",

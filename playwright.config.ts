@@ -20,6 +20,8 @@ export const E2E_ENV = {
 
 export default defineConfig({
   testDir: "e2e",
+  // The logged-in path needs the local Supabase stand-in (playwright.local.config.ts).
+  testIgnore: "logged-in.spec.ts",
   timeout: 30_000,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,

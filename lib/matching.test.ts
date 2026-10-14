@@ -377,6 +377,13 @@ describe("what matters most (focuses)", () => {
     );
   });
 
+  it("says a curated school's co-op came from its own website, never 'illustrative'", () => {
+    const curated = makeUniversity({ source: "curated", coop_program: "optional" });
+    const { strengths } = explainMatch(profileWith(["work_experience"]), curated);
+    expect(strengths).toContain("Has an optional co-op / internship program (the school's own website).");
+    expect(strengths.join(" ")).not.toContain("illustrative");
+  });
+
   it("scores mandatory co-op above optional above none", () => {
     const profile = profileWith(["work_experience"]);
     const points = (coop_program: "mandatory" | "optional" | "none") =>

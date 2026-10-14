@@ -21,6 +21,15 @@
         "3002"
       ],
       "port": 3002
+    },
+    {
+      "name": "studycompass-local",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev:local"
+      ],
+      "port": 3200
     }
   ]
 }
