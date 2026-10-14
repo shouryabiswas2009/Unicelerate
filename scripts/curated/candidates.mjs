@@ -9,8 +9,10 @@
 // city and the official website. Responses are cached in
 // ml/data/raw/candidates/ (git-ignored) and fetched one per second.
 //
-//   node scripts/curated/candidates.mjs Canada "United Kingdom" …
+//   node scripts/curated/candidates.mjs Canada "United Kingdom" … [--top=N]
 //   → data/curated/candidates.csv (reviewed by hand before any row is added)
+//   --top=N keeps the N largest per country (by Leiden publications), so a
+//   country with hundreds of listed universities doesn't need them all.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseCsv, toCsv } from "./csv.mjs";
@@ -21,7 +23,8 @@ const withoutLine = (r) => Object.fromEntries(Object.entries(r).filter(([k]) => 
 const ROOT = join(import.meta.dirname, "..", "..");
 const CACHE = join(ROOT, "ml", "data", "raw", "candidates", "ror");
 mkdirSync(CACHE, { recursive: true });
-const countries = process.argv.slice(2);
+const top = Number(process.argv.find((a) => a.startsWith("--top="))?.slice(6) ?? Infinity);
+const countries = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 if (countries.length === 0) {
   console.error('Usage: node scripts/curated/candidates.mjs Canada "United Kingdom" …');
   process.exit(1);
@@ -56,7 +59,7 @@ const inLeiden = (r, country) =>
 
 const rows = [];
 for (const country of countries) {
-  const inCountry = leiden.filter((r) => inLeiden(r, country) && !ours.has(r.ror)).sort((a, b) => b.p - a.p);
+  const inCountry = leiden.filter((r) => inLeiden(r, country) && !ours.has(r.ror)).sort((a, b) => b.p - a.p).slice(0, top);
   for (const l of inCountry) {
     const org = await ror(l.ror);
     if (LEIDEN_COUNTRY[country] && org.locations?.[0]?.geonames_details?.country_name !== country) continue;

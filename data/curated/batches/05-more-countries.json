@@ -1,0 +1,433 @@
+{
+  "data_year": "2026-27",
+  "checked_on": "2026-10-14",
+  "rows": [
+    {
+      "ror": "03w5sq511",
+      "curated_id": "iitkgp",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: the foreign-national fee page found is for 2019-20; tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "00582g326",
+      "curated_id": "iitr",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "notes": "Needs hand-checking: the foreign-national fees are in a 2025-26 PDF that couldn't be read here; tuition left empty"
+    },
+    {
+      "ror": "04gzb2213",
+      "curated_id": "du",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: foreign students pay Foreign Students Registry fees plus a course fee set by each college; tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "00qzypv28",
+      "curated_id": "vit",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "notes": "Needs hand-checking: the international fee figures aren't in the page text; tuition left empty"
+    },
+    {
+      "ror": "02xzytt36",
+      "curated_id": "manipal",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: the 2026 Foreign/NRI fee schedule is a linked document that wasn't read; tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "05f82e368",
+      "curated_id": "u-paris",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: the university's moratorium (a partial exemption, €178) and the May 2026 decree limiting exemptions conflict for new students; tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "02rx3b187",
+      "curated_id": "uga",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: 2026-27 is a transition year for exemptions and the fee page doesn't give a clear figure for new non-EU students; tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "035xkbk20",
+      "curated_id": "amu",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 2902,
+        "currency": "EUR",
+        "basis": "Differentiated registration fee for first-time non-EU students in a licence (bachelor's); some may get a partial exemption",
+        "year": "2026-27",
+        "url": "https://www.univ-amu.fr/en/international-students/international-students-degree-programs/differential-tuition-fees-for-european-union-students"
+      }
+    },
+    {
+      "ror": "057qpr032",
+      "curated_id": "ubordeaux",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 2902,
+        "currency": "EUR",
+        "basis": "Differentiated registration fee for first-time non-EU students in a licence (bachelor's); some may get a partial exemption",
+        "year": "2026-27",
+        "url": "https://www.u-bordeaux.fr/formation/candidatures-et-inscriptions/cout-des-etudes"
+      }
+    },
+    {
+      "ror": "02k7v4d05",
+      "curated_id": "unibe",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 5100,
+        "currency": "CHF",
+        "basis": "(Regular tuition CHF 850 + CHF 1,700 surcharge for non-Swiss students without Swiss residence) per semester × 2; semester fee extra",
+        "year": "from autumn semester 2026",
+        "url": "https://www.unibe.ch/studies/organizational_matters/renewal_of_semester_registration/fees/index_eng.html"
+      }
+    },
+    {
+      "ror": "02s6k3f65",
+      "curated_id": "unibas",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 1700,
+        "currency": "CHF",
+        "basis": "CHF 850 per semester × 2, the same for all students",
+        "year": "year not stated on the page (checked 2026-10-14)",
+        "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Tuition-Fees-.html"
+      }
+    },
+    {
+      "ror": "019whta54",
+      "curated_id": "unil",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 1160,
+        "currency": "CHF",
+        "basis": "Regular tuition and semester fees CHF 580 per semester × 2, the same for all nationalities",
+        "year": "year not stated on the page (checked 2026-10-14)",
+        "url": "https://www.unil.ch/unil/en/home/menuinst/etudier/immatriculations-et-inscriptions/etudiants-unil/taxes.html"
+      }
+    },
+    {
+      "ror": "0561a3s31",
+      "curated_id": "unisg",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 6687,
+        "currency": "CHF",
+        "basis": "Bachelor's tuition for students from outside Switzerland: CHF 3,343.50 per semester × 2",
+        "year": "year not stated on the page (checked 2026-10-14)",
+        "url": "https://www.unisg.ch/en/studying/programmes/bachelor/faq-bachelors/"
+      }
+    },
+    {
+      "ror": "01tm6cn81",
+      "curated_id": "gu",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 96000,
+        "currency": "SEK",
+        "basis": "Bachelor's Programme in Business and Economics: full education cost SEK 288,000 for three years, as a yearly figure (÷ 3); other programmes cost more",
+        "year": "autumn 2026 start",
+        "url": "https://www.gu.se/en/study-gothenburg/bachelors-programme-in-business-and-economics-s1eka"
+      }
+    },
+    {
+      "ror": "05ynxx418",
+      "curated_id": "liu",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 107400,
+        "currency": "SEK",
+        "basis": "Bachelor's programme in Language, Literature and Media (180 credits): SEK 322,200 in total, as a yearly figure (÷ 3)",
+        "year": "year not stated on the page (checked 2026-10-14)",
+        "url": "https://liu.se/en/education/program/f7ksm"
+      }
+    },
+    {
+      "ror": "05kb8h459",
+      "curated_id": "umu",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 96600,
+        "currency": "SEK",
+        "basis": "Lowest yearly rate for full-time programmes (SEK 96,600–395,700 per year by field)",
+        "year": "year not stated on the page (checked 2026-10-14)",
+        "url": "https://www.umu.se/en/education/application-and-admission/tuition-fees/new-student/"
+      }
+    },
+    {
+      "ror": "054pv6659",
+      "curated_id": "uibk",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 1453.44,
+        "currency": "EUR",
+        "basis": "Tuition fee for non-EU (third-country) degree students: €726.72 per semester × 2; Austrian student union (ÖH) fee extra",
+        "year": "current policy (checked 2026-10-14)",
+        "url": "https://www.uibk.ac.at/en/admission-department/admission/tuition-fee-and-financial-support/"
+      }
+    },
+    {
+      "ror": "00d7xrm67",
+      "curated_id": "tugraz",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 1453.44,
+        "currency": "EUR",
+        "basis": "Tuition fee for non-EU (third-country) degree students: €726.72 per semester × 2; Austrian student union (ÖH) fee extra",
+        "year": "current policy (checked 2026-10-14)",
+        "url": "https://www.tugraz.at/en/studying-and-teaching/studying-at-tu-graz/prospective-students/financial-matters/tuition-fees-and-the-austrian-student-union-fee"
+      }
+    },
+    {
+      "ror": "01faaaf77",
+      "curated_id": "unigraz",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 1453.44,
+        "currency": "EUR",
+        "basis": "Tuition fee for non-EU (third-country) degree students: €726.72 per semester × 2; Austrian student union (ÖH) fee extra",
+        "year": "current policy (checked 2026-10-14)",
+        "url": "https://studienabteilung.uni-graz.at/en/tuition-fee/degree-programme-students/international-degree-students/"
+      }
+    },
+    {
+      "ror": "008x57b05",
+      "curated_id": "uantwerpen",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 4300,
+        "currency": "EUR",
+        "basis": "Increased rate for bachelor's students of non-EEA nationality: €1,000 + €55 per credit, €4,300 for 60 credits",
+        "year": "2026-27",
+        "url": "https://www.uantwerpen.be/en/study/admission-and-enrolment/enrolment/tuition-fees/tuition-fees-2026-2027/"
+      }
+    },
+    {
+      "ror": "02495e989",
+      "curated_id": "uclouvain",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 5369,
+        "currency": "EUR",
+        "basis": "Full registration fee €1,194 plus the €4,175 additional contribution for non-EU students not on the ARES exemption list",
+        "year": "2026-27",
+        "url": "https://uclouvain.be/en/enrolment/registration-fee-amount"
+      }
+    },
+    {
+      "ror": "01r9htc13",
+      "curated_id": "ulb",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 5369,
+        "currency": "EUR",
+        "basis": "Full registration fee €1,194 plus the €4,175 additional contribution for non-EU students not on the ARES exemption list",
+        "year": "2026-27",
+        "url": "https://www.ulb.be/en/enrolment/tuitions-fees"
+      }
+    },
+    {
+      "ror": "04m5j1k67",
+      "curated_id": "aau",
+      "degree_levels": "Undergraduate;PhD",
+      "notes": "Needs hand-checking: the bachelor's fee page gives no current amount; tuition left empty"
+    },
+    {
+      "ror": "03yrrjy16",
+      "curated_id": "sdu",
+      "degree_levels": "Undergraduate;PhD",
+      "notes": "Needs hand-checking: bachelor's fees are only on individual programme pages; tuition left empty"
+    },
+    {
+      "ror": "033003e23",
+      "curated_id": "tampere",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 10000,
+        "currency": "EUR",
+        "basis": "Lowest of the tuition range for English-taught programmes (€10,000–12,000 per academic year)",
+        "year": "year not stated on the page (checked 2026-10-14)",
+        "url": "https://www.tuni.fi/en/tau/financial-matters/tuition-fees-and-scholarships"
+      }
+    },
+    {
+      "ror": "05vghhr25",
+      "curated_id": "utu",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 10000,
+        "currency": "EUR",
+        "basis": "Lowest of the tuition range for non-EU/EEA students (€10,000–12,000 per academic year, by programme)",
+        "year": "year not stated on the page (checked 2026-10-14)",
+        "url": "https://www.utu.fi/en/study-at-utu/financial-matters-degree-students"
+      }
+    },
+    {
+      "ror": "03yj89h83",
+      "curated_id": "oulu",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 10000,
+        "currency": "EUR",
+        "basis": "First-year tuition for bachelor's programmes such as Computer Science and Engineering (before any Early Bird discount)",
+        "year": "autumn 2027 start",
+        "url": "https://www.oulu.fi/en/apply/how-apply/university-oulu-tuition-fees-and-scholarships-for-international-applicants"
+      }
+    },
+    {
+      "ror": "03zga2b32",
+      "curated_id": "uib",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: the fee table lists programmes without saying which are bachelor's degrees; tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "00wge5k78",
+      "curated_id": "uit",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 100500,
+        "currency": "NOK",
+        "basis": "Category 1 (humanities, social sciences, economics and administration) tuition per year for non-EU/EEA students, including a NOK 10,000 administrative fee",
+        "year": "year not stated on the page (checked 2026-10-14)",
+        "url": "https://en.uit.no/admission"
+      }
+    },
+    {
+      "ror": "02qte9q33",
+      "curated_id": "uis",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 85000,
+        "currency": "NOK",
+        "basis": "Bachelor in Dance, the only English-taught bachelor's programme, per 60 ECTS (one year)",
+        "year": "2026-27",
+        "url": "https://www.uis.no/en/studies/how-much-are-the-tuition-fees"
+      }
+    },
+    {
+      "ror": "00240q980",
+      "curated_id": "unipd",
+      "degree_levels": "",
+      "tuition": {
+        "local": 2790,
+        "currency": "EUR",
+        "basis": "Fixed all-inclusive fee for non-EU students not resident in Italy, Group A (Humanities) degree programmes",
+        "year": "current policy (since 2023/24)",
+        "url": "https://www.unipd.it/en/tuition-fees"
+      },
+      "notes": "Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "00p4k0j84",
+      "curated_id": "kyushu",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 535800,
+        "currency": "JPY",
+        "basis": "Annual tuition for undergraduate (school) students; enrolment fee ¥282,000 extra",
+        "year": "year not stated on the page (checked 2026-10-14)",
+        "url": "https://www.kyushu-u.ac.jp/en/admission/fees/expenses/"
+      }
+    },
+    {
+      "ror": "02rgb2k63",
+      "curated_id": "usm",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "notes": "Needs hand-checking: international fees are in a PDF that couldn't be read here; tuition left empty"
+    },
+    {
+      "ror": "00bw8d226",
+      "curated_id": "ukm",
+      "degree_levels": "Undergraduate;Masters",
+      "notes": "Needs hand-checking: only a medicine fee table was found; tuition left empty"
+    },
+    {
+      "ror": "02e91jd64",
+      "curated_id": "upm",
+      "degree_levels": "Undergraduate;Masters",
+      "notes": "Needs hand-checking: international fees are in a PDF that couldn't be read here; tuition left empty"
+    },
+    {
+      "ror": "026w31v75",
+      "curated_id": "utm",
+      "degree_levels": "Undergraduate;Masters",
+      "tuition": {
+        "local": 13750,
+        "currency": "MYR",
+        "basis": "Education programmes: RM55,000 total tuition over 8 semesters, as a yearly figure (÷ 4); registration and service fees extra",
+        "year": "year not stated on the page (checked 2026-10-14)",
+        "url": "https://admission.utm.my/programme-fees-ug-international/"
+      }
+    },
+    {
+      "ror": "02p0gd045",
+      "curated_id": "ucm",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "notes": "Needs hand-checking: non-EU students without Spanish residence pay the 4th-enrolment price, whose table isn't in the page text; tuition left empty"
+    },
+    {
+      "ror": "04njjy449",
+      "curated_id": "ugr",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 757.2,
+        "currency": "EUR",
+        "basis": "€12.62 per ECTS credit (first enrolment) × 60 credits, a normal full-time year; the same public prices for international students; administrative fees extra",
+        "year": "2026-27",
+        "url": "https://www.ugr.es/en/study/undergraduate/fees-funding"
+      }
+    },
+    {
+      "ror": "03yxnpp24",
+      "curated_id": "us-sevilla",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 757.2,
+        "currency": "EUR",
+        "basis": "€12.62 per ECTS credit (first enrolment) × 60 credits, a normal full-time year; the same public prices for international students; administrative fees extra",
+        "year": "2026-27",
+        "url": "https://cat.us.es/que-precios-debo-abonar-como-estudiante-internacional/que-precios-debo-abonar-como-estudiante"
+      }
+    },
+    {
+      "ror": "052g8jq94",
+      "curated_id": "uab",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: fees for non-resident non-EU students are set by a separate tariff that wasn't found; tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "00se2k293",
+      "curated_id": "nycu",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 99080,
+        "currency": "TWD",
+        "basis": "Lowest estimated undergraduate tuition, Chiaotung campus (NT$49,540–57,890 per semester) × 2",
+        "year": "estimate on the page (checked 2026-10-14)",
+        "url": "https://oia.nycu.edu.tw/oia/en/app/artwebsite/view?module=artwebsite&id=793&serno=956748ed-280d-465c-a69e-c9ce53c2561e"
+      }
+    },
+    {
+      "ror": "01b8kcc49",
+      "curated_id": "ncku",
+      "degree_levels": "Undergraduate",
+      "notes": "Needs hand-checking: only an estimated range based on an older year's standard was found; tuition left empty"
+    },
+    {
+      "ror": "00zdnkx70",
+      "curated_id": "nthu",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 92200,
+        "currency": "TWD",
+        "basis": "Tuition and miscellaneous fees for international students in Humanities and Social Sciences: NT$46,100 per semester × 2",
+        "year": "year not stated on the page (checked 2026-10-14)",
+        "url": "https://apply.nthu.edu.tw/article/112-tuition-fees"
+      }
+    },
+    {
+      "ror": "00q09pe49",
+      "curated_id": "ntust",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: the undergraduate fee table is a PDF that couldn't be read here; tuition left empty. Degree levels: not confirmed on the pages read"
+    }
+  ]
+}

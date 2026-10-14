@@ -49,3 +49,16 @@ country-wide rate would mislead most students, so the app says "No
 refusal-rate figure shown: official rates vary by nationality" and never
 calls a country easy or hard. Adding a nationality question would make the
 UK and Australian figures usable, with their source, year and check date.
+
+## Which non-US universities are listed, and where their figures come from
+
+Checked 2026-10-14 (batches in `data/curated/batches/`).
+
+| Source | Licence / terms | Decision |
+| --- | --- | --- |
+| **CWTS Leiden Ranking Open Edition 2025** | CC0 1.0. | **Used to choose schools**: a university is a candidate when it's in Leiden (at least 1,500 papers), its country is one we cover, and ROR calls it an "education" organisation (`scripts/curated/candidates.mjs`). Not a ranking position: only whether it's listed. Postgraduate-only, distance and specialist medical institutions are left out by hand. |
+| **ROR** | CC0 1.0. | **Used for identity**: official name, other names, city and website of each new school. |
+| **Australian Government CRICOS register** (data.gov.au) | CC BY 2.5 AU. | **Used** for Australian international tuition (a comparable bachelor's course, whole-course fee ÷ weeks × 52) and degree levels. Credited on /credits. |
+| **Each university's own fee page** | Facts, linked. | **Used** for every other fee: read from the page (`fetch-page.mjs`, `amounts.mjs`), with the basis, year, link and checked date on the row. When the page is blocked, a PDF we can't read, a calculator, or gives no figure for the year, the fee is left empty and the school is listed in `docs/HAND-CHECK.md`. |
+| **Each university's homepage and study pages** | Facts, linked. | **Used** for degree levels: a level is listed only when the official pages mention it; when undergraduate study isn't shown, the list is left empty (unknown) rather than partial. |
+| **QS, THE, U.S. News, ShanghaiRanking, Niche** and similar | See the table at the top. | **Not used**, including for choosing which schools to add. |

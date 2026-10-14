@@ -79,9 +79,10 @@ export function toText(html) {
 }
 
 export const DEGREE_PATTERNS = {
-  Undergraduate: /undergraduate|bachelor|baccalaur|licence|grundständig|bachelorstudium/i,
-  Masters: /master|maîtrise|postgraduate|graduate studies|graduate programs|graduate school/i,
-  PhD: /\bph\.?\s?d\b|doctoral|doctorate|doctorat|promotion|research degree/i,
+  // Includes the Spanish "grado" and Italian "laurea triennale" (bachelor's).
+  Undergraduate: /undergraduate|bachelor|baccalaur|licence|grundständig|bachelorstudium|\bgrados?\b|laurea triennale|lauree triennali/i,
+  Masters: /master|máster|maîtrise|laurea magistrale|postgraduate|graduate studies|graduate programs|graduate school/i,
+  PhD: /\bph\.?\s?d\b|doctoral|doctorate|doctorat|doctorado|dottorato|promotion|research degree/i,
 };
 
 // The degree levels a page's text mentions, in a fixed order.

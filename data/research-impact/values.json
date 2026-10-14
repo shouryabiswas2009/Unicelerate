@@ -665,6 +665,24 @@
   "licence": "CC0 1.0",
   "checked_on": "2026-10-07"
  },
+ "curated:tugraz": {
+  "overall": 48,
+  "pp_top10": 0.083,
+  "publications": 2598,
+  "fields": {
+   "biomedical": 65,
+   "life_earth": 80,
+   "math_cs": 38,
+   "physical_eng": 40,
+   "social_humanities": 25
+  },
+  "ror": "00d7xrm67",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
  "curated:tuwien": {
   "overall": 61,
   "pp_top10": 0.095,
@@ -677,6 +695,42 @@
    "social_humanities": 23
   },
   "ror": "04d836q62",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:uibk": {
+  "overall": 76,
+  "pp_top10": 0.11,
+  "publications": 3712,
+  "fields": {
+   "biomedical": 80,
+   "life_earth": 64,
+   "math_cs": 81,
+   "physical_eng": 56,
+   "social_humanities": 70
+  },
+  "ror": "054pv6659",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:unigraz": {
+  "overall": 81,
+  "pp_top10": 0.115,
+  "publications": 1843,
+  "fields": {
+   "biomedical": 69,
+   "life_earth": 75,
+   "math_cs": 84,
+   "physical_eng": 64,
+   "social_humanities": 73
+  },
+  "ror": "01faaaf77",
   "source": "CWTS Leiden Ranking Open Edition 2025",
   "source_url": "https://doi.org/10.5281/zenodo.17473224",
   "data_year": "2020–2023",
@@ -731,6 +785,60 @@
    "social_humanities": 72
   },
   "ror": "05f950310",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:uclouvain": {
+  "overall": 75,
+  "pp_top10": 0.11,
+  "publications": 4261,
+  "fields": {
+   "biomedical": 82,
+   "life_earth": 60,
+   "math_cs": 38,
+   "physical_eng": 74,
+   "social_humanities": 61
+  },
+  "ror": "02495e989",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:ulb": {
+  "overall": 71,
+  "pp_top10": 0.105,
+  "publications": 3987,
+  "fields": {
+   "biomedical": 78,
+   "life_earth": 41,
+   "math_cs": 35,
+   "physical_eng": 77,
+   "social_humanities": 42
+  },
+  "ror": "01r9htc13",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:uantwerpen": {
+  "overall": 84,
+  "pp_top10": 0.12,
+  "publications": 4997,
+  "fields": {
+   "biomedical": 87,
+   "life_earth": 71,
+   "math_cs": 49,
+   "physical_eng": 86,
+   "social_humanities": 65
+  },
+  "ror": "008x57b05",
   "source": "CWTS Leiden Ranking Open Edition 2025",
   "source_url": "https://doi.org/10.5281/zenodo.17473224",
   "data_year": "2020–2023",
@@ -1511,6 +1619,24 @@
   "licence": "CC0 1.0",
   "checked_on": "2026-10-07"
  },
+ "curated:aau": {
+  "overall": 79,
+  "pp_top10": 0.113,
+  "publications": 5970,
+  "fields": {
+   "biomedical": 50,
+   "life_earth": 55,
+   "math_cs": 92,
+   "physical_eng": 87,
+   "social_humanities": 44
+  },
+  "ror": "04m5j1k67",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
  "curated:aarhus": {
   "overall": 82,
   "pp_top10": 0.118,
@@ -1565,6 +1691,24 @@
   "licence": "CC0 1.0",
   "checked_on": "2026-10-07"
  },
+ "curated:sdu": {
+  "overall": 77,
+  "pp_top10": 0.111,
+  "publications": 5884,
+  "fields": {
+   "biomedical": 73,
+   "life_earth": 77,
+   "math_cs": 63,
+   "physical_eng": 84,
+   "social_humanities": 64
+  },
+  "ror": "03yrrjy16",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
  "curated:aalto": {
   "overall": 89,
   "pp_top10": 0.129,
@@ -1583,6 +1727,24 @@
   "licence": "CC0 1.0",
   "checked_on": "2026-10-07"
  },
+ "curated:tampere": {
+  "overall": 64,
+  "pp_top10": 0.098,
+  "publications": 4474,
+  "fields": {
+   "biomedical": 44,
+   "life_earth": 34,
+   "math_cs": 72,
+   "physical_eng": 48,
+   "social_humanities": 70
+  },
+  "ror": "033003e23",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
  "curated:helsinki": {
   "overall": 83,
   "pp_top10": 0.118,
@@ -1595,6 +1757,60 @@
    "social_humanities": 65
   },
   "ror": "040af2s02",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:oulu": {
+  "overall": 79,
+  "pp_top10": 0.113,
+  "publications": 3825,
+  "fields": {
+   "biomedical": 53,
+   "life_earth": 72,
+   "math_cs": 94,
+   "physical_eng": 63,
+   "social_humanities": 78
+  },
+  "ror": "03yj89h83",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:utu": {
+  "overall": 75,
+  "pp_top10": 0.109,
+  "publications": 4221,
+  "fields": {
+   "biomedical": 76,
+   "life_earth": 42,
+   "math_cs": 68,
+   "physical_eng": 47,
+   "social_humanities": 75
+  },
+  "ror": "05vghhr25",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:amu": {
+  "overall": 70,
+  "pp_top10": 0.104,
+  "publications": 5472,
+  "fields": {
+   "biomedical": 76,
+   "life_earth": 47,
+   "math_cs": 37,
+   "physical_eng": 67,
+   "social_humanities": 42
+  },
+  "ror": "035xkbk20",
   "source": "CWTS Leiden Ranking Open Edition 2025",
   "source_url": "https://doi.org/10.5281/zenodo.17473224",
   "data_year": "2020–2023",
@@ -1627,6 +1843,60 @@
    "social_humanities": 61
   },
   "ror": "02en5vm52",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:ubordeaux": {
+  "overall": 76,
+  "pp_top10": 0.11,
+  "publications": 4983,
+  "fields": {
+   "biomedical": 89,
+   "life_earth": 67,
+   "math_cs": 37,
+   "physical_eng": 54,
+   "social_humanities": 56
+  },
+  "ror": "057qpr032",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:uga": {
+  "overall": 58,
+  "pp_top10": 0.092,
+  "publications": 5421,
+  "fields": {
+   "biomedical": 73,
+   "life_earth": 70,
+   "math_cs": 36,
+   "physical_eng": 51,
+   "social_humanities": 29
+  },
+  "ror": "02rx3b187",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:u-paris": {
+  "overall": 91,
+  "pp_top10": 0.133,
+  "publications": 12286,
+  "fields": {
+   "biomedical": 95,
+   "life_earth": 88,
+   "math_cs": 70,
+   "physical_eng": 69,
+   "social_humanities": 38
+  },
+  "ror": "05f82e368",
   "source": "CWTS Leiden Ranking Open Edition 2025",
   "source_url": "https://doi.org/10.5281/zenodo.17473224",
   "data_year": "2020–2023",
@@ -2240,6 +2510,24 @@
   "licence": "CC0 1.0",
   "checked_on": "2026-10-07"
  },
+ "curated:iitkgp": {
+  "overall": 51,
+  "pp_top10": 0.086,
+  "publications": 7182,
+  "fields": {
+   "biomedical": 37,
+   "life_earth": 66,
+   "math_cs": 39,
+   "physical_eng": 42,
+   "social_humanities": 60
+  },
+  "ror": "03w5sq511",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
  "curated:iitm": {
   "overall": 29,
   "pp_top10": 0.063,
@@ -2252,6 +2540,78 @@
    "social_humanities": 28
   },
   "ror": "03v0r5n49",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:iitr": {
+  "overall": 57,
+  "pp_top10": 0.092,
+  "publications": 5852,
+  "fields": {
+   "biomedical": 78,
+   "life_earth": 53,
+   "math_cs": 64,
+   "physical_eng": 42,
+   "social_humanities": 76
+  },
+  "ror": "00582g326",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:manipal": {
+  "overall": 48,
+  "pp_top10": 0.083,
+  "publications": 5815,
+  "fields": {
+   "biomedical": 31,
+   "life_earth": 78,
+   "math_cs": 39,
+   "physical_eng": 75,
+   "social_humanities": 29
+  },
+  "ror": "02xzytt36",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:du": {
+  "overall": 32,
+  "pp_top10": 0.066,
+  "publications": 7590,
+  "fields": {
+   "biomedical": 16,
+   "life_earth": 52,
+   "math_cs": 39,
+   "physical_eng": 33,
+   "social_humanities": 25
+  },
+  "ror": "04gzb2213",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:vit": {
+  "overall": 61,
+  "pp_top10": 0.096,
+  "publications": 10640,
+  "fields": {
+   "biomedical": 72,
+   "life_earth": 32,
+   "math_cs": 56,
+   "physical_eng": 54,
+   "social_humanities": 49
+  },
+  "ror": "00qzypv28",
   "source": "CWTS Leiden Ranking Open Edition 2025",
   "source_url": "https://doi.org/10.5281/zenodo.17473224",
   "data_year": "2020–2023",
@@ -2472,6 +2832,24 @@
   "licence": "CC0 1.0",
   "checked_on": "2026-10-07"
  },
+ "curated:unipd": {
+  "overall": 83,
+  "pp_top10": 0.119,
+  "publications": 12242,
+  "fields": {
+   "biomedical": 91,
+   "life_earth": 63,
+   "math_cs": 58,
+   "physical_eng": 63,
+   "social_humanities": 70
+  },
+  "ror": "00240q980",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
  "curated:kyoto": {
   "overall": 39,
   "pp_top10": 0.073,
@@ -2484,6 +2862,24 @@
    "social_humanities": 27
   },
   "ror": "02kpeqv85",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:kyushu": {
+  "overall": 34,
+  "pp_top10": 0.069,
+  "publications": 8411,
+  "fields": {
+   "biomedical": 29,
+   "life_earth": 23,
+   "math_cs": 20,
+   "physical_eng": 36,
+   "social_humanities": 50
+  },
+  "ror": "00p4k0j84",
   "source": "CWTS Leiden Ranking Open Edition 2025",
   "source_url": "https://doi.org/10.5281/zenodo.17473224",
   "data_year": "2020–2023",
@@ -2544,6 +2940,24 @@
   "licence": "CC0 1.0",
   "checked_on": "2026-10-07"
  },
+ "curated:ukm": {
+  "overall": 78,
+  "pp_top10": 0.112,
+  "publications": 6645,
+  "fields": {
+   "biomedical": 55,
+   "life_earth": 78,
+   "math_cs": 93,
+   "physical_eng": 74,
+   "social_humanities": 66
+  },
+  "ror": "00bw8d226",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
  "curated:um": {
   "overall": 64,
   "pp_top10": 0.098,
@@ -2556,6 +2970,60 @@
    "social_humanities": 46
   },
   "ror": "00rzspn62",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:upm": {
+  "overall": 74,
+  "pp_top10": 0.108,
+  "publications": 6548,
+  "fields": {
+   "biomedical": 61,
+   "life_earth": 53,
+   "math_cs": 74,
+   "physical_eng": 81,
+   "social_humanities": 62
+  },
+  "ror": "02e91jd64",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:usm": {
+  "overall": 68,
+  "pp_top10": 0.102,
+  "publications": 7663,
+  "fields": {
+   "biomedical": 45,
+   "life_earth": 51,
+   "math_cs": 83,
+   "physical_eng": 71,
+   "social_humanities": 57
+  },
+  "ror": "02rgb2k63",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:utm": {
+  "overall": 73,
+  "pp_top10": 0.107,
+  "publications": 5364,
+  "fields": {
+   "biomedical": 52,
+   "life_earth": 60,
+   "math_cs": 78,
+   "physical_eng": 63,
+   "social_humanities": 73
+  },
+  "ror": "026w31v75",
   "source": "CWTS Leiden Ranking Open Edition 2025",
   "source_url": "https://doi.org/10.5281/zenodo.17473224",
   "data_year": "2020–2023",
@@ -2954,6 +3422,42 @@
   "licence": "CC0 1.0",
   "checked_on": "2026-10-07"
  },
+ "curated:uit": {
+  "overall": 66,
+  "pp_top10": 0.1,
+  "publications": 2823,
+  "fields": {
+   "biomedical": 67,
+   "life_earth": 52,
+   "math_cs": 53,
+   "physical_eng": 69,
+   "social_humanities": 53
+  },
+  "ror": "00wge5k78",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:uib": {
+  "overall": 78,
+  "pp_top10": 0.112,
+  "publications": 4886,
+  "fields": {
+   "biomedical": 65,
+   "life_earth": 77,
+   "math_cs": 63,
+   "physical_eng": 61,
+   "social_humanities": 87
+  },
+  "ror": "03zga2b32",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
  "curated:uio": {
   "overall": 85,
   "pp_top10": 0.121,
@@ -2966,6 +3470,24 @@
    "social_humanities": 91
   },
   "ror": "01xtthb56",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:uis": {
+  "overall": 77,
+  "pp_top10": 0.111,
+  "publications": 1723,
+  "fields": {
+   "biomedical": 48,
+   "life_earth": 78,
+   "math_cs": 58,
+   "physical_eng": 72,
+   "social_humanities": 75
+  },
+  "ror": "02qte9q33",
   "source": "CWTS Leiden Ranking Open Edition 2025",
   "source_url": "https://doi.org/10.5281/zenodo.17473224",
   "data_year": "2020–2023",
@@ -3128,6 +3650,78 @@
   "licence": "CC0 1.0",
   "checked_on": "2026-10-07"
  },
+ "curated:ucm": {
+  "overall": 53,
+  "pp_top10": 0.087,
+  "publications": 7481,
+  "fields": {
+   "biomedical": 63,
+   "life_earth": 44,
+   "math_cs": 28,
+   "physical_eng": 43,
+   "social_humanities": 30
+  },
+  "ror": "02p0gd045",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:ugr": {
+  "overall": 67,
+  "pp_top10": 0.101,
+  "publications": 6938,
+  "fields": {
+   "biomedical": 70,
+   "life_earth": 51,
+   "math_cs": 63,
+   "physical_eng": 49,
+   "social_humanities": 59
+  },
+  "ror": "04njjy449",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:us-sevilla": {
+  "overall": 58,
+  "pp_top10": 0.093,
+  "publications": 7069,
+  "fields": {
+   "biomedical": 62,
+   "life_earth": 39,
+   "math_cs": 46,
+   "physical_eng": 52,
+   "social_humanities": 54
+  },
+  "ror": "03yxnpp24",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:uab": {
+  "overall": 72,
+  "pp_top10": 0.105,
+  "publications": 6516,
+  "fields": {
+   "biomedical": 63,
+   "life_earth": 76,
+   "math_cs": 29,
+   "physical_eng": 75,
+   "social_humanities": 73
+  },
+  "ror": "052g8jq94",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
  "curated:ub": {
   "overall": 76,
   "pp_top10": 0.11,
@@ -3182,6 +3776,24 @@
   "licence": "CC0 1.0",
   "checked_on": "2026-10-07"
  },
+ "curated:liu": {
+  "overall": 78,
+  "pp_top10": 0.112,
+  "publications": 4554,
+  "fields": {
+   "biomedical": 60,
+   "life_earth": 75,
+   "math_cs": 79,
+   "physical_eng": 88,
+   "social_humanities": 69
+  },
+  "ror": "05ynxx418",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
  "curated:lund": {
   "overall": 81,
   "pp_top10": 0.115,
@@ -3212,6 +3824,42 @@
    "social_humanities": 66
   },
   "ror": "05f0yaq80",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:umu": {
+  "overall": 64,
+  "pp_top10": 0.098,
+  "publications": 3873,
+  "fields": {
+   "biomedical": 64,
+   "life_earth": 51,
+   "math_cs": 37,
+   "physical_eng": 67,
+   "social_humanities": 55
+  },
+  "ror": "05kb8h459",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:gu": {
+  "overall": 86,
+  "pp_top10": 0.123,
+  "publications": 7499,
+  "fields": {
+   "biomedical": 87,
+   "life_earth": 81,
+   "math_cs": 56,
+   "physical_eng": 84,
+   "social_humanities": 70
+  },
+  "ror": "01tm6cn81",
   "source": "CWTS Leiden Ranking Open Edition 2025",
   "source_url": "https://doi.org/10.5281/zenodo.17473224",
   "data_year": "2020–2023",
@@ -3272,6 +3920,42 @@
   "licence": "CC0 1.0",
   "checked_on": "2026-10-07"
  },
+ "curated:unibas": {
+  "overall": 95,
+  "pp_top10": 0.145,
+  "publications": 5994,
+  "fields": {
+   "biomedical": 96,
+   "life_earth": 81,
+   "math_cs": 87,
+   "physical_eng": 94,
+   "social_humanities": 83
+  },
+  "ror": "02s6k3f65",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:unibe": {
+  "overall": 92,
+  "pp_top10": 0.135,
+  "publications": 7634,
+  "fields": {
+   "biomedical": 93,
+   "life_earth": 83,
+   "math_cs": 83,
+   "physical_eng": 86,
+   "social_humanities": 81
+  },
+  "ror": "02k7v4d05",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
  "curated:unige": {
   "overall": 93,
   "pp_top10": 0.138,
@@ -3284,6 +3968,40 @@
    "social_humanities": 56
   },
   "ror": "01swzsf04",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:unil": {
+  "overall": 93,
+  "pp_top10": 0.139,
+  "publications": 5475,
+  "fields": {
+   "biomedical": 94,
+   "life_earth": 95,
+   "math_cs": 79,
+   "physical_eng": 78,
+   "social_humanities": 77
+  },
+  "ror": "019whta54",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:unisg": {
+  "overall": 90,
+  "pp_top10": 0.131,
+  "publications": 899,
+  "fields": {
+   "biomedical": 45,
+   "math_cs": 91,
+   "social_humanities": 89
+  },
+  "ror": "0561a3s31",
   "source": "CWTS Leiden Ranking Open Edition 2025",
   "source_url": "https://doi.org/10.5281/zenodo.17473224",
   "data_year": "2020–2023",
@@ -3308,6 +4026,24 @@
   "licence": "CC0 1.0",
   "checked_on": "2026-10-07"
  },
+ "curated:ncku": {
+  "overall": 40,
+  "pp_top10": 0.075,
+  "publications": 6139,
+  "fields": {
+   "biomedical": 46,
+   "life_earth": 40,
+   "math_cs": 35,
+   "physical_eng": 24,
+   "social_humanities": 48
+  },
+  "ror": "01b8kcc49",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
  "curated:ntu-tw": {
   "overall": 47,
   "pp_top10": 0.082,
@@ -3320,6 +4056,59 @@
    "social_humanities": 39
   },
   "ror": "05bqach95",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:ntust": {
+  "overall": 55,
+  "pp_top10": 0.09,
+  "publications": 2913,
+  "fields": {
+   "biomedical": 18,
+   "life_earth": 25,
+   "math_cs": 58,
+   "physical_eng": 37,
+   "social_humanities": 95
+  },
+  "ror": "00q09pe49",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:nthu": {
+  "overall": 45,
+  "pp_top10": 0.08,
+  "publications": 3445,
+  "fields": {
+   "biomedical": 41,
+   "math_cs": 46,
+   "physical_eng": 38,
+   "social_humanities": 46
+  },
+  "ror": "00zdnkx70",
+  "source": "CWTS Leiden Ranking Open Edition 2025",
+  "source_url": "https://doi.org/10.5281/zenodo.17473224",
+  "data_year": "2020–2023",
+  "licence": "CC0 1.0",
+  "checked_on": "2026-10-07"
+ },
+ "curated:nycu": {
+  "overall": 45,
+  "pp_top10": 0.08,
+  "publications": 7437,
+  "fields": {
+   "biomedical": 46,
+   "life_earth": 17,
+   "math_cs": 36,
+   "physical_eng": 44,
+   "social_humanities": 40
+  },
+  "ror": "00se2k293",
   "source": "CWTS Leiden Ranking Open Edition 2025",
   "source_url": "https://doi.org/10.5281/zenodo.17473224",
   "data_year": "2020–2023",

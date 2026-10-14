@@ -10,7 +10,7 @@ why: docs/CAMPUS-LIFE-DATA.md.
 | Academic: hackathons | 0 | 0 | 0 |
 | Academic: coop | 8 | 1 | 7 |
 | Academic: research_activity | 1519 | 1519 | 0 |
-| Academic: research_impact | 495 | 241 | 254 |
+| Academic: research_impact | 539 | 241 | 298 |
 | Social: setting | 1577 | 1577 | 0 |
 | Social: size | 1577 | 1577 | 0 |
 | Social: residential | 1573 | 1573 | 0 |
@@ -22,8 +22,8 @@ why: docs/CAMPUS-LIFE-DATA.md.
 | Kind | Data coverage | All shared schools | US (College Scorecard) | Outside the US (curated) |
 | --- | --- | --- | --- | --- |
 | academic | Good | 3 | 0 | 3 |
-| academic | Partial | 1770 | 1519 | 251 |
+| academic | Partial | 1814 | 1519 | 295 |
 | academic | Not available | 60 | 58 | 2 |
 | social | Good | 0 | 0 | 0 |
 | social | Partial | 1582 | 1577 | 5 |
-| social | Not available | 251 | 0 | 251 |
+| social | Not available | 295 | 0 | 295 |
