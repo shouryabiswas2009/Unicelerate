@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // The end-to-end tests build into their own folder (pointed at a fake
+  // database), so they never overwrite the normal build.
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   // /credits reads docs/CREDITS.md at request time; include it in the
   // deployment (it isn't imported, so Next.js wouldn't find it on its own).
   outputFileTracingIncludes: {

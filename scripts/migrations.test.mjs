@@ -450,3 +450,20 @@ describe("migration_023 (campus life)", () => {
     }
   }, 60_000);
 });
+
+describe("migration_024 (report rate limit)", () => {
+  it("refuses a 21st report from one student within a day, not another student's first, and is safe to re-run", async () => {
+    const { db } = await createInMemoryDb();
+    await db.exec(sql("migration_024_report_rate_limit.sql"));
+    const [A, B] = ["00000000-0000-0000-0000-0000000000e1", "00000000-0000-0000-0000-0000000000e2"];
+    for (const id of [A, B]) await db.query("insert into auth.users (id) values ($1)", [id]);
+    const shared = (await db.query("select id from public.universities where created_by is null order by id limit 1")).rows[0].id;
+    const report = (id) => db.query("insert into public.figure_reports (user_id, university_id, field, suggested_value) values ($1, $2, 'tuition', '1')", [id, shared]);
+    for (let i = 0; i < 20; i++) await report(A);
+    await expect(report(A)).rejects.toThrow(/report_limit/);
+    await report(B);
+    // Older reports don't count.
+    await db.query("update public.figure_reports set created_at = now() - interval '2 days' where user_id = $1", [A]);
+    await report(A);
+  }, 60_000);
+});

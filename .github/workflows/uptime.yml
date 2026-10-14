@@ -1,0 +1,25 @@
+name: Uptime check
+
+# A free uptime check: every 30 minutes, the live landing page and one
+# data-backed page must answer 200 within 20 seconds. A failure shows as a
+# failed run in the Actions tab, and GitHub emails the repository owner.
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Landing page and /universities answer
+        run: |
+          for path in / /universities /credits; do
+            status=$(curl -s -o /dev/null -m 20 -w "%{http_code}" "https://www.unicelerate.com$path")
+            echo "$path → $status"
+            if [ "$status" != "200" ]; then exit 1; fi
+          done

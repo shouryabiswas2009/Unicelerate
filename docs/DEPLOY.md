@@ -109,3 +109,54 @@ Settings**.
   restore it in the dashboard. The keep-alive workflow (README) prevents this.
 - **Domain still "Invalid Configuration":** DNS changes can take up to 48
   hours; double-check the records against what Vercel shows.
+
+## Keeping it running: errors, uptime, rate limits and backups
+
+**Errors.** Server errors are logged as one JSON line each
+(`instrumentation.ts`, `onRequestError`) and show in Vercel → Project →
+Logs (free; filter on `onRequestError`). They include the message, the
+digest shown on the error page, and the route, never cookies, headers or
+the query string. Nothing is sent to an outside service. (A free Sentry
+account could be added later; it needs signing up and a DSN.)
+
+**Uptime.** `.github/workflows/uptime.yml` checks `/`, `/universities` and
+`/credits` every 30 minutes; a failure is a failed run in GitHub Actions,
+and GitHub emails the repository owner. `keep-alive.yml` stops a free
+Supabase project from pausing after a week without traffic. It needs the
+`SUPABASE_URL` and `SUPABASE_ANON_KEY` repository secrets (Settings →
+Secrets and variables → Actions); its recent runs failed, so check those
+secrets are set.
+
+**Rate limits.**
+- Sign-up, log-in and "report a wrong figure" have an in-memory limit per
+  server instance (`lib/rate-limit.ts`: 5 sign-ups an hour and 10 log-ins
+  per 5 minutes per IP, 10 reports an hour per student). It stops bursts,
+  but each Vercel instance counts on its own.
+- Reports also have a database cap that holds everywhere: 20 per student
+  per day (`supabase/migration_024_report_rate_limit.sql`).
+- Supabase Auth limits sign-ups and sign-ins per IP itself: Supabase →
+  Authentication → Rate Limits (check the current value there; the CLI
+  reference gives 30 per 5 minutes as the default).
+- Passwords: set the minimum length to **8** under Authentication →
+  Providers → Email (or Authentication → Settings, depending on the
+  dashboard version), matching `MIN_PASSWORD_LENGTH` in
+  `lib/signup-validation.ts`.
+
+**Backups.** Supabase's plan decides what it keeps: check Supabase →
+Database → Backups for your project. Third-party plan summaries say the
+free plan has no downloadable daily backups (paid plans keep daily backups
+for 7 days or more), but they disagree, so trust the dashboard. Either
+way, take your own:
+
+1. Install PostgreSQL's client tools (for `pg_dump`, version 15 or newer).
+2. Add `SUPABASE_DB_URL` to `.env.local` (Project Settings → Database →
+   Connection string, URI form, with the database password).
+3. Run `npm run db:backup`. It writes `backups/unicelerate-<date>.dump`
+   (git-ignored), with schema and data for `public` and `auth`.
+4. Restore into a project with `pg_restore --no-owner -d "<connection
+   string>" backups/<file>.dump`.
+
+The backup holds students' data: keep it private, and delete old ones you
+don't need. A monthly backup, plus one before every migration, is plenty
+for a project this size.
+

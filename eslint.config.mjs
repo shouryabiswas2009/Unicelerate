@@ -15,6 +15,11 @@ const eslintConfig = defineConfig([
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",
+    // The end-to-end build and test/Lighthouse output.
+    ".next-e2e/**",
+    "test-results/**",
+    "playwright-report/**",
+    ".lighthouseci/**",
     "out/**",
     "build/**",
     "next-env.d.ts",

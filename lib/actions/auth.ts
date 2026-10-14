@@ -1,6 +1,8 @@
 "use server";
 
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { clientIp, rateLimit, tooManyMessage } from "@/lib/rate-limit";
 import { createClient } from "@/lib/supabase/server";
 import { siteUrl } from "@/lib/site-url";
 import { safeRedirectPath } from "@/lib/safe-redirect";
@@ -14,6 +16,11 @@ export async function login(
 ): Promise<AuthFormState> {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
+
+  // A first line against password guessing (lib/rate-limit.ts); Supabase
+  // Auth has its own per-IP limit too.
+  const limited = rateLimit("login", clientIp((await headers()).get("x-forwarded-for")));
+  if (!limited.ok) return { error: tooManyMessage(limited.retryAfterSeconds) };
 
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({
@@ -55,6 +62,9 @@ export async function signup(
   );
   if (!result.ok) return { error: "Please fix the highlighted fields.", fieldErrors: result.errors };
   const { email, password } = result;
+
+  const limited = rateLimit("signup", clientIp((await headers()).get("x-forwarded-for")));
+  if (!limited.ok) return { error: tooManyMessage(limited.retryAfterSeconds) };
 
   const supabase = await createClient();
   const { data, error } = await supabase.auth.signUp({

@@ -3,3 +3,12 @@
 # Vercel think the repo had a second, Python app). The trained model the
 # site uses is already in lib/model/.
 ml/
+
+# Test-only: end-to-end tests, their build, fixtures and reports
+e2e/
+.next-e2e/
+data/fixtures/
+test-results/
+playwright-report/
+.lighthouseci/
+backups/

@@ -1,7 +1,8 @@
-// Exports the shared university list (what every visitor can already see,
-// read with the public key) into data/fixtures/shared-universities.json, so
-// ranking and filter tests run on the real data the site uses: strength
-// index, curated tuition in US dollars, campus life and all.
+// Exports the shared university list and the visa guidance (what every
+// visitor can already see, read with the public key) into data/fixtures/,
+// so ranking and filter tests, and the end-to-end tests' fake database
+// (scripts/e2e/fake-supabase.mjs), run on the real data the site uses:
+// strength index, curated tuition in US dollars, campus life and all.
 //
 //   npm run data:export-fixture
 //
@@ -46,6 +47,13 @@ for (let from = 0; ; from += 1000) {
 // Drop the bulky per-signal detail the ranking doesn't read.
 for (const r of rows) r.strength_signals = null;
 
-const out = join(import.meta.dirname, "..", "data", "fixtures", "shared-universities.json");
+const dir = join(import.meta.dirname, "..", "data", "fixtures");
+const out = join(dir, "shared-universities.json");
 writeFileSync(out, JSON.stringify({ exported_on: new Date().toISOString().slice(0, 10), columns: COLUMNS, rows: rows.map((r) => COLUMNS.map((c) => r[c] ?? null)) }));
 console.log(`Wrote ${out}: ${rows.length} universities`);
+
+// The visa guidance (public too), for the end-to-end tests' fake database.
+const { data: countryInfo, error } = await supabase.from("country_info").select("*").order("country");
+if (error) throw new Error(error.message);
+writeFileSync(join(dir, "country-info.json"), JSON.stringify(countryInfo, null, 1));
+console.log(`Wrote country-info.json: ${countryInfo.length} countries`);
