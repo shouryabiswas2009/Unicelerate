@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
+  COST_GAP_FOR_ZERO,
+  costScores,
   BALANCED_OFFER_WEIGHTS,
   CLEAR_WINNER_SHARE,
   DEFAULT_OFFER_WEIGHTS,
@@ -83,6 +85,20 @@ describe("rankOffers", () => {
     expect(ranked.map((r) => r.offer.id)).toEqual(["Cheap", "Pricey"]);
     expect(ranked[0].score).toBe(100);
     expect(ranked[1].score).toBe(0);
+  });
+
+  it("doesn't let a small cost difference outweigh a much better school", () => {
+    // $500 apart on ~$40,000: nearly the same cost score, so a far better
+    // ranking wins even when cost is weighted more.
+    const a = offer({ id: "Cheaper by $500", totalCost: 40000, overallRank: 300 });
+    const b = offer({ id: "Much stronger", totalCost: 40500, overallRank: 20 });
+    const ranked = rankOffers([a, b], { ...only("cost"), cost: 7, ranking: 3 });
+    expect(ranked[0].offer.id).toBe("Much stronger");
+    expect(ranked.find((r) => r.offer.id === "Much stronger")!.criteria.cost).toBeGreaterThan(0.97);
+    // ...while a large gap still counts in full.
+    expect(costScores([40000, 240000])).toEqual([1, 0]);
+    expect(costScores([60000, 90000])[1]).toBeCloseTo(1 - 30000 / (COST_GAP_FOR_ZERO * 90000), 6);
+    expect(costScores([null, 50000])).toEqual([null, 1]);
   });
 
   it("puts the better-ranked offer first when only ranking matters", () => {

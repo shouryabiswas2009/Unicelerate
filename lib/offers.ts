@@ -179,6 +179,26 @@ function relativeScores(
   });
 }
 
+// Cost is compared in proportion, not stretched between the cheapest and
+// the dearest offer: stretching made a $500 difference count as much as a
+// $50,000 one. An offer loses credit in proportion to how much more it
+// costs than the cheapest, measured against the dearest offer's total; at
+// this share or more it gets nothing. 0.5: costing half as much again as
+// the dearest total → 0, a 1% difference → 0.98.
+export const COST_GAP_FOR_ZERO = 0.5;
+
+export function costScores(costs: (number | null)[]): (number | null)[] {
+  const known = costs.filter((v): v is number => v !== null);
+  if (known.length === 0) return costs.map(() => null);
+  const min = Math.min(...known);
+  const max = Math.max(...known);
+  return costs.map((v) => {
+    if (v === null) return null;
+    if (max === min) return 1;
+    return Math.max(0, 1 - (v - min) / (COST_GAP_FOR_ZERO * max));
+  });
+}
+
 // Rankings are compared on a log scale: going from #10 to #5 is a much
 // bigger deal than going from #210 to #205.
 const logRank = (rank: number | null) => (rank === null ? null : Math.log(rank));
@@ -204,7 +224,7 @@ function scoreOffers<T extends OfferInput>(
   offers: T[],
   weights: OfferWeights
 ): { offer: T; criteria: Record<OfferCriterion, number | null>; score: number }[] {
-  const cost = relativeScores(offers.map((o) => o.totalCost), "lower");
+  const cost = costScores(offers.map((o) => o.totalCost));
   const ranking = relativeScores(offers.map((o) => logRank(o.overallRank)), "lower");
   const subject = relativeScores(offers.map((o) => logRank(o.subjectRank)), "lower");
 

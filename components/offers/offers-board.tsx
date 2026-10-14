@@ -219,8 +219,9 @@ export function OffersBoard({
         </ol>
 
         <p className="text-xs text-muted-foreground">
-          Each offer gets 0–100 from the criteria above. Costs are compared
-          between your offers (best = full marks). Strength is the Unicelerate
+          Each offer gets 0–100 from the criteria above. The cheapest offer
+          gets full marks for cost and the others lose marks in proportion to how
+          much more they cost, so a few hundred dollars barely moves the order. Strength is the Unicelerate
           index (our own estimate from open data, not an official ranking) on
           its fixed 0–100 scale; a ranking you entered for your own school is
           compared on a log scale instead. Research intensity
