@@ -29,7 +29,7 @@ illustrative rows left); `country_info` has row level security on and 27
 countries (16 post-study, 7 proof of funds, 16 work-hour figures); and
 `applications.accept_by` exists. Step 15 was run on 2026-10-07 (reported
 done; check: `delete_my_account` exists as a security-definer function).
-Steps 16–20 were run on 2026-10-07 and verified read-only: 350 universities have research impact (Oxford 99), the four profile columns exist, `figure_reports` exists and refuses inserts without a login. Steps 21–23 were run on 2026-10-08 and verified read-only: the strength columns exist, 1,688 shared universities have an index (14 estimates, MIT 99.2 / A / #1), no College Scorecard row keeps an illustrative ranking, and `visa_mode`, `visa_weight`, `stay_after` exist. Step 24 was run on 2026-10-08 (reported done; the constraint can't be read with the public key, so check it by saving a profile with an Ontario average). Steps 25–27 were run on 2026-10-13 and verified read-only: `profile_courses` exists, the `campus_life` column exists and all 1,688 shared universities have campus-life data (Waterloo and UBC carry their hand-checked rows). **Pending: steps 28–29** (Warwick's club counts; the daily report cap).
+Steps 16–20 were run on 2026-10-07 and verified read-only: 350 universities have research impact (Oxford 99), the four profile columns exist, `figure_reports` exists and refuses inserts without a login. Steps 21–23 were run on 2026-10-08 and verified read-only: the strength columns exist, 1,688 shared universities have an index (14 estimates, MIT 99.2 / A / #1), no College Scorecard row keeps an illustrative ranking, and `visa_mode`, `visa_weight`, `stay_after` exist. Step 24 was run on 2026-10-08 (reported done; the constraint can't be read with the public key, so check it by saving a profile with an Ontario average). Steps 25–27 were run on 2026-10-13 and verified read-only: `profile_courses` exists, the `campus_life` column exists and all 1,688 shared universities have campus-life data (Waterloo and UBC carry their hand-checked rows). Steps 28–29 were run on 2026-10-14: Warwick's club counts verified read-only (70 academic, 161 social/cultural); the report-cap trigger reported done (it can't be read with the public key).
 
 New migrations will be added to this table when they're written.
 
@@ -66,8 +66,8 @@ this order: the seed files need both migrations first.
 | 25 | `supabase/migration_022_profile_courses.sql` (check: `select relrowsecurity from pg_class where oid = 'public.profile_courses'::regclass` → true) | Done, verified 2026-10-13 |
 | 26 | `supabase/migration_023_campus_life.sql` (check: `select count(*) from information_schema.columns where table_schema = 'public' and table_name = 'profiles' and column_name in ('campus_academic_prefs','campus_social_prefs')` → 2) | Done, verified 2026-10-13 |
 | 27 | `supabase/seed_campus_life/01_campus_life.sql` … `06_campus_life.sql`, one at a time in order, after step 26 (check: `select count(*) from universities where created_by is null and campus_life is not null` → 1688) | Done, verified 2026-10-13 |
-| 28 | `supabase/seed_campus_life/06_campus_life.sql` again (Warwick's club counts added 2026-10-13; check: `select campus_life->>'academic_clubs' from universities where curated_id = 'warwick'` → 70) | **To do** |
-| 29 | `supabase/migration_024_report_rate_limit.sql` (check: `select tgname from pg_trigger where tgname = 'figure_reports_daily_limit'` → 1 row) | **To do** |
+| 28 | `supabase/seed_campus_life/06_campus_life.sql` again (Warwick's club counts added 2026-10-13; check: `select campus_life->>'academic_clubs' from universities where curated_id = 'warwick'` → 70) | Done, verified 2026-10-14 |
+| 29 | `supabase/migration_024_report_rate_limit.sql` (check: `select tgname from pg_trigger where tgname = 'figure_reports_daily_limit'` → 1 row) | Done 2026-10-14 (reported) |
 
 All of them are safe to run again if you're not sure whether one went
 through.
