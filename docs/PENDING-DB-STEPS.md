@@ -29,7 +29,7 @@ illustrative rows left); `country_info` has row level security on and 27
 countries (16 post-study, 7 proof of funds, 16 work-hour figures); and
 `applications.accept_by` exists. Step 15 was run on 2026-10-07 (reported
 done; check: `delete_my_account` exists as a security-definer function).
-Steps 16–20 were run on 2026-10-07 and verified read-only: 350 universities have research impact (Oxford 99), the four profile columns exist, `figure_reports` exists and refuses inserts without a login. Steps 21–23 were run on 2026-10-08 and verified read-only: the strength columns exist, 1,688 shared universities have an index (14 estimates, MIT 99.2 / A / #1), no College Scorecard row keeps an illustrative ranking, and `visa_mode`, `visa_weight`, `stay_after` exist. Step 24 was run on 2026-10-08 (reported done; the constraint can't be read with the public key, so check it by saving a profile with an Ontario average). **Pending: steps 25–27** (profile courses; campus life).
+Steps 16–20 were run on 2026-10-07 and verified read-only: 350 universities have research impact (Oxford 99), the four profile columns exist, `figure_reports` exists and refuses inserts without a login. Steps 21–23 were run on 2026-10-08 and verified read-only: the strength columns exist, 1,688 shared universities have an index (14 estimates, MIT 99.2 / A / #1), no College Scorecard row keeps an illustrative ranking, and `visa_mode`, `visa_weight`, `stay_after` exist. Step 24 was run on 2026-10-08 (reported done; the constraint can't be read with the public key, so check it by saving a profile with an Ontario average). Steps 25–27 were run on 2026-10-13 and verified read-only: `profile_courses` exists, the `campus_life` column exists and all 1,688 shared universities have campus-life data (Waterloo and UBC carry their hand-checked rows).
 
 New migrations will be added to this table when they're written.
 
@@ -63,9 +63,9 @@ this order: the seed files need both migrations first.
 | 22 | `supabase/seed_strength/01_strength.sql` … `06_strength.sql`, one at a time in order (check: `select count(*) filter (where strength_index is not null), count(*) filter (where strength_is_estimate) from universities where created_by is null` → 1688 and the estimate count in data/strength/report.md) | Done, verified 2026-10-08 |
 | 23 | `supabase/migration_020_visa_preferences.sql` (check: `select column_name from information_schema.columns where table_name = 'profiles' and column_name in ('visa_mode','visa_weight','stay_after')` → 3 rows) | Done, verified 2026-10-08 |
 | 24 | `supabase/migration_021_more_grade_systems.sql` (check: `select conname from pg_constraint where conname = 'profiles_grade_system_check'` → 1 row) | Done 2026-10-08 (reported) |
-| 25 | `supabase/migration_022_profile_courses.sql` (check: `select relrowsecurity from pg_class where oid = 'public.profile_courses'::regclass` → true) | **To do** |
-| 26 | `supabase/migration_023_campus_life.sql` (check: `select count(*) from information_schema.columns where table_schema = 'public' and table_name = 'profiles' and column_name in ('campus_academic_prefs','campus_social_prefs')` → 2) | **To do** |
-| 27 | `supabase/seed_campus_life/01_campus_life.sql` … `06_campus_life.sql`, one at a time in order, after step 26 (check: `select count(*) from universities where created_by is null and campus_life is not null` → 1688) | **To do** |
+| 25 | `supabase/migration_022_profile_courses.sql` (check: `select relrowsecurity from pg_class where oid = 'public.profile_courses'::regclass` → true) | Done, verified 2026-10-13 |
+| 26 | `supabase/migration_023_campus_life.sql` (check: `select count(*) from information_schema.columns where table_schema = 'public' and table_name = 'profiles' and column_name in ('campus_academic_prefs','campus_social_prefs')` → 2) | Done, verified 2026-10-13 |
+| 27 | `supabase/seed_campus_life/01_campus_life.sql` … `06_campus_life.sql`, one at a time in order, after step 26 (check: `select count(*) from universities where created_by is null and campus_life is not null` → 1688) | Done, verified 2026-10-13 |
 
 All of them are safe to run again if you're not sure whether one went
 through.

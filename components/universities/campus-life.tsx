@@ -105,7 +105,8 @@ export function CampusLifeDetails({ university, selected, className }: { univers
         ))}
       </div>
       <p className="text-xs text-muted-foreground">
-        {CAMPUS_DISCLAIMER} Coverage is uneven: US schools have official figures for setting, size, housing and
+        {CAMPUS_DISCLAIMER}{" "}
+        Coverage is uneven: US schools have official figures for setting, size, housing and
         varsity sport; outside the US most social figures aren&apos;t published, and clubs and design teams are
         hand-checked for only a few schools. Nothing official covers parties, Greek life or festivals, so those
         aren&apos;t shown.
