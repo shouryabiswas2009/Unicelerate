@@ -216,3 +216,48 @@ proxies with sources, side by side and never as a number; compare shows a
 row per proxy; the offers page has a slider for each; What-if can switch
 them on; the landing quiz has an optional question. Data, weights, licences
 and what was rejected: `docs/CAMPUS-LIFE-DATA.md`.
+
+## "Best you can get into" and the filters, checked on real data (2026-10-14)
+
+**Why.** The order sometimes put the wrong schools first, and some filters
+behaved oddly. Found by test, not by guessing: `lib/best-order.test.ts` runs
+eight realistic students through the real pipeline (`scoreUniversity` →
+`buildBoard`) on a fixture of the real shared list
+(`data/fixtures/shared-universities.json`, exported with the public key by
+`npm run data:export-fixture`) and prints each top 15 (`SHOW_BEST=<file>`).
+
+**What was wrong, and the fix.**
+- Schools with no admission data (most outside the US) took the median
+  chance of the student's list, which for a strong student was 100%:
+  Cambridge, Imperial and Oxford ranked as sure admits, and for a weak
+  student Tsinghua and ETH ranked above schools they could get into. Now
+  an unknown school borrows the chances of known schools of similar
+  strength in the same list (`NEUTRAL_PEER_WINDOW`, `NEUTRAL_PEERS_MIN`);
+  the card still says "not enough data".
+- A name search, country, degree or tuition filter only looked at featured
+  schools. They now search every school; the featured limit applies to the
+  unfiltered list only, and the page says so.
+- The tuition filter silently dropped schools with unknown tuition; the
+  page now says how many.
+- Filtering to a country outside your chosen ones marked every result
+  "outside the countries you chose"; an explicit country filter now lifts
+  that gate (the budget and degree-level gates stay).
+- "Best match" and the tuition sorts had no tie-break, so equal schools
+  came in database order; every sort now ends with name, then id.
+- At the same level, a measured strength comes before an estimated one.
+
+**Ruled out.** Plausibility saturating at 50%+ doesn't scramble the order:
+`compareBest` already breaks ties by quality. The visa factor in
+"ignore"/"show" mode and unticked campus focuses don't change the order
+(tested). Pages are cut after sorting, and every filter or sort change goes
+back to page 1 (tested).
+
+**Known limit.** "Best you can get into" doesn't check the subject when a
+school publishes no program list (112 schools): unknown isn't counted
+against them.
+
+**Tests.** For each student: no school in the top 10 is both weaker and
+less reachable than one below it, and no estimated strength sits above a
+measured school it doesn't beat; a search finds a non-featured school;
+removing a filter restores the exact list; every sort is deterministic.
+

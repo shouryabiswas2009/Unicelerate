@@ -76,6 +76,7 @@ export default async function SavedPage({
         state={{ ...state, page: board.page }}
         totalPages={board.totalPages}
         matchingCount={board.matchingCount}
+        hiddenUnknownTuition={board.hiddenUnknownTuition}
         countries={board.countries}
         savedIds={new Set(universities.map((u) => u.id))}
         applications={applicationsByUniversity}

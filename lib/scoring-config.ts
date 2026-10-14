@@ -106,6 +106,18 @@ export const RULE_PLAUSIBILITY = { Safety: 1, Match: 0.85, Reach: 0.4 } as const
 // a neutral value between Reach and Match, and the card says so.
 export const PLAUSIBILITY_UNKNOWN = 0.6;
 
+// In a student's list, a school with no admission data borrows the chances
+// of the schools of similar strength whose chances ARE known (US schools
+// with official figures): the median plausibility of those within this
+// many quality points (0..1 scale), when there are at least
+// NEUTRAL_PEERS_MIN of them. Strong schools tend to be selective, so an
+// unknown Oxford is treated like MIT for this student, not like an average
+// school; without peers, the list's median, never above PLAUSIBILITY_UNKNOWN.
+// (Before 2026-10-14 every unknown school got the list's median, which for
+// a strong student was 100%: Oxford counted as a sure admit.)
+export const NEUTRAL_PEER_WINDOW = 0.05;
+export const NEUTRAL_PEERS_MIN = 5;
+
 // ─── Fit gate ────────────────────────────────────────────────────────────
 // Schools failing one of these sort below every school that passes:
 // - not offering the student's degree level,

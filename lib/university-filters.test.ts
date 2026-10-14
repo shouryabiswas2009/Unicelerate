@@ -217,7 +217,7 @@ describe("buildBoard", () => {
     const byDefault = buildBoard(list, state, { withFeatured: true });
     // A student's own schools are always shown.
     expect(names(byDefault.entries).sort()).toEqual(["A", "Mine"]);
-    expect(byDefault.featured).toEqual({ featuredCount: 2, allCount: 3, ready: true });
+    expect(byDefault.featured).toEqual({ featuredCount: 2, allCount: 3, ready: true, searchedAll: false });
 
     const all = buildBoard(list, { ...state, showAll: true }, { withFeatured: true });
     expect(all.entries).toHaveLength(3);

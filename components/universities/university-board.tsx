@@ -15,6 +15,7 @@ import {
   boardQuery,
   hasActiveFilters,
   NO_FILTERS,
+  withFilters,
   type BoardState,
   type SortKey,
   type UniversityFilters,
@@ -71,7 +72,19 @@ export type FeaturedInfo = {
   featuredCount: number; // schools shown by default
   allCount: number; // every school you could see
   ready: boolean; // false until supabase/featured/featured.sql has been run
+  searchedAll?: boolean; // a search or filter is on, so every school is searched
 };
+
+// "Why this order?": what each sort does, in plain words.
+const SORT_HELP: Record<SortKey, string> = {
+  best: "Strong schools first, weighted by your chance of getting in: a strong school that's a long shot sits below a slightly weaker one you can likely get into.",
+  safest: "The schools you're most likely to get into first; among equally likely ones, the stronger school first.",
+  match: "By your match score: budget, subject, country, grades and what matters most to you. Strength doesn't count here.",
+  "tuition-asc": "Lowest yearly tuition first; schools with unknown tuition last.",
+  "tuition-desc": "Highest yearly tuition first; schools with unknown tuition last.",
+  ranking: "By the Unicelerate strength index alone (our own estimate from open data), whatever your chances.",
+};
+const GUEST_SORT_HELP = "By the Unicelerate strength index (our own estimate from open data). With a free profile, the default becomes \u201cBest you can get into\u201d: strength weighted by your chance of getting in.";
 
 // Shared by the browse, recommendations and saved pages. The server has
 // already filtered, sorted and paginated (lib/university-filters.ts), so
@@ -91,6 +104,7 @@ export function UniversityBoard({
   groups,
   groupable = false,
   guest = false,
+  hiddenUnknownTuition = 0,
 }: {
   entries: MatchEntry[]; // this page only
   state: BoardState;
@@ -113,6 +127,8 @@ export function UniversityBoard({
   groupable?: boolean;
   // A visitor without an account: no personal scores, saving or comparing.
   guest?: boolean;
+  // Schools a tuition filter left out only because their tuition is unknown.
+  hiddenUnknownTuition?: number;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -141,10 +157,9 @@ export function UniversityBoard({
     });
   }
 
-  // Any filter change goes back to page 1.
+  // Any filter or sort change goes back to page 1 (withFilters, tested).
   function update(changes: Partial<UniversityFilters>) {
-    const current = latestState.current;
-    navigate({ ...current, filters: { ...current.filters, ...changes }, page: 1 });
+    navigate(withFilters(latestState.current, changes));
   }
 
   function updateAfterTyping(changes: Partial<UniversityFilters>) {
@@ -349,7 +364,17 @@ export function UniversityBoard({
             {totalPages > 1 ? ` · page ${state.page} of ${totalPages}` : ""}
           </span>
           {featured && <FeaturedToggle featured={featured} state={state} onChange={navigate} />}
+          {hiddenUnknownTuition > 0 && (
+            <span>
+              {hiddenUnknownTuition.toLocaleString("en-US")} more {hiddenUnknownTuition === 1 ? "school has" : "schools have"} no
+              published tuition, so the tuition filter leaves {hiddenUnknownTuition === 1 ? "it" : "them"} out.
+            </span>
+          )}
         </div>
+        <p className="text-xs text-muted-foreground">
+          <span className="font-medium text-foreground">Why this order?</span>{" "}
+          {guest ? GUEST_SORT_HELP : SORT_HELP[filters.sortBy]}
+        </p>
       </div>
 
       {groupable && (
@@ -468,6 +493,9 @@ function FeaturedToggle({
 }) {
   if (!featured.ready) {
     return <span>Showing all schools (the featured list hasn&apos;t been set up yet).</span>;
+  }
+  if (featured.searchedAll) {
+    return <span>Searching all {featured.allCount.toLocaleString("en-US")} schools, not only featured ones.</span>;
   }
   const all = featured.allCount.toLocaleString("en-US");
   return state.showAll ? (

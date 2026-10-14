@@ -195,6 +195,21 @@ describe("withNeutralUnknowns", () => {
     const mystery = scoreUniversity(profile, makeUniversity({ id: "m", source: "curated", qs_ranking: null, program_rankings: {}, avg_admitted_gpa: null, acceptance_rate: null, sat_25: null, sat_75: null, completion_rate: null, retention_rate: null, research_intensity: null }));
     const [m] = withNeutralUnknowns([mystery, ...known]).filter((e) => e.university.id === "m");
     expect(m.rank.quality).toBeNull(); // still shown as not available
-    expect(m.rank.realistic).toBeCloseTo(0.6); // median quality 0.6 × median plausibility 1
+    // Median quality 0.6; too few peers of that strength, so the list's
+    // median plausibility (1) capped at PLAUSIBILITY_UNKNOWN (0.6).
+    expect(m.rank.realistic).toBeCloseTo(0.6 * 0.6);
+  });
+
+  it("gives a school with no admission data the chances of known schools of similar strength", () => {
+    const profile = makeProfile();
+    // Five strong known schools that are long shots, five average ones that are sure admits.
+    const known = [0.95, 0.96, 0.97, 0.95, 0.96, 0.5, 0.52, 0.48, 0.5, 0.51].map((q, i) => {
+      const e = scoreUniversity(profile, scorecard({ id: `k${i}` }));
+      return { ...e, rank: { ...e.rank, quality: q, plausibility: q > 0.9 ? 0.3 : 1, plausibilitySource: "model" as const, realistic: q * (q > 0.9 ? 0.3 : 1) } };
+    });
+    const unknownStrong = scoreUniversity(profile, makeUniversity({ id: "u", source: "curated", acceptance_rate: null, sat_25: null, sat_75: null, avg_admitted_gpa: null }));
+    const withQuality = { ...unknownStrong, rank: { ...unknownStrong.rank, quality: 0.96, plausibilitySource: "unknown" as const } };
+    const [u] = withNeutralUnknowns([withQuality, ...known]).filter((e) => e.university.id === "u");
+    expect(u.rank.plausibility).toBeCloseTo(0.3); // like its strong peers, not a sure admit
   });
 });

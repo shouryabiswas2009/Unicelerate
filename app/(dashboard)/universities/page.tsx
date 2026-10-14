@@ -73,6 +73,7 @@ export default async function BrowseUniversitiesPage({
         state={{ ...state, page: board.page }}
         totalPages={board.totalPages}
         matchingCount={board.matchingCount}
+        hiddenUnknownTuition={board.hiddenUnknownTuition}
         countries={board.countries}
         featured={board.featured}
         savedIds={new Set((saved ?? []).map((row) => row.university_id))}
@@ -115,6 +116,7 @@ async function GuestBrowse({ state }: { state: ReturnType<typeof parseBoardParam
         state={{ ...state, page: board.page }}
         totalPages={board.totalPages}
         matchingCount={board.matchingCount}
+        hiddenUnknownTuition={board.hiddenUnknownTuition}
         countries={board.countries}
         featured={board.featured}
         savedIds={new Set()}

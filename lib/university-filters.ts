@@ -1,6 +1,6 @@
 import { canonicalCountry } from "@/lib/countries";
 import type { AdmissionChance, MatchEntry } from "@/lib/matching";
-import { compareBest, compareSafest, groupByChance, withNeutralUnknowns } from "@/lib/ranking";
+import { compareBest, compareSafest, groupByChance, withNeutralUnknowns, withoutCountryGate } from "@/lib/ranking";
 import { DEGREE_LEVELS, type DegreeLevel, type UniversitySummary } from "@/lib/types";
 
 // "best": the best school you can realistically get into (lib/ranking.ts),
@@ -71,26 +71,31 @@ export function applyFilters(
   return sortEntries(filtered, filters.sortBy);
 }
 
-function sortEntries(entries: MatchEntry[], sortBy: SortKey): MatchEntry[] {
+// Every order ends with the same tie-break (name, then id), so the result
+// never depends on the order the schools arrived in.
+const byNameThenId = (a: MatchEntry, b: MatchEntry) =>
+  a.university.name.localeCompare(b.university.name) || (a.university.id < b.university.id ? -1 : a.university.id > b.university.id ? 1 : 0);
+
+export function sortEntries(entries: MatchEntry[], sortBy: SortKey): MatchEntry[] {
   const sorted = [...entries];
   switch (sortBy) {
     // Unknown tuition sorts last either way, never as if it were $0.
     case "tuition-asc":
-      return sorted.sort((a, b) => byKnown(a.university.tuition, b.university.tuition, 1));
+      return sorted.sort((a, b) => byKnown(a.university.tuition, b.university.tuition, 1) || byNameThenId(a, b));
     case "tuition-desc":
-      return sorted.sort((a, b) => byKnown(a.university.tuition, b.university.tuition, -1));
+      return sorted.sort((a, b) => byKnown(a.university.tuition, b.university.tuition, -1) || byNameThenId(a, b));
     case "ranking":
-      // "Strongest first (Unicelerate index)": highest index first; schools
-      // without one (a student's own) last, never as if they were 0.
+      // "Strongest first": highest index first; schools without one (a
+      // student's own) last, never as if they were 0.
       return sorted.sort(
-        (a, b) => byKnown(numberOrNull(a.university.strength_index), numberOrNull(b.university.strength_index), -1) || a.university.name.localeCompare(b.university.name)
+        (a, b) => byKnown(numberOrNull(a.university.strength_index), numberOrNull(b.university.strength_index), -1) || byNameThenId(a, b)
       );
     case "match":
-      return sorted.sort((a, b) => b.match.score - a.match.score);
+      return sorted.sort((a, b) => b.match.score - a.match.score || compareBest(a, b) || byNameThenId(a, b));
     case "safest":
-      return sorted.sort(compareSafest);
+      return sorted.sort((a, b) => compareSafest(a, b) || byNameThenId(a, b));
     default:
-      return sorted.sort(compareBest);
+      return sorted.sort((a, b) => compareBest(a, b) || byNameThenId(a, b));
   }
 }
 
@@ -99,6 +104,26 @@ function byKnown(a: number | null, b: number | null, direction: 1 | -1): number 
   if (a === null) return b === null ? 0 : 1;
   if (b === null) return -1;
   return (a - b) * direction;
+}
+
+// Filters the student chose to narrow the list: these search every school,
+// not only the featured ones (a name search or a country filter used to
+// find nothing for a school that isn't featured). The Reach / Match /
+// Safety chips don't count: they pick within the current list.
+export function hasNarrowingFilters(filters: UniversityFilters): boolean {
+  return (
+    filters.query.trim() !== "" ||
+    filters.country !== null ||
+    filters.degreeLevel !== null ||
+    filters.tuitionMin !== null ||
+    filters.tuitionMax !== null
+  );
+}
+
+// A filter or sort change: the new filters, back to page 1 (a page number
+// from the old list means nothing in the new one).
+export function withFilters(state: BoardState, changes: Partial<UniversityFilters>): BoardState {
+  return { ...state, filters: { ...state.filters, ...changes }, page: 1 };
 }
 
 export function hasActiveFilters(filters: UniversityFilters): boolean {
@@ -222,10 +247,16 @@ export type BoardData = {
   totalPages: number;
   matchingCount: number;
   countries: string[];
-  featured?: { featuredCount: number; allCount: number; ready: boolean };
+  featured?: { featuredCount: number; allCount: number; ready: boolean; searchedAll: boolean };
   // Every school in the pool (before filters). Server-side only, for the
   // "top picks by country" section; never sent to the browser in full.
   pool: MatchEntry[];
+  // Schools a tuition filter left out only because their tuition isn't
+  // published (0 without a tuition filter), so the page can say so.
+  hiddenUnknownTuition: number;
+  // True when the list covers every school because a filter or search is
+  // on (the featured limit only applies to the unfiltered view).
+  searchedAll: boolean;
   // In the grouped view: the strongest few of each group and how many the
   // group has in total (the rest are one "See all" click away).
   groups?: { chance: AdmissionChance; entries: MatchEntry[]; total: number }[];
@@ -244,12 +275,22 @@ export function buildBoard(
   { withFeatured, searchIds }: { withFeatured: boolean; searchIds?: Set<string> }
 ): BoardData {
   // Unknown quality / chance count as typical for this student's schools.
-  const scored = withNeutralUnknowns(scoredAll);
+  const neutral = withNeutralUnknowns(scoredAll);
+  // Filtering to a country yourself: its schools aren't "outside your countries".
+  const country = state.filters.country ? canonicalCountry(state.filters.country) : null;
+  const scored = country
+    ? neutral.map((e) => (canonicalCountry(e.university.country) === country ? withoutCountryGate(e) : e))
+    : neutral;
   const ready = featuredReady(scored.map((e) => e.university));
   const defaultPool = scored.filter((e) => isShownByDefault(e.university));
-  const pool = !withFeatured || state.showAll || !ready ? scored : defaultPool;
+  const searchedAll = withFeatured && ready && !state.showAll && hasNarrowingFilters(state.filters);
+  const pool = !withFeatured || state.showAll || !ready || searchedAll ? scored : defaultPool;
 
   const filtered = applyFilters(pool, state.filters, searchIds);
+  const tuitionFilter = state.filters.tuitionMin !== null || state.filters.tuitionMax !== null;
+  const hiddenUnknownTuition = tuitionFilter
+    ? applyFilters(pool, { ...state.filters, tuitionMin: null, tuitionMax: null }, searchIds).filter((e) => e.university.tuition === null).length
+    : 0;
 
   // Grouped view: no pages, just the top of each group. A filter on one
   // chance (from "See all") shows the plain list instead.
@@ -265,9 +306,11 @@ export function buildBoard(
       totalPages: 1,
       matchingCount: filtered.length,
       countries: Array.from(new Set(pool.map((e) => canonicalCountry(e.university.country)))).sort(),
-      featured: withFeatured ? { featuredCount: defaultPool.length, allCount: scored.length, ready } : undefined,
+      featured: withFeatured ? { featuredCount: defaultPool.length, allCount: scored.length, ready, searchedAll } : undefined,
       pool,
       groups,
+      hiddenUnknownTuition,
+      searchedAll,
     };
   }
 
@@ -280,9 +323,11 @@ export function buildBoard(
     matchingCount: filtered.length,
     countries: Array.from(new Set(pool.map((e) => canonicalCountry(e.university.country)))).sort(),
     featured: withFeatured
-      ? { featuredCount: defaultPool.length, allCount: scored.length, ready }
+      ? { featuredCount: defaultPool.length, allCount: scored.length, ready, searchedAll }
       : undefined,
     pool,
+    hiddenUnknownTuition,
+    searchedAll,
   };
 }
 

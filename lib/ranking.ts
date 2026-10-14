@@ -4,6 +4,8 @@ import {
   FAR_OVER_BUDGET_RATIO,
   GOOD_QUALITY,
   HIGH_QUALITY,
+  NEUTRAL_PEER_WINDOW,
+  NEUTRAL_PEERS_MIN,
   PLAUSIBILITY_UNKNOWN,
   PLAUSIBILITY_FLOOR,
   P_FULL,
@@ -57,6 +59,8 @@ export function plausibilityFrom(
   return { value: RULE_PLAUSIBILITY[chance], source: "rule" };
 }
 
+export const OUTSIDE_COUNTRIES = "outside the countries you chose";
+
 export function fitGate(profile: Profile, university: UniversitySummary, match: MatchResult): RankInfo["gate"] {
   const reasons: string[] = [];
   if (!match.eligible) reasons.push(`doesn't list ${profile.preferred_degree_level} programs`);
@@ -65,7 +69,7 @@ export function fitGate(profile: Profile, university: UniversitySummary, match: 
     reasons.push("tuition is far over your budget");
   }
   if (profile.preferred_countries.length > 0 && !countryMatches(profile, university)) {
-    reasons.push("outside the countries you chose");
+    reasons.push(OUTSIDE_COUNTRIES);
   }
   return { passes: reasons.length === 0, reasons };
 }
@@ -128,6 +132,16 @@ export function rankUniversity(
   };
 }
 
+// When a student filters to a country themselves, schools there are judged
+// on their merits: "outside the countries you chose" no longer holds them
+// back (the other gate reasons still do).
+export function withoutCountryGate<T extends Ranked>(entry: T): T {
+  const reasons = entry.rank.gate.reasons.filter((r) => r !== OUTSIDE_COUNTRIES);
+  if (reasons.length === entry.rank.gate.reasons.length) return entry;
+  const gate = { passes: reasons.length === 0, reasons };
+  return { ...entry, rank: { ...entry.rank, gate, reason: reasonLine(entry.university, entry.match.chance, entry.rank.quality, gate) } };
+}
+
 // ─── Sort orders ─────────────────────────────────────────────────────────
 
 type Ranked = { university: UniversitySummary; match: MatchResult; rank: RankInfo };
@@ -141,6 +155,9 @@ export function compareBest(a: Ranked, b: Ranked): number {
     gateFirst(a, b) ||
     b.rank.realistic - a.rank.realistic ||
     (b.rank.quality ?? QUALITY_UNKNOWN) - (a.rank.quality ?? QUALITY_UNKNOWN) ||
+    // At the same level, a measured strength before one estimated from
+    // similar schools.
+    Number(a.university.strength_is_estimate === true) - Number(b.university.strength_is_estimate === true) ||
     b.match.score - a.match.score ||
     byName(a, b)
   );
@@ -180,12 +197,13 @@ export function groupByChance<T extends Ranked>(entries: T[]): { chance: Admissi
 }
 
 // ─── Neutral values for unknowns ─────────────────────────────────────────
-// A school with no published quality figures or no admission data (most
-// non-US schools) is scored as "like a typical school on this student's
-// list": the median quality and the median plausibility of the schools
-// where they are known. A fixed middle value would bury those schools for a
-// strong student (for whom almost every known school is a likely admit) and
-// over-promote them for a weaker one. The card still says "not available".
+// A school with no published quality figures counts as the median quality
+// of the student's list. A school with no admission data (most non-US
+// schools) borrows the chances of known schools of similar strength in the
+// same list (NEUTRAL_PEER_WINDOW in lib/scoring-config.ts): for a strong
+// student an unknown Oxford is about as reachable as MIT, not a sure admit,
+// and for a weaker student an unknown top school isn't put above schools
+// they can actually get into. The card still says "not enough data".
 export function withNeutralUnknowns<T extends Ranked>(entries: T[]): T[] {
   const median = (values: number[], fallback: number) => {
     if (values.length === 0) return fallback;
@@ -197,13 +215,16 @@ export function withNeutralUnknowns<T extends Ranked>(entries: T[]): T[] {
     entries.map((e) => e.rank.quality).filter((q): q is number => q !== null),
     QUALITY_UNKNOWN
   );
-  const neutralPlausibility = median(
-    entries.filter((e) => e.rank.plausibilitySource !== "unknown").map((e) => e.rank.plausibility),
-    PLAUSIBILITY_UNKNOWN
-  );
+  const known = entries.filter((e) => e.rank.plausibilitySource !== "unknown");
+  const fallback = Math.min(median(known.map((e) => e.rank.plausibility), PLAUSIBILITY_UNKNOWN), PLAUSIBILITY_UNKNOWN);
+  const qualityOf = (e: T) => e.rank.quality ?? neutralQuality;
+  const peerPlausibility = (quality: number) => {
+    const peers = known.filter((k) => Math.abs(qualityOf(k) - quality) <= NEUTRAL_PEER_WINDOW);
+    return peers.length >= NEUTRAL_PEERS_MIN ? median(peers.map((k) => k.rank.plausibility), fallback) : fallback;
+  };
   return entries.map((e) => {
     if (e.rank.quality !== null && e.rank.plausibilitySource !== "unknown") return e;
-    const plausibility = e.rank.plausibilitySource === "unknown" ? neutralPlausibility : e.rank.plausibility;
+    const plausibility = e.rank.plausibilitySource === "unknown" ? peerPlausibility(qualityOf(e)) : e.rank.plausibility;
     const realistic = (e.rank.quality ?? neutralQuality) * plausibility * (e.rank.visaFactor ?? 1);
     return { ...e, rank: { ...e.rank, plausibility, realistic } };
   });
