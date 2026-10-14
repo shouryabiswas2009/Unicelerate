@@ -47,11 +47,19 @@ async function ror(id) {
   return json;
 }
 
+// Leiden lists Hong Kong's universities under China; we list Hong Kong on
+// its own (as the universities and their fees do). Its Leiden names all say
+// "Hong Kong", and ROR's location confirms each one.
+const LEIDEN_COUNTRY = { "Hong Kong": "China" };
+const inLeiden = (r, country) =>
+  LEIDEN_COUNTRY[country] ? r.country === LEIDEN_COUNTRY[country] && r.name.includes(country) : r.country === country;
+
 const rows = [];
 for (const country of countries) {
-  const inCountry = leiden.filter((r) => r.country === country && !ours.has(r.ror)).sort((a, b) => b.p - a.p);
+  const inCountry = leiden.filter((r) => inLeiden(r, country) && !ours.has(r.ror)).sort((a, b) => b.p - a.p);
   for (const l of inCountry) {
     const org = await ror(l.ror);
+    if (LEIDEN_COUNTRY[country] && org.locations?.[0]?.geonames_details?.country_name !== country) continue;
     const name = org.names.find((n) => n.types.includes("ror_display"))?.value ?? l.name;
     if (ourNames.has(`${name.toLowerCase()}|${country}`)) continue;
     const others = org.names.filter((n) => !n.types.includes("ror_display")).map((n) => n.value);

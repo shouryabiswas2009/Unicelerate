@@ -78,11 +78,15 @@ export function toText(html) {
     .join("\n");
 }
 
-const DEGREE_PATTERNS = {
+export const DEGREE_PATTERNS = {
   Undergraduate: /undergraduate|bachelor|baccalaur|licence|grundständig|bachelorstudium/i,
   Masters: /master|maîtrise|postgraduate|graduate studies|graduate programs|graduate school/i,
   PhD: /\bph\.?\s?d\b|doctoral|doctorate|doctorat|promotion|research degree/i,
 };
+
+// The degree levels a page's text mentions, in a fixed order.
+export const degreeLevels = (text) =>
+  Object.entries(DEGREE_PATTERNS).filter(([, re]) => re.test(text)).map(([level]) => level);
 
 // Command-line use only (other scripts import fetchPage).
 const direct = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
@@ -91,7 +95,7 @@ if (direct && process.argv[2] === "--degrees") {
   const rows = parseCsv(readFileSync(process.argv[3], "utf8")).filter((r) => !process.argv[4] || r.country === process.argv[4]);
   for (const r of rows) {
     const page = await fetchPage(r.website);
-    const levels = Object.entries(DEGREE_PATTERNS).filter(([, re]) => re.test(page.text)).map(([level]) => level);
+    const levels = degreeLevels(page.text);
     console.log([r.ror, page.status, page.final, levels.join(";") || "-", page.error ?? ""].join(" | "));
   }
 } else if (direct && process.argv[2]) {

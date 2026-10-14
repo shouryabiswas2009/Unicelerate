@@ -1,0 +1,438 @@
+{
+  "data_year": "2026-27",
+  "checked_on": "2026-10-14",
+  "rows": [
+    {
+      "ror": "00g30e956",
+      "curated_id": "uni-hamburg",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 0,
+        "currency": "EUR",
+        "basis": "No tuition fees (abolished in October 2012); only the semester contribution",
+        "year": "current policy (since October 2012)",
+        "url": "https://www.uni-hamburg.de/en/studium/campus-leben/finanzen.html"
+      }
+    },
+    {
+      "ror": "00f7hpc57",
+      "curated_id": "fau",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 2000,
+        "currency": "EUR",
+        "basis": "Lowest non-EU tuition fee band for bachelor's programmes (e.g. Archaeological Sciences): €1,000 per semester × 2, for non-EU students enrolling from summer semester 2027 (€1,000–6,000 per semester by programme); semester contribution extra",
+        "year": "from summer semester 2027",
+        "url": "https://www.fau.eu/studying/international-students/application-and-enrollment-for-international-applicants/tuition-fees-for-students-from-non-eu-states/"
+      }
+    },
+    {
+      "ror": "042aqky30",
+      "curated_id": "tu-dresden",
+      "degree_levels": "Undergraduate;Masters",
+      "tuition": {
+        "local": 0,
+        "currency": "EUR",
+        "basis": "No tuition fee for a first degree (fees apply only to second degrees, long-term and distance study); only the semester contribution",
+        "year": "current policy (checked 2026-10-14)",
+        "url": "https://tu-dresden.de/studium/im-studium/studienorganisation/semesterbeitrag-studiengebuehren?set_language=en"
+      }
+    },
+    {
+      "ror": "046ak2485",
+      "curated_id": "fu-berlin",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 0,
+        "currency": "EUR",
+        "basis": "No tuition fees (except continuing education); only semester fees and contributions",
+        "year": "current policy (checked 2026-10-14)",
+        "url": "https://www.fu-berlin.de/en/studium/international/studium_fu/studienfinanzierung/index.html"
+      }
+    },
+    {
+      "ror": "0245cg223",
+      "curated_id": "freiburg",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 3000,
+        "currency": "EUR",
+        "basis": "Tuition for non-EU/EEA students in bachelor's programmes: €1,500 per semester × 2 (Baden-Württemberg law); semester fee extra",
+        "year": "current policy (since winter semester 2017/18)",
+        "url": "https://uni-freiburg.de/en/studies/during-your-studies/tuition-fees-international-students/"
+      }
+    },
+    {
+      "ror": "041nas322",
+      "curated_id": "uni-bonn",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 0,
+        "currency": "EUR",
+        "basis": "Public university that does not charge tuition; only the semester (social) contribution",
+        "year": "current policy (checked 2026-10-14)",
+        "url": "https://www.uni-bonn.de/en/studying/application-admission-and-enrollment/costs"
+      }
+    },
+    {
+      "ror": "03a1kwz48",
+      "curated_id": "tuebingen",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 3000,
+        "currency": "EUR",
+        "basis": "Tuition for non-EU/EEA students in bachelor's programmes: €1,500 per semester × 2 (Baden-Württemberg law); semester fee extra",
+        "year": "current policy (since winter semester 2017/18)",
+        "url": "https://uni-tuebingen.de/en/study/organizing-your-studies/fees/tuition-fees/tuition-fees-for-international-students/"
+      }
+    },
+    {
+      "ror": "04cvxnb49",
+      "curated_id": "goethe-frankfurt",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: no university page found that states the tuition policy for international bachelor's students; tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "00rcxh774",
+      "curated_id": "uni-koeln",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 0,
+        "currency": "EUR",
+        "basis": "The university does not charge tuition fees; only the semester (social) contribution",
+        "year": "current policy (checked 2026-10-14)",
+        "url": "https://uni-koeln.de/en/studying-teaching/international/study-in-cologne/costs-financing"
+      }
+    },
+    {
+      "ror": "00pd74e08",
+      "curated_id": "uni-muenster",
+      "degree_levels": "Undergraduate;Masters",
+      "tuition": {
+        "local": 0,
+        "currency": "EUR",
+        "basis": "No tuition fees for regular degree programmes (only in-service continuing education); semester fee extra",
+        "year": "current policy (checked 2026-10-14)",
+        "url": "https://www.uni-muenster.de/international/en/studierende/general-information/cost-and-funding.html"
+      }
+    },
+    {
+      "ror": "01y9bpm73",
+      "curated_id": "goettingen",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: the fee pages list long-term and programme fees but no clear statement for international bachelor's students; tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "04vnq7t77",
+      "curated_id": "uni-stuttgart",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 3000,
+        "currency": "EUR",
+        "basis": "Tuition for students from non-EU/EEA countries: €1,500 per semester × 2 (Baden-Württemberg law); semester fee extra",
+        "year": "current policy (checked 2026-10-14)",
+        "url": "https://www.student.uni-stuttgart.de/en/organizing-studies/formalities/tuition-and-fees/"
+      }
+    },
+    {
+      "ror": "05n911h24",
+      "curated_id": "tu-darmstadt",
+      "degree_levels": "Undergraduate;Masters",
+      "tuition": {
+        "local": 0,
+        "currency": "EUR",
+        "basis": "Most programmes are tuition-free; only the semester fee",
+        "year": "current policy (checked 2026-10-14)",
+        "url": "https://www.tu-darmstadt.de/studentsoftudarmstadt/home/studileben/studienkosten_und_finanzierung.en.jsp"
+      }
+    },
+    {
+      "ror": "031bsb921",
+      "curated_id": "mannheim",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 3000,
+        "currency": "EUR",
+        "basis": "Tuition for non-EU/EEA students in bachelor's programmes: €1,500 per semester × 2 (Baden-Württemberg law); semester fee extra",
+        "year": "current policy (since winter semester 2017/18)",
+        "url": "https://www.uni-mannheim.de/en/academics/during-your-studies/organizing-your-studies/fees/tuition-fees-for-international-students/"
+      }
+    },
+    {
+      "ror": "03s7gtk40",
+      "curated_id": "leipzig",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 0,
+        "currency": "EUR",
+        "basis": "No general tuition fees (second-degree and some master's fees only); only the semester fee",
+        "year": "current policy (checked 2026-10-14)",
+        "url": "https://www.uni-leipzig.de/en/international/studying-at-leipzig-university/getting-started-with-studies-and-life-in-leipzig"
+      }
+    },
+    {
+      "ror": "016xsfp80",
+      "curated_id": "radboud",
+      "degree_levels": "Undergraduate;Masters",
+      "tuition": {
+        "local": 13812,
+        "currency": "EUR",
+        "basis": "Institutional tuition fee for non-EEA students, Psychology bachelor (the page says it may still change); rates vary by programme",
+        "year": "2027-28",
+        "url": "https://www.ru.nl/en/education/bachelors/psychology/tuition"
+      }
+    },
+    {
+      "ror": "02jz4aj89",
+      "curated_id": "maastricht",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 13400,
+        "currency": "EUR",
+        "basis": "Low-tier institutional (non-EU/EEA) bachelor's fee; high tier €18,700",
+        "year": "2027-28",
+        "url": "https://www.maastrichtuniversity.nl/studeren/toelating-inschrijving/tuition-fees"
+      }
+    },
+    {
+      "ror": "008xxew50",
+      "curated_id": "vu-amsterdam",
+      "degree_levels": "Undergraduate;Masters",
+      "notes": "Needs hand-checking: the bachelor's institutional fee table isn't in the page text; tuition left empty"
+    },
+    {
+      "ror": "006hf6230",
+      "curated_id": "utwente",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 12300,
+        "currency": "EUR",
+        "basis": "Lower-rate institutional fee for full-time non-EU/EEA bachelor's students (higher rate €16,400)",
+        "year": "2026-27",
+        "url": "https://www.utwente.nl/en/education/bachelor/tuition-fees/"
+      }
+    },
+    {
+      "ror": "04b8v1s79",
+      "curated_id": "tilburg",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: the website blocks automated fetching (403); tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "03265fv13",
+      "curated_id": "ucc",
+      "degree_levels": "Undergraduate;Masters",
+      "tuition": {
+        "local": 18500,
+        "currency": "EUR",
+        "basis": "Non-EU fee for the BA (Hons) Arts (CK101); €210 capitation fee extra",
+        "year": "2026-27",
+        "url": "https://www.ucc.ie/en/financeoffice/fees/schedules/internationalundergraduatefees202627/"
+      }
+    },
+    {
+      "ror": "03bea9k73",
+      "curated_id": "universityofgalway",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 20650,
+        "currency": "EUR",
+        "basis": "International (non-EU) fee for the Bachelor of Arts (Joint Honours), GY101",
+        "year": "2027-28",
+        "url": "https://www.universityofgalway.ie/student-fees/how-much/undergraduate-fees/"
+      }
+    },
+    {
+      "ror": "00a0n9e72",
+      "curated_id": "ul",
+      "degree_levels": "Undergraduate;Masters",
+      "tuition": {
+        "local": 17500,
+        "currency": "EUR",
+        "basis": "Non-EU fee for arts, business and law degrees (e.g. BA Applied Languages), including the student levy",
+        "year": "2026-27",
+        "url": "https://www.ul.ie/fees/course-fees/undergraduate-fees/undergraduate-fees-2026-2027"
+      }
+    },
+    {
+      "ror": "04a1a1e81",
+      "curated_id": "dcu",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 17750,
+        "currency": "EUR",
+        "basis": "Lowest non-EU fee in the undergraduate table (Bachelor of Education programmes); business programmes €19,500",
+        "year": "2027-28",
+        "url": "https://www.dcu.ie/fees/undergraduate-fees-2027-2028"
+      }
+    },
+    {
+      "ror": "048nfjm95",
+      "curated_id": "maynooth",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: the international undergraduate fee list is a PDF and the website blocks automated fetching (403); tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "04t0qbt32",
+      "curated_id": "tudublin",
+      "degree_levels": "Undergraduate;Masters",
+      "notes": "Needs hand-checking: the only general rates (Level 6 and 7) aren't dated and don't cover honours bachelor's degrees; tuition left empty"
+    },
+    {
+      "ror": "05j6fvn87",
+      "curated_id": "sutd",
+      "degree_levels": "Undergraduate;Masters",
+      "tuition": {
+        "local": 31600,
+        "currency": "SGD",
+        "basis": "Subsidised fee for international students (non-ASEAN; ASEAN S$30,200) with the MOE Tuition Grant, which requires three years' work in Singapore; non-subsidised S$62,076",
+        "year": "AY2026",
+        "url": "https://www.sutd.edu.sg/admissions/undergraduate/education-expenses/fees/tuition-fees/"
+      }
+    },
+    {
+      "ror": "050qmg959",
+      "curated_id": "smu",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: the fee table isn't in the page text; tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "0030zas98",
+      "curated_id": "polyu",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 240000,
+        "currency": "HKD",
+        "basis": "Tuition for full-time government-funded bachelor's programmes, non-local students",
+        "year": "2027-28",
+        "url": "https://www.polyu.edu.hk/study/ug/admissions/international-other-qualifications/international-other-qualifications-tuition-fees"
+      }
+    },
+    {
+      "ror": "0145fw131",
+      "curated_id": "hkbu",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 240000,
+        "currency": "HKD",
+        "basis": "Undergraduate tuition fee for non-local students",
+        "year": "2027-28",
+        "url": "https://admissions.hkbu.edu.hk/fees-and-scholarships.html"
+      }
+    },
+    {
+      "ror": "000t0f062",
+      "curated_id": "eduhk",
+      "degree_levels": "Undergraduate",
+      "tuition": {
+        "local": 210000,
+        "currency": "HKD",
+        "basis": "Undergraduate tuition fee for non-local students (provisional)",
+        "year": "2027-28",
+        "url": "https://www.apply.eduhk.hk/ug/fees"
+      }
+    },
+    {
+      "ror": "01jmxt844",
+      "curated_id": "otago",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: the website blocks automated fetching (403); tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "052czxv31",
+      "curated_id": "massey",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 35250,
+        "currency": "NZD",
+        "basis": "Lowest of the Bachelor of Arts international range for 2027 (NZ$35,250–43,570, full-time 120 credits); Student Services Fee extra",
+        "year": "2027",
+        "url": "https://www.massey.ac.nz/study/all-qualifications-and-degrees/bachelor-of-arts-UBART/"
+      }
+    },
+    {
+      "ror": "0040r6f76",
+      "curated_id": "vuw",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 35361.6,
+        "currency": "NZD",
+        "basis": "Average year of full-time undergraduate study (120 points) in Humanities and Social Sciences, including GST; student fees extra",
+        "year": "2026",
+        "url": "https://www.wgtn.ac.nz/students/money/fees/international"
+      }
+    },
+    {
+      "ror": "03y7q9t39",
+      "curated_id": "canterbury",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 36410,
+        "currency": "NZD",
+        "basis": "Bachelor of Arts tuition estimate per 120 points (one full-time year)",
+        "year": "2027",
+        "url": "https://www.canterbury.ac.nz/study/getting-started/study-and-living-costs/study-costs/international-tuition-fees/bachelors"
+      }
+    },
+    {
+      "ror": "01zvqw119",
+      "curated_id": "aut",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: the website blocks automated fetching (403); tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "013fsnh78",
+      "curated_id": "waikato",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 34020,
+        "currency": "NZD",
+        "basis": "Lowest of the Bachelor of Arts estimated range for 2027 (NZ$34,020–44,342)",
+        "year": "2027",
+        "url": "https://www.waikato.ac.nz/int/study/fees-costs/international-tuition-costs/"
+      }
+    },
+    {
+      "ror": "04ps1r162",
+      "curated_id": "lincoln-nz",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: the website blocks automated fetching (403); tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "01km6p862",
+      "curated_id": "uaeu",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: the fee pages list several per-credit-hour rates without saying which intake or student group they apply to; tuition left empty. Degree levels: not confirmed on the pages read"
+    },
+    {
+      "ror": "00engpz63",
+      "curated_id": "sharjah",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "notes": "Needs hand-checking: the 2026/2027 fee page's figures aren't in the page text; tuition left empty"
+    },
+    {
+      "ror": "001g2fj96",
+      "curated_id": "aus",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "tuition": {
+        "local": 110876,
+        "currency": "AED",
+        "basis": "Tuition for all majors per academic year (AED 55,438 per semester for 12–16 credits); lab/technology fees extra",
+        "year": "2026-27",
+        "url": "https://www.aus.edu/admissions/bachelors-degrees/undergraduate-tuition-and-fees"
+      }
+    },
+    {
+      "ror": "01j1rma10",
+      "curated_id": "ajman",
+      "degree_levels": "Undergraduate;Masters;PhD",
+      "notes": "Needs hand-checking: fees are per credit hour with no stated yearly load, and the 2026-27 figures aren't in the page text; tuition left empty"
+    },
+    {
+      "ror": "01r3kjq03",
+      "curated_id": "adu",
+      "degree_levels": "",
+      "notes": "Needs hand-checking: fees are per credit hour with no stated yearly load; tuition left empty. Degree levels: not confirmed on the pages read"
+    }
+  ]
+}
