@@ -210,8 +210,8 @@ setting, housing and athletics; Scorecard enrolment; existing co-op and
 research data; a few hand-checked team counts and conference memberships),
 stored at import time (`npm run data:campus-life:download` then
 `data:campus-life:build`, migration_023 + `seed_campus_life/`). Unknown
-proxies are left out and re-weighted; each kind has a confidence label
-(High 3+ proxies, Medium 2, Low 1). Cards and the detail page list the
+proxies are left out and re-weighted; each kind shows its data coverage
+(Good only with a published club, team or event count; otherwise Partial). Cards and the detail page list the
 proxies with sources, side by side and never as a number; compare shows a
 row per proxy; the offers page has a slider for each; What-if can switch
 them on; the landing quiz has an optional question. Data, weights, licences

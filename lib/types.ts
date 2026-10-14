@@ -166,7 +166,9 @@ export type University = {
   campus_life?: CampusLife | null;
 };
 
-export type CampusConfidence = "High" | "Medium" | "Low" | "Not available";
+// What was measured for one campus-life kind (lib/campus-life-score.ts):
+// "Good" only with a direct club, team or event count.
+export type CampusCoverage = "Good" | "Partial" | "Not available";
 
 // Published figures behind the two campus-life focuses. Every field is
 // null/missing when unknown. US figures come from IPEDS / College
@@ -182,7 +184,7 @@ export type CampusLife = {
   hackathons?: number | null;
   social_clubs?: number | null;
   curated?: { proxy: string; source_url: string; checked_on: string; label?: string }[];
-  // Precomputed at import with "Not sure" weights (the confidence follows
+  // Precomputed at import with "Not sure" weights (the data coverage follows
   // from how many proxies are known, so it isn't stored).
   academic_score?: number | null;
   social_score?: number | null;

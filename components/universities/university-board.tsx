@@ -6,18 +6,10 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { compareUrl, MAX_COMPARE } from "@/lib/compare";
 import { ChevronLeft, ChevronRight, Search, SlidersHorizontal, X } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { UniversityCard } from "@/components/universities/university-card";
-import { Flag } from "@/components/flag";
 import type { AdmissionChance, MatchEntry } from "@/lib/matching";
 import {
   boardQuery,
@@ -36,13 +28,13 @@ const SORT_OPTIONS: { value: SortKey; label: string }[] = [
   { value: "match", label: "Best match" },
   { value: "tuition-asc", label: "Lowest tuition" },
   { value: "tuition-desc", label: "Highest tuition" },
-  { value: "ranking", label: "Strongest first (Unicelerate index)" },
+  { value: "ranking", label: "Strongest first" },
 ];
 
 // Visitors have no profile, so only orders that don't need one.
 const GUEST_SORT_OPTIONS: { value: SortKey; label: string }[] = [
   // For visitors "best" is quality alone, which is the strength index.
-  { value: "best", label: "Strongest first (Unicelerate index)" },
+  { value: "best", label: "Strongest first" },
   { value: "tuition-asc", label: "Lowest tuition" },
   { value: "tuition-desc", label: "Highest tuition" },
 ];
@@ -57,8 +49,13 @@ const GROUP_NOTES: Record<AdmissionChance, string> = {
   "Not enough data": "No admission figures to judge your chances (common outside the US).",
 };
 
-// Radix Select can't use "" as a value, so "any" stands for "no filter".
-const ANY = "any";
+// Native selects: the server renders the chosen option, so the controls are
+// readable before the page's JavaScript loads (a library dropdown showed a
+// blank box until then), and they work with every keyboard and screen
+// reader. "" stands for "no filter".
+const ANY = "";
+const selectClass =
+  "h-9 w-full rounded-lg border border-input bg-background px-2.5 text-sm focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none dark:bg-input/30";
 
 // How long to wait after the last keystroke before searching, so typing
 // "toronto" makes one request, not seven.
@@ -236,56 +233,52 @@ export function UniversityBoard({
               className="pl-8"
             />
           </div>
-          <Select value={filters.sortBy} onValueChange={(v) => update({ sortBy: v as SortKey })}>
-            <SelectTrigger className="w-full sm:w-52" aria-label="Sort by">
-              <SlidersHorizontal className="size-4" />
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
+          <div className="relative w-full sm:w-56">
+            <SlidersHorizontal className="pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
+            <select
+              value={filters.sortBy}
+              onChange={(e) => update({ sortBy: e.target.value as SortKey })}
+              aria-label="Sort by"
+              className={`${selectClass} pl-8`}
+            >
               {(guest ? GUEST_SORT_OPTIONS : SORT_OPTIONS).map((option) => (
-                <SelectItem key={option.value} value={option.value}>
+                <option key={option.value} value={option.value}>
                   {option.label}
-                </SelectItem>
+                </option>
               ))}
-            </SelectContent>
-          </Select>
+            </select>
+          </div>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <Select
+          <select
             value={filters.country ?? ANY}
-            onValueChange={(v) => update({ country: v === ANY ? null : v })}
+            onChange={(e) => update({ country: e.target.value === ANY ? null : e.target.value })}
+            aria-label="Country"
+            className={`${selectClass} sm:w-48`}
           >
-            <SelectTrigger className="w-full sm:w-48" aria-label="Country">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value={ANY}>All countries</SelectItem>
-              {countries.map((country) => (
-                <SelectItem key={country} value={country}>
-                  <Flag country={country} /> {country}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            <option value={ANY}>All countries</option>
+            {countries.map((country) => (
+              <option key={country} value={country}>
+                {country}
+              </option>
+            ))}
+          </select>
 
           {showDegreeFilter && (
-            <Select
+            <select
               value={filters.degreeLevel ?? ANY}
-              onValueChange={(v) => update({ degreeLevel: v === ANY ? null : (v as DegreeLevel) })}
+              onChange={(e) => update({ degreeLevel: e.target.value === ANY ? null : (e.target.value as DegreeLevel) })}
+              aria-label="Degree level"
+              className={`${selectClass} sm:w-44`}
             >
-              <SelectTrigger className="w-full sm:w-44" aria-label="Degree level">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value={ANY}>Any degree level</SelectItem>
-                {DEGREE_LEVELS.map((level) => (
-                  <SelectItem key={level} value={level}>
-                    {level}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+              <option value={ANY}>Any degree level</option>
+              {DEGREE_LEVELS.map((level) => (
+                <option key={level} value={level}>
+                  {level}
+                </option>
+              ))}
+            </select>
           )}
 
           <div className="flex w-full items-center gap-2 sm:w-auto">
@@ -298,9 +291,9 @@ export function UniversityBoard({
                 setTuitionMinText(e.target.value);
                 updateAfterTyping({ tuitionMin: parseBound(e.target.value) });
               }}
-              placeholder="Min tuition"
-              aria-label="Minimum tuition (USD per year)"
-              className="sm:w-28"
+              placeholder="Min $"
+              aria-label="Minimum tuition (US dollars per year)"
+              className="min-w-0 flex-1 sm:w-32 sm:flex-none"
             />
             <span className="text-muted-foreground">–</span>
             <Input
@@ -312,9 +305,9 @@ export function UniversityBoard({
                 setTuitionMaxText(e.target.value);
                 updateAfterTyping({ tuitionMax: parseBound(e.target.value) });
               }}
-              placeholder="Max tuition"
-              aria-label="Maximum tuition (USD per year)"
-              className="sm:w-28"
+              placeholder="Max $"
+              aria-label="Maximum tuition (US dollars per year)"
+              className="min-w-0 flex-1 sm:w-32 sm:flex-none"
             />
           </div>
 

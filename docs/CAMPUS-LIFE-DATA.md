@@ -20,9 +20,22 @@ separate focuses**, never blended:
 
 Each proxy is a published, cited figure turned into 0..1 (below). A
 proxy we don't have is left out and the rest are re-weighted; nothing is
-ever counted as zero because it's missing. Each kind gets its own
-confidence label from how many of its proxies are known: **High** 3+,
-**Medium** 2, **Low** 1, **Not available** 0.
+ever counted as zero because it's missing.
+
+Each kind shows its **data coverage**: what was actually measured, not
+how many numbers there are. Setting, enrolment, housing and sport
+membership (social), and co-op, Carnegie level and research impact
+(academic) are *indirect*: none of them counts a club, a team or an
+event. So:
+
+- **Good**: at least one *direct* figure (a published club, team or event
+  count) and at least 3 figures in all.
+- **Partial**: anything less, including four indirect figures and no
+  direct one (most US schools' social life, e.g. MIT).
+- **Not available**: nothing published.
+
+(The first release called this "confidence" and showed High for four
+indirect figures, which overclaimed; changed 2026-10-13.)
 
 They plug in like every other focus: a student ticks neither, one or both,
 and the ticked focuses split the 20 focus points (weights still add to
@@ -48,7 +61,7 @@ rating of how fun the place is.* Nothing says "party school", "not fun" or
 | Proxy | Source | Year | Turned into 0..1 | Coverage (of 1,688) |
 | --- | --- | --- | --- | --- |
 | Design / project teams | The school's own page (curated, with URL and date) | checked 2026-10-13 | count ÷ 40, capped at 1 (J) | 2 |
-| Academic & professional clubs | School or student-union page (curated) | none yet | count ÷ 150 (J) | 0 |
+| Academic & professional clubs | School or student-union page (curated) | checked 2026-10-13 | count ÷ 150 (J) | 1 (Warwick) |
 | Hackathons | School page or an official organiser's page (curated) | none yet | count ÷ 2 (J) | 0 |
 | Co-op / internships | Existing co-op data (school's own page) | as checked | mandatory 1, optional 0.5, none 0 (existing) | 8 |
 | Research activity | Carnegie Classification via College Scorecard (existing) | Scorecard 2024 | R1 1, R2 0.7, doctoral/professional 0.4, other 0 (existing) | 1,519 |
@@ -62,7 +75,7 @@ rating of how fun the place is.* Nothing says "party school", "not fun" or
 | Size | College Scorecard undergraduate enrolment | 2024 | log scale, 1,000 → 0, 40,000 → 1 (J) | 1,577 |
 | Campus housing | IPEDS IC `ROOMCAP` (housing capacity) ÷ Scorecard enrolment | 2023-24 (last year collected) | share, capped at 1 | 1,573 |
 | Varsity sport events | IPEDS IC `ASSOC1`–`ASSOC6`, `SPORT1`, `CONFNO1`; conference pages for Canada | 2024-25 / checked 2026-10-13 | NCAA with FBS football 1, NCAA football 0.75, NCAA 0.5, U SPORTS 0.5, other national body 0.35, none 0 (J) | 1,581 |
-| Social & cultural clubs | School or student-union page (curated) | none yet | count ÷ 300 (J) | 0 |
+| Social & cultural clubs | School or student-union page (curated) | checked 2026-10-13 | count ÷ 300 (J) | 1 (Warwick) |
 
 **J** = our judgement (a modelling choice you can change in
 `lib/campus-life-config.ts`). "FBS" conferences are the ones NCAA.com lists
@@ -137,6 +150,17 @@ checks it too).
   release instead. OUA's member page doesn't name the schools in its page
   text, so the Ontario schools' membership is left out until a citable
   list is found.
+- **Club directories tried on 2026-10-13**: Warwick SU lists every society
+  with a category in its page, so it's counted (70 Academic; 161 in
+  Cultural, Performance, Activities and Games, Film and Media, Religious
+  and Belief, Food and Beverage or Music Appreciation, each society once).
+  Cambridge SU lists 507 societies but without categories, so academic and
+  social can't be told apart from the page. Imperial, UCL, Manchester,
+  St Andrews, Southampton, Edinburgh, Glasgow, Toronto (SOP), UBC (AMS),
+  McMaster and McGill build their lists in the browser, so nothing countable
+  is in the page; KCL and Leeds refused automated access (403); LSE,
+  Oxford, Durham, Bristol and Queen's returned "not found" at the URLs
+  tried. Their coverage stays Partial until a count can be cited.
 - **McGill and U of T design teams**: McGill's page refuses automated
   access and the U of T Engineering Society's list is built in the
   browser, so neither count is included.
@@ -147,11 +171,11 @@ checks it too).
 
 ## Honest limits
 
-- Academic community for most US schools rests on one or two proxies
-  (Carnegie level, plus research impact for 241): mostly **Low**
-  confidence. Club and team counts exist for very few schools.
-- Social life outside the US is mostly **Not available** (4 schools have
-  varsity sport membership). The UI says "limited data" instead of letting
-  a school look dull.
+- Data coverage is **Good** for academic community at 3 schools (Waterloo,
+  UBC, Warwick) and for social life at none: no US school has a published
+  club or event count here, so every US school's social life is
+  **Partial**, and the page says so ("no club or event counts published")
+  instead of letting a school look dull.
+- Social life outside the US is mostly **Not available**.
 - These are proxies for what's on offer, not for how any student will
   experience a place.

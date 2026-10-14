@@ -187,8 +187,18 @@ describe("explainMatch extra notes", () => {
       makeProfile({ budget_max: 60000 }),
       makeUniversity({ tuition: 50000, living_cost_per_year: 15000 })
     );
-    expect(strengths.some((s) => s.startsWith("Tuition ($50,000/yr) fits"))).toBe(true);
-    expect(concerns.some((c) => c.startsWith("With living costs"))).toBe(true);
+    // One line that names both figures, never "fits" next to "over".
+    expect(concerns).toContain(
+      "Tuition alone ($50,000/yr) is within your $60,000 budget, but tuition plus living costs (about $65,000/yr) is over it."
+    );
+    expect(strengths.join(" ")).not.toMatch(/budget/);
+  });
+
+  it("says which figure it compared when the school fits", () => {
+    const within = explainMatch(makeProfile({ budget_max: 60000 }), makeUniversity({ tuition: 30000, living_cost_per_year: 15000 }));
+    expect(within.strengths).toContain("Tuition plus living costs (about $45,000/yr) is within your budget of $60,000.");
+    const noLiving = explainMatch(makeProfile({ budget_max: 60000 }), makeUniversity({ tuition: 30000, living_cost_per_year: null }));
+    expect(noLiving.strengths).toContain("Tuition alone ($30,000/yr) is within your budget of $60,000.");
   });
 });
 

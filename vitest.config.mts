@@ -8,6 +8,6 @@ export default defineConfig({
   },
   test: {
     environment: "node",
-    include: ["lib/**/*.test.ts", "scripts/**/*.test.mjs"],
+    include: ["lib/**/*.test.ts", "scripts/**/*.test.mjs", "components/**/*.test.tsx"],
   },
 });

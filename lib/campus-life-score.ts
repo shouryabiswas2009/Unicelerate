@@ -1,7 +1,8 @@
 import {
   ACADEMIC_PREF_WEIGHTS,
   ATHLETICS_SCORES,
-  CONFIDENCE_THRESHOLDS,
+  DIRECT_PROXIES,
+  GOOD_COVERAGE_MIN_FIGURES,
   COUNT_FULL,
   LOCALE_URBAN,
   QUIET_FLIPPED,
@@ -14,7 +15,7 @@ import {
   type SocialProxy,
 } from "./campus-life-config.ts";
 import { COOP_SCORES, RESEARCH_SCORES } from "./scoring-config.ts";
-import type { CampusConfidence, Profile, UniversitySummary } from "./types.ts";
+import type { CampusCoverage, Profile, UniversitySummary } from "./types.ts";
 
 // The scoring half of the campus-life focuses (display: lib/campus-life.ts).
 // Plain relative imports so the import script (scripts/campus-life/build.mjs)
@@ -61,10 +62,15 @@ export function socialProxyValues(u: CampusRow): Record<SocialProxy, number | nu
 
 // ─── Combining ───────────────────────────────────────────────────────────
 
-export function confidenceFor(known: number): CampusConfidence {
-  if (known >= CONFIDENCE_THRESHOLDS.high) return "High";
-  if (known >= CONFIDENCE_THRESHOLDS.medium) return "Medium";
-  return known >= 1 ? "Low" : "Not available";
+// What was actually measured for one kind: "Good" needs a direct club,
+// team or event count plus enough figures in all; indirect figures alone
+// (setting, size, housing, sport membership, co-op, research) are only ever
+// "Partial", however many there are.
+export function coverageFor(values: Record<string, number | null>, direct: readonly string[]): CampusCoverage {
+  const known = knownCount(values);
+  if (known === 0) return "Not available";
+  const hasDirect = direct.some((p) => values[p] !== null && values[p] !== undefined);
+  return hasDirect && known >= GOOD_COVERAGE_MIN_FIGURES ? "Good" : "Partial";
 }
 
 // Weighted mean of the known proxies; null when none of the weighted ones
@@ -97,7 +103,15 @@ function combine<P extends string, Pref extends string>(
   return scores.length ? scores.reduce((a, b) => a + b, 0) / scores.length : null;
 }
 
-export type CampusScore = { score: number | null; confidence: CampusConfidence; known: number };
+export type CampusScore = {
+  score: number | null;
+  coverage: CampusCoverage;
+  known: number; // figures known for this kind
+  direct: number; // of which club, team or event counts
+};
+
+const directCount = (values: Record<string, number | null>, direct: readonly string[]) =>
+  direct.filter((p) => values[p] !== null && values[p] !== undefined).length;
 
 export const knownCount = (values: Record<string, number | null>) => Object.values(values).filter((v) => v !== null).length;
 const round2 = (v: number | null) => (v === null ? null : Math.round(v * 100) / 100);
@@ -107,20 +121,25 @@ const round2 = (v: number | null) => (v === null ? null : Math.round(v * 100) / 
 export function academicCommunityScore(u: CampusRow, prefs: AcademicPref[] = []): CampusScore {
   const values = academicProxyValues(u);
   const stored = u.campus_life?.academic_score;
-  if (prefs.length === 0 && stored !== undefined) return { score: stored, confidence: confidenceFor(knownCount(values)), known: knownCount(values) };
-  const known = knownCount(values);
-  return { score: round2(combine(values, prefs, ACADEMIC_PREF_WEIGHTS)), confidence: confidenceFor(known), known };
+  const score = prefs.length === 0 && stored !== undefined ? stored : round2(combine(values, prefs, ACADEMIC_PREF_WEIGHTS));
+  return {
+    score,
+    coverage: coverageFor(values, DIRECT_PROXIES.academic),
+    known: knownCount(values),
+    direct: directCount(values, DIRECT_PROXIES.academic),
+  };
 }
 
 export function socialFunScore(u: CampusRow, prefs: SocialPref[] = []): CampusScore {
   const values = socialProxyValues(u);
   const stored = u.campus_life?.social_score;
-  if (prefs.length === 0 && stored !== undefined) return { score: stored, confidence: confidenceFor(knownCount(values)), known: knownCount(values) };
-  const known = knownCount(values);
+  const score =
+    prefs.length === 0 && stored !== undefined ? stored : round2(combine(values, prefs, SOCIAL_PREF_WEIGHTS, { quiet_close_knit: QUIET_FLIPPED }));
   return {
-    score: round2(combine(values, prefs, SOCIAL_PREF_WEIGHTS, { quiet_close_knit: QUIET_FLIPPED })),
-    confidence: confidenceFor(known),
-    known,
+    score,
+    coverage: coverageFor(values, DIRECT_PROXIES.social),
+    known: knownCount(values),
+    direct: directCount(values, DIRECT_PROXIES.social),
   };
 }
 

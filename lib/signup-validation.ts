@@ -6,7 +6,33 @@
 // Passwords themselves are never returned, stored or logged by this code;
 // Supabase handles them (hashing, storage) exactly as before.
 
-export const MIN_PASSWORD_LENGTH = 6; // Supabase Auth's default minimum
+// At least 8 characters. Supabase Auth's own minimum must be set to the same
+// number in the dashboard (Authentication → Providers → Email → minimum
+// password length), so the server refuses shorter ones too.
+export const MIN_PASSWORD_LENGTH = 8;
+
+// Passwords that are long enough but guessed first by anyone trying. A small
+// local list (no network call): very common passwords and keyboard patterns
+// of 8+ characters. Compared ignoring case.
+export const COMMON_PASSWORDS = new Set([
+  "password", "password1", "password12", "password123", "passw0rd", "p@ssw0rd", "p@ssword",
+  "12345678", "123456789", "1234567890", "0123456789", "87654321", "11111111", "00000000",
+  "12341234", "11223344", "123123123", "1q2w3e4r", "1q2w3e4r5t", "zaq12wsx", "1qaz2wsx",
+  "qwertyui", "qwertyuiop", "qwerty123", "qwerty12", "asdfghjk", "asdfghjkl", "zxcvbnm1",
+  "abcd1234", "abc12345", "abcdefgh", "iloveyou", "iloveyou1", "sunshine", "princess",
+  "football", "baseball", "superman", "starwars", "whatever", "trustno1", "letmein1",
+  "welcome1", "welcome123", "admin123", "administrator", "computer", "internet", "michelle",
+  "jennifer", "charlie1", "liverpool", "chelsea1", "arsenal1", "pokemon1", "minecraft",
+  "unicelerate", "university", "student1", "college1",
+]);
+
+// Plain-language reasons a password is too easy to guess, or null when fine.
+export function weakPasswordReason(password: string): string | null {
+  const lower = password.toLowerCase();
+  if (COMMON_PASSWORDS.has(lower)) return "That's one of the most common passwords. Pick something harder to guess.";
+  if (/^(.)\1+$/.test(password)) return "Don't use one character repeated. Pick something harder to guess.";
+  return null;
+}
 
 export type SignupFieldErrors = {
   email?: string;
@@ -19,6 +45,9 @@ export function passwordErrors(password: string, confirmPassword: string): Signu
   if (password.length === 0) errors.password = "Enter a password.";
   else if (password.length < MIN_PASSWORD_LENGTH) {
     errors.password = `Use at least ${MIN_PASSWORD_LENGTH} characters.`;
+  } else {
+    const weak = weakPasswordReason(password);
+    if (weak) errors.password = weak;
   }
   if (confirmPassword.length === 0) errors.confirmPassword = "Type your password again to confirm it.";
   else if (confirmPassword !== password) errors.confirmPassword = "Passwords don't match.";

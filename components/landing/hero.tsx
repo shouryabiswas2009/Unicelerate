@@ -54,7 +54,11 @@ export function Hero({ stats }: { stats: LandingStats }) {
             src={HERO_PHOTO}
             alt="A historic college building behind a striped green lawn"
             fill
-            priority
+            // Loaded first on this page, but without a <link rel="preload">:
+            // the preload hint also travels in the landing page's prefetched
+            // data, which made every page that links home fetch the photo.
+            loading="eager"
+            fetchPriority="high"
             sizes="(min-width: 1024px) 48vw, 100vw"
             className="object-cover"
           />

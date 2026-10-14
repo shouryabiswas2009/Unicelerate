@@ -3,6 +3,7 @@ import {
   CAMPUS_DISCLAIMER,
   CAMPUS_KIND_LABELS,
   academicCommunityScore,
+  coverageText,
   proxyLines,
   socialFunScore,
   type CampusKind,
@@ -11,14 +12,14 @@ import type { UniversitySummary } from "@/lib/types";
 
 // The two campus-life rows, "Academic & career community" and "Campus
 // social life", side by side and never blended: the published proxies
-// themselves with a confidence label, not a score. A row is hidden when
+// themselves with their data coverage, not a score. A row is hidden when
 // nothing is known, unless the student ticked that focus (then it says
 // "data not available", so a low-data school doesn't just look dull).
 
 const KINDS: CampusKind[] = ["academic", "social"];
 
-function confidenceOf(kind: CampusKind, university: UniversitySummary) {
-  return (kind === "academic" ? academicCommunityScore(university) : socialFunScore(university)).confidence;
+function coverageOf(kind: CampusKind, university: UniversitySummary) {
+  return (kind === "academic" ? academicCommunityScore(university) : socialFunScore(university)).coverage;
 }
 
 // Which campus focuses the student ticked, from their score breakdown.
@@ -30,7 +31,7 @@ export function hasCampusLife(university: UniversitySummary): boolean {
   return KINDS.some((kind) => proxyLines(kind, university).length > 0);
 }
 
-// Compact, for cards: label, confidence, the first two proxies.
+// Compact, for cards: label, data coverage, the first two proxies.
 export function CampusLifeLines({ university, selected }: { university: UniversitySummary; selected: Record<CampusKind, boolean> }) {
   const rows = KINDS.map((kind) => ({ kind, lines: proxyLines(kind, university) })).filter((r) => r.lines.length > 0 || selected[r.kind]);
   if (rows.length === 0) return null;
@@ -52,7 +53,7 @@ export function CampusLifeLines({ university, selected }: { university: Universi
                   {lines.length > 2 && <span className="text-muted-foreground"> +{lines.length - 2} more</span>}
                 </span>
                 <span className="block text-xs text-muted-foreground">
-                  {confidenceOf(kind, university) === "Low" ? "Low confidence: limited published data" : `${confidenceOf(kind, university)} confidence`}
+                  {coverageText(coverageOf(kind, university))}
                 </span>
               </>
             )}
@@ -75,7 +76,7 @@ export function CampusLifeDetails({ university, selected, className }: { univers
             <h3 className="flex items-baseline justify-between gap-2 text-sm font-semibold">
               {CAMPUS_KIND_LABELS[kind]}
               <span className="text-xs font-normal text-muted-foreground">
-                {lines.length === 0 ? "Not available" : `${confidenceOf(kind, university)} confidence`}
+                {lines.length === 0 ? "Data coverage: Not available" : coverageText(coverageOf(kind, university)).replace(/ \(.*\)$/, "")}
               </span>
             </h3>
             {lines.length === 0 ? (
@@ -98,8 +99,11 @@ export function CampusLifeDetails({ university, selected, className }: { univers
                 ))}
               </ul>
             )}
-            {lines.length > 0 && confidenceOf(kind, university) === "Low" && (
-              <p className="text-xs text-muted-foreground">Limited published data: one proxy only, so read it lightly.</p>
+            {lines.length > 0 && coverageOf(kind, university) === "Partial" && (
+              <p className="text-xs text-muted-foreground">
+                Partial: {kind === "academic" ? "no club, team or hackathon counts" : "no club or event counts"} are
+                published for this school, so these are indirect signals only. Read them lightly.
+              </p>
             )}
           </div>
         ))}

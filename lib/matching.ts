@@ -531,7 +531,7 @@ function explainFocuses(
   // Neutral wording on purpose: these are proxies from published figures,
   // never a verdict on how social or fun a school is.
   function campusLines(label: string, result: CampusScore, proxies: string) {
-    const limited = result.confidence === "Low" ? "; limited data" : "";
+    const limited = result.direct === 0 ? "; partial data, no club or event counts published" : "";
     if (result.score === null) {
       unavailable.push(`${label}: no published figures for this school, so it isn't scored (limited data, not a judgement).`);
     } else if (result.score >= CAMPUS_STRONG) {
@@ -564,11 +564,17 @@ export function explainMatch(profile: Profile, university: UniversitySummary): M
   if (!isKnown(tuition)) {
     concerns.push("Tuition: not available for this school, so it isn't scored against your budget.");
   } else if (tuition <= profile.budget_max) {
-    strengths.push(`Tuition (${usd(tuition)}/yr) fits your budget of ${usd(profile.budget_max)}.`);
-    // The affordability focus already said this, with the total, above.
-    if (!focuses.includes("affordability") && isKnown(living) && tuition + living > profile.budget_max) {
+    // The budget factor compares tuition alone; each line names which
+    // figure it compares, so "fits" and "over" never seem to contradict.
+    const total = isKnown(living) ? tuition + living : null;
+    if (total !== null && total <= profile.budget_max) {
+      strengths.push(`Tuition plus living costs (about ${usd(total)}/yr) is within your budget of ${usd(profile.budget_max)}.`);
+    } else if (total === null || focuses.includes("affordability")) {
+      // (The affordability focus already compared the total, above.)
+      strengths.push(`Tuition alone (${usd(tuition)}/yr) is within your budget of ${usd(profile.budget_max)}.`);
+    } else {
       concerns.push(
-        `With living costs (about ${usd(living)}/yr), the total is about ${usd(tuition + living)}/yr — above your budget.`
+        `Tuition alone (${usd(tuition)}/yr) is within your ${usd(profile.budget_max)} budget, but tuition plus living costs (about ${usd(total)}/yr) is over it.`
       );
     }
   } else {

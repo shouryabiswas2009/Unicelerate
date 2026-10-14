@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Briefcase, ClipboardList, Gauge, Scale, Target, type LucideIcon } from "lucide-react";
+import { ArrowRight, BarChart3, ClipboardList, Gauge, GraduationCap, Plane, Target, type LucideIcon } from "lucide-react";
 import { SectionHeading } from "@/components/landing/section-heading";
 
 type Feature = { icon: LucideIcon; title: string; description: string };
@@ -10,29 +10,34 @@ type Feature = { icon: LucideIcon; title: string; description: string };
 // the closing banner).
 const FEATURES: Feature[] = [
   {
+    icon: BarChart3,
+    title: "Strength index",
+    description: "Our own labelled estimate of each school's strength from open data (graduation, earnings, research), with its confidence and sources.",
+  },
+  {
     icon: Gauge,
     title: "Admission estimate",
     description: "For US schools with official figures, a demo model estimates your chance and shows what moved it.",
   },
   {
-    icon: Target,
-    title: "What matters most",
-    description: "Tick reputation, work experience, research or affordability, and the scoring leans that way.",
+    icon: GraduationCap,
+    title: "Your grades and courses",
+    description: "Enter grades in your own system (Canadian provinces, CBSE, IB, A Levels and more), and list courses so the ones that matter for your major count more.",
   },
   {
-    icon: Briefcase,
-    title: "Co-op and internships",
-    description: "Co-op programs taken only from the university's own pages (a few schools so far).",
+    icon: Target,
+    title: "What matters most",
+    description: "Tick reputation, work experience, research, cost, or the two campus-life factors (academic & career community, social life), and the scoring leans that way.",
+  },
+  {
+    icon: Plane,
+    title: "Visa and work rights",
+    description: "Optionally weigh post-study work, proof of funds and work hours from government pages, each cited and dated.",
   },
   {
     icon: ClipboardList,
-    title: "Application tracker",
-    description: "Status, deadline, costs and scholarship for every application, in one place.",
-  },
-  {
-    icon: Scale,
-    title: "Compare your offers",
-    description: "Rank offers by what matters to you, spot a clear winner or a close call, and track accept-by dates.",
+    title: "Applications and offers",
+    description: "Track status, deadlines and costs, then rank your offers by what matters to you.",
   },
 ];
 

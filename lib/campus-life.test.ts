@@ -6,7 +6,7 @@ import { ATHLETICS_SCORES, LOCALE_URBAN } from "@/lib/campus-life-config";
 import {
   academicCommunityScore,
   academicProxyLines,
-  confidenceFor,
+  coverageFor,
   socialFunScore,
   socialProxyLines,
 } from "@/lib/campus-life";
@@ -95,7 +95,7 @@ describe("the two scores are independent", () => {
 describe("missing data", () => {
   it("skips unknown proxies and re-weights the rest", () => {
     const onlySport = school("Only sport", { campus_life: { athletics: "ncaa" } });
-    expect(socialFunScore(onlySport)).toMatchObject({ score: ATHLETICS_SCORES.ncaa, confidence: "Low", known: 1 });
+    expect(socialFunScore(onlySport)).toMatchObject({ score: ATHLETICS_SCORES.ncaa, coverage: "Partial", known: 1, direct: 0 });
     const onlyLocale = school("Only city", { campus_life: { locale: 12 } });
     expect(socialFunScore(onlyLocale).score).toBe(LOCALE_URBAN[12]);
   });
@@ -106,12 +106,23 @@ describe("missing data", () => {
     expect(result.factors.filter((f) => f.key.startsWith("campus_")).every((f) => f.points === null)).toBe(true);
     // Same as scoring it on everything else alone.
     expect(result.score).toBe(computeMatchScore(profile({ focuses: ["research"] }), blank).score);
-    expect(academicCommunityScore(blank)).toEqual({ score: null, confidence: "Not available", known: 0 });
+    expect(academicCommunityScore(blank)).toEqual({ score: null, coverage: "Not available", known: 0, direct: 0 });
   });
 
-  it("labels confidence by how many proxies are known", () => {
-    expect([0, 1, 2, 3, 6].map(confidenceFor)).toEqual(["Not available", "Low", "Medium", "High", "High"]);
-    expect(socialFunScore(sports).confidence).toBe("High");
+  it("calls coverage Good only with a direct club, team or event count; indirect figures alone are Partial", () => {
+    // Setting, size, housing and sport: four figures, none of them a club or
+    // event count, so never more than Partial (the MIT case).
+    expect(socialFunScore(sports)).toMatchObject({ known: 4, direct: 0, coverage: "Partial" });
+    // Carnegie level and research impact say nothing about teams or clubs.
+    const researchOnly = school("Research U", { research_intensity: "very_high", research_impact: { overall: 90 } as University["research_impact"] });
+    expect(academicCommunityScore(researchOnly)).toMatchObject({ known: 2, direct: 0, coverage: "Partial" });
+    // A published team count plus enough other figures: Good.
+    expect(academicCommunityScore(tech)).toMatchObject({ direct: 1, coverage: "Good" });
+    const withClubs = { ...sports, campus_life: { ...sports.campus_life, social_clubs: 160 } };
+    expect(socialFunScore(withClubs).coverage).toBe("Good");
+    // A direct figure on its own isn't enough figures for Good.
+    expect(coverageFor({ project_teams: 0.5, coop: null }, ["project_teams"])).toBe("Partial");
+    expect(coverageFor({ a: null }, ["a"])).toBe("Not available");
   });
 });
 

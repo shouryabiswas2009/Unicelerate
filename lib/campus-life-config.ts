@@ -158,10 +158,18 @@ export const SOCIAL_PREF_WEIGHTS: Record<SocialPref, Partial<Record<SocialProxy,
 // still counts as a plus: it's what makes a small place close-knit.
 export const QUIET_FLIPPED: readonly SocialProxy[] = ["size", "setting", "athletics"];
 
-// ─── Confidence ──────────────────────────────────────────────────────────
-// How many proxies a school has for one kind: 3+ High, 2 Medium, 1 Low,
-// 0 "Not available".
-export const CONFIDENCE_THRESHOLDS = { high: 3, medium: 2 } as const;
+// ─── Data coverage ───────────────────────────────────────────────────────
+// The figures that measure the community or events themselves (a club,
+// team or event count). Everything else (setting, size, housing, sport
+// membership, co-op, research) is indirect. Coverage is "Good" only with at
+// least one direct figure AND this many figures in all; otherwise
+// "Partial" (or "Not available" with none). It never claims more than what
+// was measured.
+export const DIRECT_PROXIES = {
+  academic: ["project_teams", "academic_clubs", "hackathons"],
+  social: ["social_clubs"],
+} as const;
+export const GOOD_COVERAGE_MIN_FIGURES = 3;
 
 // Explanation lines: a score at or above this reads as a strength.
 export const CAMPUS_STRONG = 0.6;

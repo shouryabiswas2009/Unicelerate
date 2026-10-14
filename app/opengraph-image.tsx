@@ -27,7 +27,6 @@ export default function OpengraphImage() {
           </div>
         </div>
         <div style={{ width: 360, background: BAND, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse renders plain <img> */}
           <img src={mark} width={180} height={180} alt="" />
           <div style={{ marginTop: 24, fontSize: 40, color: CREAM }}>{BRAND_NAME}</div>
         </div>

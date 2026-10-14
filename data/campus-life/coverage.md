@@ -6,7 +6,7 @@ why: docs/CAMPUS-LIFE-DATA.md.
 | Proxy | All shared schools | US (College Scorecard) | Outside the US (curated) |
 | --- | --- | --- | --- |
 | Academic: project_teams | 2 | 0 | 2 |
-| Academic: academic_clubs | 0 | 0 | 0 |
+| Academic: academic_clubs | 1 | 0 | 1 |
 | Academic: hackathons | 0 | 0 | 0 |
 | Academic: coop | 8 | 1 | 7 |
 | Academic: research_activity | 1519 | 1519 | 0 |
@@ -15,17 +15,15 @@ why: docs/CAMPUS-LIFE-DATA.md.
 | Social: size | 1577 | 1577 | 0 |
 | Social: residential | 1573 | 1573 | 0 |
 | Social: athletics | 1581 | 1577 | 4 |
-| Social: social_clubs | 0 | 0 | 0 |
+| Social: social_clubs | 1 | 0 | 1 |
 
-## Confidence (proxies known: 3+ High, 2 Medium, 1 Low, 0 Not available)
+## Data coverage (Good: a club, team or event count plus 3+ figures; Partial: anything less; Not available: none)
 
-| Kind | Confidence | All shared schools | US (College Scorecard) | Outside the US (curated) |
+| Kind | Data coverage | All shared schools | US (College Scorecard) | Outside the US (curated) |
 | --- | --- | --- | --- | --- |
-| academic | High | 3 | 1 | 2 |
-| academic | Medium | 245 | 240 | 5 |
-| academic | Low | 1380 | 1278 | 102 |
+| academic | Good | 3 | 0 | 3 |
+| academic | Partial | 1625 | 1519 | 106 |
 | academic | Not available | 60 | 58 | 2 |
-| social | High | 1577 | 1577 | 0 |
-| social | Medium | 0 | 0 | 0 |
-| social | Low | 4 | 0 | 4 |
-| social | Not available | 107 | 0 | 107 |
+| social | Good | 0 | 0 | 0 |
+| social | Partial | 1582 | 1577 | 5 |
+| social | Not available | 106 | 0 | 106 |

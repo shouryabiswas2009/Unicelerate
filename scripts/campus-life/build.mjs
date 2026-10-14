@@ -96,7 +96,7 @@ for (const s of schools) {
   const o = socialFunScore(row);
   s.life.academic_score = a.score;
   s.life.social_score = o.score;
-  s.confidence = { academic: a.confidence, social: o.confidence };
+  s.coverage = { academic: a.coverage, social: o.coverage };
   s.values = { ...academicProxyValues(row), ...socialProxyValues(row) };
 }
 
@@ -139,14 +139,14 @@ const lines = [
     (p) => `| ${ACADEMIC_PROXIES.includes(p) ? "Academic" : "Social"}: ${p} | ${groups.map(([, f]) => count((s) => f(s) && s.values[p] !== null)).join(" | ")} |`
   ),
   "",
-  "## Confidence (proxies known: 3+ High, 2 Medium, 1 Low, 0 Not available)",
+  "## Data coverage (Good: a club, team or event count plus 3+ figures; Partial: anything less; Not available: none)",
   "",
-  `| Kind | Confidence | ${groups.map(([g]) => g).join(" | ")} |`,
+  `| Kind | Data coverage | ${groups.map(([g]) => g).join(" | ")} |`,
   `| --- | --- | ${groups.map(() => "---").join(" | ")} |`,
 ];
 for (const kind of ["academic", "social"]) {
-  for (const c of ["High", "Medium", "Low", "Not available"]) {
-    lines.push(`| ${kind} | ${c} | ${groups.map(([, f]) => count((s) => f(s) && s.confidence[kind] === c)).join(" | ")} |`);
+  for (const c of ["Good", "Partial", "Not available"]) {
+    lines.push(`| ${kind} | ${c} | ${groups.map(([, f]) => count((s) => f(s) && s.coverage[kind] === c)).join(" | ")} |`);
   }
 }
 writeFileSync(REPORT_MD, lines.join("\n") + "\n");

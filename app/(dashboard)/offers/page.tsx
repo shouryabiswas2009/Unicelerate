@@ -90,11 +90,11 @@ export default async function OffersPage() {
       // Visa and work rights, only when the student shows or factors it.
       visaScore: visa?.fit.score ?? null,
       visaLabel: visa ? visa.line.replace(/^Visa: /, "") : null,
-      // Campus-life proxies: the label is the confidence, never a rating.
+      // Campus-life proxies: the label is the data coverage, never a rating.
       campusAcademicScore: campusAcademic.score,
-      campusAcademicLabel: campusAcademic.score === null ? null : `${campusAcademic.confidence.toLowerCase()} confidence`,
+      campusAcademicLabel: campusAcademic.score === null ? null : `${campusAcademic.coverage.toLowerCase()} data coverage`,
       campusSocialScore: campusSocial.score,
-      campusSocialLabel: campusSocial.score === null ? null : `${campusSocial.confidence.toLowerCase()} confidence`,
+      campusSocialLabel: campusSocial.score === null ? null : `${campusSocial.coverage.toLowerCase()} data coverage`,
     };
   });
 

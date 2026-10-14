@@ -415,11 +415,10 @@
   }
 }
 
-/* Member or visitor navbar, chosen by <html data-auth> (lib/auth-cookie.ts).
-   Before the script runs (or without JavaScript) visitors' items show. */
+/* Visitors' items ("Log in", sign-up prompts) are hidden at once for
+   members by <html data-auth> (lib/auth-cookie.ts), before the members'
+   version is added in the browser (components/layout/use-signed-in.ts).
+   Members' items are never in the cached HTML, so nothing hides them. */
 html[data-auth="in"] .guest-only {
-  display: none !important;
-}
-html:not([data-auth="in"]) .member-only {
   display: none !important;
 }

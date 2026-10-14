@@ -12,13 +12,13 @@ import {
 import { isNum, type CampusRow } from "@/lib/campus-life-score";
 import { COOP_LABELS, RESEARCH_LABELS } from "@/lib/focus";
 import { NUMBER_FORMAT } from "@/lib/format";
-import type { CampusLife, UniversitySummary } from "@/lib/types";
+import type { CampusCoverage, CampusLife, UniversitySummary } from "@/lib/types";
 
 export {
   academicCommunityScore,
   academicPrefsOf,
   academicProxyValues,
-  confidenceFor,
+  coverageFor,
   socialFunScore,
   socialPrefsOf,
   socialProxyValues,
@@ -151,4 +151,11 @@ export function relevantProxyTexts(kind: CampusKind, u: CampusRow & Pick<Univers
     .slice(0, limit)
     .map((l) => l.text[0].toLowerCase() + l.text.slice(1))
     .join("; ");
+}
+
+// "Data coverage" in words: what was measured, never how good the place is.
+export function coverageText(coverage: CampusCoverage): string {
+  if (coverage === "Good") return "Data coverage: Good (includes club, team or event counts)";
+  if (coverage === "Partial") return "Data coverage: Partial (no club or event counts published)";
+  return "Data coverage: Not available";
 }

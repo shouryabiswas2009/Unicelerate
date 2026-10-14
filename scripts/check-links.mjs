@@ -55,13 +55,11 @@ async function page(path) {
 }
 
 // The href of every <a> on a page (not <link> tags for icons and styles).
-// Links marked data-members-only are the member navbar: it's in the HTML
-// for everyone (so pages can be cached) but hidden from visitors, so they're
-// skipped here.
+// Members' links are never in a public page's HTML (they're added in the
+// browser for students who are logged in), so every link here is one a
+// visitor can follow.
 function anchorHrefs(html) {
-  return [...html.matchAll(/<a\b([^>]*?)\shref="([^"]+)"([^>]*)>/g)]
-    .filter((m) => !/data-members-only/.test(m[1] + m[3]))
-    .map((m) => m[2].replaceAll("&amp;", "&"));
+  return [...html.matchAll(/<a\b[^>]*?\shref="([^"]+)"[^>]*>/g)].map((m) => m[1].replaceAll("&amp;", "&"));
 }
 
 const hasId = (html, id) => new RegExp(`\\sid="${id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`).test(html);
@@ -76,6 +74,8 @@ try {
       problems.push(`${source}: the page itself returned ${status}`);
       continue;
     }
+    // A visitor's page never carries the members' controls.
+    if (/aria-label="Log out"|>Log out</.test(html)) problems.push(`${source}: has a "Log out" control for a logged-out visitor`);
     for (const href of new Set(anchorHrefs(html))) {
       checked++;
       if (href.startsWith("#")) {
