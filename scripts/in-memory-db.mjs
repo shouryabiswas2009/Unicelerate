@@ -25,6 +25,15 @@ export async function createInMemoryDb({ before = Infinity, parsers } = {}) {
     create schema auth;
     create schema extensions;
     create table auth.users (id uuid primary key);
+    -- Supabase's two API roles, which migrations grant to. Like Supabase,
+    -- new tables, views, sequences and functions are granted to them as
+    -- they're created, so a migration's own revoke afterwards sticks.
+    create role anon nologin;
+    create role authenticated nologin;
+    grant usage on schema public, auth, extensions to anon, authenticated;
+    alter default privileges in schema public grant select, insert, update, delete on tables to anon, authenticated;
+    alter default privileges in schema public grant usage, select on sequences to anon, authenticated;
+    alter default privileges in schema public grant execute on functions to anon, authenticated;
     create function auth.uid() returns uuid language sql stable as
       $$ select nullif(current_setting('test.uid', true), '')::uuid $$;
   `);

@@ -1,14 +1,15 @@
-// A small fixed-window rate limiter for sign-up, log-in and "report a wrong
-// figure". In memory, per server instance: on Vercel each instance keeps
+// A small fixed-window rate limiter for sign-up, log-in, "report a wrong
+// figure" and "send feedback". In memory, per server instance: on Vercel each instance keeps
 // its own counts, so it's a first line against bursts (one script hammering
 // one instance), not a hard global cap. The hard caps are Supabase Auth's
-// own per-IP limits (sign-ups and sign-ins) and, for reports, a database
-// rule (supabase/migration_024_report_rate_limit.sql).
+// own per-IP limits (sign-ups and sign-ins) and, for reports and feedback,
+// database rules (supabase/migration_024 and migration_026).
 
 export const RATE_LIMITS = {
   login: { max: 10, windowMs: 5 * 60_000 }, // 10 tries per 5 minutes per IP
   signup: { max: 5, windowMs: 60 * 60_000 }, // 5 sign-ups per hour per IP
   report: { max: 10, windowMs: 60 * 60_000 }, // 10 reports per hour per student
+  feedback: { max: 5, windowMs: 60 * 60_000 }, // 5 messages per hour per visitor (IP)
 } as const;
 export type RateLimitAction = keyof typeof RATE_LIMITS;
 

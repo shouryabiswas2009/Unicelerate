@@ -37,16 +37,9 @@ const { db } = await createInMemoryDb({
   parsers: { 1700: Number, 20: Number, 1082: (value) => value, 1114: iso, 1184: iso },
 });
 await loadAllSeeds(db);
-// Supabase's two API roles. Policies use auth.uid(), which reads test.uid
-// (scripts/in-memory-db.mjs); grants mirror what Supabase gives them.
-await db.exec(`
-  create role anon nologin;
-  create role authenticated nologin;
-  grant usage on schema public, auth, extensions to anon, authenticated;
-  grant select, insert, update, delete on all tables in schema public to anon, authenticated;
-  grant usage, select on all sequences in schema public to anon, authenticated;
-  grant execute on all functions in schema public to anon, authenticated;
-`);
+// Supabase's two API roles and their grants come from scripts/in-memory-db.mjs
+// (default privileges, so a migration's revoke sticks, as on Supabase).
+// Policies use auth.uid(), which reads test.uid.
 const universityCount = (await db.query("select count(*)::int as n from public.universities")).rows[0].n;
 
 // ─── Auth ───────────────────────────────────────────────────────────────
@@ -327,8 +320,14 @@ async function handleRest(method, table, url, body, headers, uid) {
             ? ` on conflict (${target.map(ident).join(", ")}) do nothing`
             : ` on conflict (${target.map(ident).join(", ")}) do update set ${updates.map((c) => `${ident(c)} = excluded.${ident(c)}`).join(", ")}`;
       }
+      // Like PostgREST: RETURNING (which needs read access) only when the
+      // caller asked for the rows back; feedback, for one, is insert-only.
+      if (!representation) {
+        await tx.query(sql, params);
+        return [201, null];
+      }
       const { rows } = await tx.query(`${sql} returning ${selectList}`, params);
-      return representation ? reply(await shape(rows), wantsObject, 201) : [201, null];
+      return reply(await shape(rows), wantsObject, 201);
     }
 
     if (method === "PATCH") {
@@ -336,13 +335,23 @@ async function handleRest(method, table, url, body, headers, uid) {
       if (cols.length === 0) return pgError(400, "PGRST204", "nothing to update");
       params.push(JSON.stringify(body));
       const set = cols.map((c) => `${ident(c)} = (json_populate_record(null::public.${ident(table)}, $1::json)).${ident(c)}`).join(", ");
-      const { rows } = await tx.query(`update public.${ident(table)} set ${set} ${where(url, params)} returning ${selectList}`, params);
-      return representation ? reply(await shape(rows), wantsObject) : [204, null];
+      const update = `update public.${ident(table)} set ${set} ${where(url, params)}`;
+      if (!representation) {
+        await tx.query(update, params);
+        return [204, null];
+      }
+      const { rows } = await tx.query(`${update} returning ${selectList}`, params);
+      return reply(await shape(rows), wantsObject);
     }
 
     if (method === "DELETE") {
-      const { rows } = await tx.query(`delete from public.${ident(table)} ${where(url, params)} returning ${selectList}`, params);
-      return representation ? reply(await shape(rows), wantsObject) : [204, null];
+      const remove = `delete from public.${ident(table)} ${where(url, params)}`;
+      if (!representation) {
+        await tx.query(remove, params);
+        return [204, null];
+      }
+      const { rows } = await tx.query(`${remove} returning ${selectList}`, params);
+      return reply(await shape(rows), wantsObject);
     }
     return pgError(405, "PGRST000", `${method} isn't supported`);
   });

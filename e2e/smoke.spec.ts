@@ -85,3 +85,10 @@ test("numbers in running text keep the space after them", async ({ page }) => {
   await page.goto(`/universities/${WATERLOO_ID}`);
   await expect(page.getByText(/[\d,]+ universities in the ranking/)).toBeVisible();
 });
+
+test("the footer links to feedback and says when the data was last refreshed", async ({ page }) => {
+  await page.goto("/privacy");
+  const footer = page.locator("footer");
+  await expect(footer.getByRole("link", { name: "Send feedback" })).toHaveAttribute("href", "/feedback?from=%2Fprivacy");
+  await expect(footer).toContainText(/University data last refreshed \d{1,2} [A-Z][a-z]+ \d{4}\./);
+});

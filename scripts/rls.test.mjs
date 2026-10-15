@@ -106,3 +106,67 @@ describe("row level security: one student can never touch another's data", () =>
     expect((await db.query("select count(*)::int as n from auth.users where id = $1", [A])).rows[0].n).toBe(0);
   }, 60_000);
 });
+
+describe("feedback (migration_026): anyone can send it, nobody can read it through the API", () => {
+  async function asRole(role, uid = "") {
+    const { db } = await createInMemoryDb();
+    if (uid) await db.query("insert into auth.users (id) values ($1)", [uid]);
+    await db.exec(`grant usage on schema public, auth to ${role}; set role ${role}; set test.uid = '${uid}'`);
+    return db;
+  }
+
+  it("a logged-out visitor can send feedback but can't read any back", async () => {
+    const db = await asRole("anon");
+    await db.query("insert into public.feedback (message, email, page) values ('The fee looks old', 'me@example.com', '/universities')");
+    await expect(db.query("select * from public.feedback")).rejects.toThrow(/permission denied/);
+    await db.exec("reset role");
+    expect((await db.query("select count(*)::int as n from public.feedback where status = 'new'")).rows[0].n).toBe(1);
+  }, 60_000);
+
+  it("a student can't send it in someone else's name, set a status, or change or delete any", async () => {
+    const db = await asRole("authenticated", A);
+    await db.exec("reset role");
+    await db.query("insert into auth.users (id) values ($1)", [B]);
+    await db.exec("set role authenticated");
+    await expect(db.query("insert into public.feedback (message, user_id) values ('hi there', $1)", [B])).rejects.toThrow(/row-level security/);
+    await expect(db.query("insert into public.feedback (message, status) values ('hi there', 'fixed')")).rejects.toThrow(/permission denied/);
+    await db.query("insert into public.feedback (message) values ('mine')");
+    await expect(db.query("update public.feedback set status = 'fixed'")).rejects.toThrow(/permission denied/);
+    await expect(db.query("delete from public.feedback")).rejects.toThrow(/permission denied/);
+    await db.exec("reset role");
+    expect((await db.query("select user_id from public.feedback")).rows).toEqual([{ user_id: A }]);
+  }, 60_000);
+
+  it("caps a student at 10 messages a day (the database rule)", async () => {
+    const db = await asRole("authenticated", A);
+    for (let i = 0; i < 10; i++) await db.query("insert into public.feedback (message) values ($1)", [`message ${i}`]);
+    await expect(db.query("insert into public.feedback (message) values ('one more')")).rejects.toThrow(/feedback_limit/);
+  }, 60_000);
+
+  it("the owner's inbox view is out of reach of the API roles", async () => {
+    for (const role of ["anon", "authenticated"]) {
+      const db = await asRole(role);
+      await expect(db.query("select * from public.owner_inbox"), role).rejects.toThrow(/permission denied/);
+    }
+  }, 120_000);
+
+  it("the owner's inbox lists feedback and figure reports on one status scale", async () => {
+    const { db } = await createInMemoryDb();
+    const shared = (await db.query("select id from public.universities where created_by is null limit 1")).rows[0]?.id;
+    await db.query("insert into auth.users (id) values ($1)", [A]);
+    await db.query("insert into public.feedback (message) values ('hello there')");
+    if (shared) {
+      await db.query("insert into public.figure_reports (user_id, university_id, field, suggested_value, status) values ($1, $2, 'tuition', '1', 'rejected')", [A, shared]);
+    }
+    const rows = (await db.query("select kind, status from public.owner_inbox order by kind")).rows;
+    expect(rows).toEqual([{ kind: "feedback", status: "new" }, ...(shared ? [{ kind: "figure report", status: "wont_fix" }] : [])]);
+  }, 60_000);
+
+  it("goes when the student deletes their account", async () => {
+    const db = await asRole("authenticated", A);
+    await db.query("insert into public.feedback (message) values ('bye for now')");
+    await db.exec("reset role");
+    await db.query("delete from auth.users where id = $1", [A]);
+    expect((await db.query("select count(*)::int as n from public.feedback")).rows[0].n).toBe(0);
+  }, 60_000);
+});

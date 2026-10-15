@@ -35,7 +35,10 @@ export default defineConfig({
       timeout: 120_000,
     },
     {
-      command: `npx next dev -p ${PORT}`,
+      // A fresh build folder each run: the stand-in makes new university ids
+      // every time it starts, so a cached list from the last run would point
+      // at schools that no longer exist.
+      command: `node -e "require('fs').rmSync('.next-local-e2e',{recursive:true,force:true})" && npx next dev -p ${PORT}`,
       url: `http://localhost:${PORT}/privacy`,
       env: {
         NEXT_PUBLIC_SUPABASE_URL: `http://127.0.0.1:${LOCAL_SUPABASE_PORT}`,

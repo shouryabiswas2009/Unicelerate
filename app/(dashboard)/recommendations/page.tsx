@@ -65,6 +65,13 @@ export default async function RecommendationsPage({
             how strong it is and how likely you are to be admitted. Admission chances are demo estimates, not
             promises.
           </p>
+          <p className="text-sm text-muted-foreground">
+            Something look wrong or missing?{" "}
+            <Link href="/feedback?from=/recommendations" className="underline">
+              Send feedback
+            </Link>
+            .
+          </p>
         </div>
         <Button variant="outline" asChild>
           <Link href="/profile">Edit profile</Link>

@@ -5,6 +5,7 @@
 //
 //   npm run dev:local
 import { spawn } from "node:child_process";
+import { rmSync } from "node:fs";
 import { join } from "node:path";
 
 const ROOT = join(import.meta.dirname, "..", "..");
@@ -15,6 +16,10 @@ export const LOCAL_ENV = {
   NEXT_DIST_DIR: ".next-local",
   NEXT_TELEMETRY_DISABLED: "1",
 };
+
+// The stand-in makes new university ids every time it starts, so the app's
+// cached list from a previous run must go.
+rmSync(join(ROOT, ".next-local", "cache"), { recursive: true, force: true });
 
 const children = [
   spawn(process.execPath, [join(ROOT, "scripts", "local-supabase", "server.mjs")], { stdio: "inherit" }),

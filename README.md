@@ -124,6 +124,13 @@ plus a small auth service and the part of the REST API the app uses.
 Accounts live only in memory; the test account is in
 [`e2e/local-test-account.ts`](e2e/local-test-account.ts). No Docker needed.
 
+Running the site: feedback and wrong-figure reports are read with the
+queries in [docs/OWNER-QUERIES.md](docs/OWNER-QUERIES.md); the yearly
+data refresh is [docs/DATA-REFRESH.md](docs/DATA-REFRESH.md); free-plan
+limits and the cheapest fix for each are in
+[docs/SCALING-NOTES.md](docs/SCALING-NOTES.md); schools whose fee still
+needs checking by hand are in [docs/HAND-CHECK.md](docs/HAND-CHECK.md).
+
 Interview notes on the main decisions:
 [docs/INTERVIEW-NOTES.md](docs/INTERVIEW-NOTES.md).
 

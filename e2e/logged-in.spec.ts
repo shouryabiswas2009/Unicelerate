@@ -116,3 +116,14 @@ test("a student signs up, gets recommendations, saves, compares, tracks an offer
 
   expect(consoleErrors, consoleErrors.join("\n")).toEqual([]);
 });
+
+test("a logged-out visitor sends feedback from the page they were on", async ({ page }) => {
+  await page.goto("/universities");
+  await page.locator("footer").getByRole("link", { name: "Send feedback" }).click();
+  await expect(page).toHaveURL(/\/feedback\?from=%2Funiversities/);
+  await expect(page.getByLabel("Which page is it about? (optional)")).toHaveValue("/universities");
+  await page.getByLabel("Your message").fill("The search could also match city names.");
+  await page.getByLabel("Email for a reply (optional)").fill("visitor@example.test");
+  await page.getByRole("button", { name: "Send feedback" }).click();
+  await expect(page.getByRole("status")).toContainText("Thank you");
+});

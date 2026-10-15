@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: `What ${BRAND_NAME} stores about you, who can see it, and how to delete it.`,
 };
 
-const UPDATED = "7 October 2026";
+const UPDATED = "14 October 2026";
 
 // Plain-language privacy page. Keep it in line with what the code actually
 // does: if you add something that stores or shares data, update this page.
@@ -36,6 +36,16 @@ export default function PrivacyPage() {
           </ul>
         </Section>
 
+        <Section title="If you send feedback">
+          <p>
+            The <Link href="/feedback" className="font-medium text-primary underline">feedback form</Link>{" "}
+            stores your message, the page it&apos;s about, and an email address only if you give one (used
+            just to reply to you). If you&apos;re logged in, it&apos;s linked to your account and deleted with
+            it. Nobody can read feedback on the site, not even you after sending it; only the site&apos;s
+            owner reads it, in the database. It isn&apos;t shared with anyone.
+          </p>
+        </Section>
+
         <Section title="If you use the site without an account">
           <p>
             The &ldquo;Try it&rdquo; quiz on the home page sends your three answers to the server
@@ -48,8 +58,8 @@ export default function PrivacyPage() {
           <p>
             Only you. The database checks every request against your login (row-level security), so
             other users can&apos;t read your profile, saved schools, applications or the universities
-            you added. The one exception is a &ldquo;wrong figure&rdquo; report, which the site&apos;s owner
-            reads to check the figure. Your data isn&apos;t sold, rented or shared with anyone, and isn&apos;t used for
+            you added. The exceptions are a &ldquo;wrong figure&rdquo; report, which the site&apos;s owner
+            reads to check the figure, and feedback, which only the owner reads. Your data isn&apos;t sold, rented or shared with anyone, and isn&apos;t used for
             advertising.
           </p>
         </Section>
@@ -92,8 +102,9 @@ export default function PrivacyPage() {
 
         <Section title="Questions">
           <p>
-            There&apos;s no public contact address yet; one will be listed here. You don&apos;t need to
-            ask anyone to delete your data: you can do it yourself at any time (see above).
+            Use the <Link href="/feedback" className="font-medium text-primary underline">feedback form</Link>{" "}
+            (leave an email address if you&apos;d like a reply). You don&apos;t need to ask anyone to delete
+            your data: you can do it yourself at any time (see above).
           </p>
         </Section>
       </div>

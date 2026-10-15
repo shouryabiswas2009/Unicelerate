@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/logo";
 import { BRAND_NAME } from "@/lib/brand";
+import { FeedbackLink } from "@/components/layout/feedback-link";
+import { formatDay, getLastRefreshed } from "@/lib/data/last-refreshed";
 
 // Columns of links: public pages only, so a visitor never lands on a login
 // screen they didn't ask for. No contact details or social links that
@@ -29,7 +31,8 @@ const COLUMNS: { title: string; links: { href: string; label: string; external?:
   },
 ];
 
-export function Footer() {
+export async function Footer() {
+  const refreshed = await getLastRefreshed();
   return (
     <footer className="bg-footer text-footer-foreground">
       <div className="page-container grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
@@ -58,6 +61,11 @@ export function Footer() {
                   )}
                 </li>
               ))}
+              {column.title === "About" && (
+                <li>
+                  <FeedbackLink className="text-footer-muted hover:text-footer-foreground hover:underline" />
+                </li>
+              )}
             </ul>
           </nav>
         ))}
@@ -65,6 +73,7 @@ export function Footer() {
       <div className="border-t border-footer-muted/20">
         <p className="page-container py-5 text-xs text-footer-muted">
           &copy; {new Date().getFullYear()} {BRAND_NAME}. Figures are guidance only: always check the official source before you decide.
+          {refreshed && <> University data last refreshed {formatDay(refreshed)}.</>}
         </p>
       </div>
     </footer>
