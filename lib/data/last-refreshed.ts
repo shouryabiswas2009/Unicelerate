@@ -20,7 +20,7 @@ export const getLastRefreshed = unstable_cache(
       return null;
     }
   },
-  ["last-refreshed", "v1"],
+  ["last-refreshed", "v2"],
   { revalidate: 86400, tags: ["universities"] }
 );
 

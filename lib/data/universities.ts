@@ -154,7 +154,7 @@ const loadSharedCached = unstable_cache(
     if (result.missing.length > 0) throw new Error("pending migration");
     return packRows(result.rows.map(slimForList));
   },
-  ["shared-universities", "v6"], // bump the version when LIST_COLUMNS (or what's cached) changes
+  ["shared-universities", "v7"], // bump the version when LIST_COLUMNS (or what's cached) changes, or to drop a list cached before a database update
   { revalidate: 86400, tags: ["universities"] }
 );
 
@@ -251,7 +251,7 @@ export const getPublicUniversity = unstable_cache(
   // Bump the version when a migration adds columns: the data cache outlives
   // deploys, so old rows (without the new columns) would be served for up
   // to a day otherwise. v2: the strength index (migration_019); v3: campus
-  // life (migration_023).
-  ["public-university", "v3"],
+  // life (migration_023); v4: co-op details (migration_025).
+  ["public-university", "v4"],
   { revalidate: 86400, tags: ["universities"] }
 );
