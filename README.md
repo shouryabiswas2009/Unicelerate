@@ -1,5 +1,8 @@
 # Unicelerate
 
+[![CI](https://github.com/shouryabiswas2009/Unicelerate/actions/workflows/ci.yml/badge.svg)](https://github.com/shouryabiswas2009/Unicelerate/actions/workflows/ci.yml)
+[![Uptime](https://github.com/shouryabiswas2009/Unicelerate/actions/workflows/uptime.yml/badge.svg)](https://github.com/shouryabiswas2009/Unicelerate/actions/workflows/uptime.yml)
+
 **Live: [www.unicelerate.com](https://www.unicelerate.com)**
 
 ## In 30 seconds
@@ -25,8 +28,8 @@ each school's own website.
 
 Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 ·
 Supabase (Postgres, Auth, row level security) · Vercel.
-562 unit and integration tests, 21 browser tests (including a logged-in happy path), axe accessibility checks
-and Lighthouse in CI.
+562 unit and integration tests, 21 browser tests (including a logged-in
+happy path), axe accessibility checks and Lighthouse in CI.
 
 ## Screenshots
 
