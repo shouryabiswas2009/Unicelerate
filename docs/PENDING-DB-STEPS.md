@@ -31,7 +31,7 @@ countries (16 post-study, 7 proof of funds, 16 work-hour figures); and
 done; check: `delete_my_account` exists as a security-definer function).
 Steps 16–20 were run on 2026-10-07 and verified read-only: 350 universities have research impact (Oxford 99), the four profile columns exist, `figure_reports` exists and refuses inserts without a login. Steps 21–23 were run on 2026-10-08 and verified read-only: the strength columns exist, 1,688 shared universities have an index (14 estimates, MIT 99.2 / A / #1), no College Scorecard row keeps an illustrative ranking, and `visa_mode`, `visa_weight`, `stay_after` exist. Step 24 was run on 2026-10-08 (reported done; the constraint can't be read with the public key, so check it by saving a profile with an Ontario average). Steps 25–27 were run on 2026-10-13 and verified read-only: `profile_courses` exists, the `campus_life` column exists and all 1,688 shared universities have campus-life data (Waterloo and UBC carry their hand-checked rows). Steps 28–29 were run on 2026-10-14: Warwick's club counts verified read-only (70 academic, 161 social/cultural); the report-cap trigger reported done (it can't be read with the public key).
 
-New migrations will be added to this table when they're written.
+New migrations will be added to this table when they're written. Steps 30–36 (written 2026-10-14) are for the 189 new non-US schools, co-op details and feedback; after them, call `POST /api/revalidate` (or wait a day) so the cached list picks up the new schools.
 
 Run them in the Supabase dashboard → **SQL Editor** → **New query**: paste
 the whole file, click **Run**, then run the check underneath it. Do them in
@@ -68,6 +68,13 @@ this order: the seed files need both migrations first.
 | 27 | `supabase/seed_campus_life/01_campus_life.sql` … `06_campus_life.sql`, one at a time in order, after step 26 (check: `select count(*) from universities where created_by is null and campus_life is not null` → 1688) | Done, verified 2026-10-13 |
 | 28 | `supabase/seed_campus_life/06_campus_life.sql` again (Warwick's club counts added 2026-10-13; check: `select campus_life->>'academic_clubs' from universities where curated_id = 'warwick'` → 70) | Done, verified 2026-10-14 |
 | 29 | `supabase/migration_024_report_rate_limit.sql` (check: `select tgname from pg_trigger where tgname = 'figure_reports_daily_limit'` → 1 row) | Done 2026-10-14 (reported) |
+| 30 | `supabase/migration_025_coop_details.sql` (check: `select count(*) from information_schema.columns where table_name = 'universities' and column_name in ('coop_work_terms','coop_checked_on')` → 2) | **To do** (before step 31) |
+| 31 | `supabase/seed_international/00_link_existing.sql`, `01_universities.sql`, `02_universities.sql`, `03_universities.sql`, `90_coop.sql`, `91_rankings.sql`, in order (300 curated schools; check: `select count(*) filter (where source = 'curated'), count(*) filter (where coop_work_terms is not null) from universities where created_by is null` → 300, 16) | **To do** |
+| 32 | `supabase/seed_research_impact.sql` (check: `select count(*) from universities where research_impact is not null` → 539) | **To do** |
+| 33 | `supabase/seed_strength/01_strength.sql` … `07_strength.sql`, one at a time in order (now 7 files; check: `select count(*) filter (where strength_index is not null), count(*) filter (where strength_is_estimate) from universities where created_by is null` → 1877, 14) | **To do** |
+| 34 | `supabase/seed_campus_life/01_campus_life.sql` … `07_campus_life.sql`, one at a time in order (check: `select count(*) from universities where created_by is null and campus_life is not null` → 1877) | **To do** |
+| 35 | `supabase/featured/featured.sql` (check: `select count(*) from universities where created_by is null and is_featured` → 671) | **To do** |
+| 36 | `supabase/migration_026_feedback.sql` (check: `select relrowsecurity from pg_class where oid = 'public.feedback'::regclass` → true, and `select count(*) from public.owner_inbox` runs) | **To do** |
 
 All of them are safe to run again if you're not sure whether one went
 through.

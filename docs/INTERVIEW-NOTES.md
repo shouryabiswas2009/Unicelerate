@@ -134,11 +134,13 @@ adding more.
 
 ## 8. Testing
 
-537 unit and integration tests (Vitest) include migration tests on an
+562 unit and integration tests (Vitest) include migration tests on an
 in-memory Postgres, seeded fuzz tests over 8,000 random inputs and a
-ranking harness on the real list. On top of that, 17 browser tests and
-axe accessibility checks run against a production build with a fake
-database, plus Lighthouse in CI.
+ranking harness on the real list. On top of that, 19 public-page browser
+tests and axe accessibility checks run against a production build with a
+fake database; a logged-in happy path (sign up to delete account) runs
+against a local Supabase stand-in (real Postgres, migrations and row level
+security, in memory); and Lighthouse runs in CI.
 
 ## Resume bullets (only numbers the project produced)
 
@@ -157,6 +159,6 @@ database, plus Lighthouse in CI.
   labelled as a demo.
 - Built our own strength index for all 1,877 schools from open data (rank
   correlation 0.74 with the Leiden Ranking on signals independent of it).
-- Wrote **537** automated tests plus 17 browser and accessibility tests
+- Wrote **562** automated tests plus 21 browser and accessibility tests
   (Lighthouse accessibility **100**), including row-level-security tests
   for every student-owned table. [X] users, [X] sign-ups: not measured.

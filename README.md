@@ -25,7 +25,7 @@ each school's own website.
 
 Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 ·
 Supabase (Postgres, Auth, row level security) · Vercel.
-537 unit and integration tests, 17 browser tests, axe accessibility checks
+562 unit and integration tests, 21 browser tests (including a logged-in happy path), axe accessibility checks
 and Lighthouse in CI.
 
 ## Screenshots
